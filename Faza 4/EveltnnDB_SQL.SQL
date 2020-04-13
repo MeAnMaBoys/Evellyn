@@ -13,7 +13,7 @@ CREATE TABLE `Korisnik`
 (
   `Korisnicko_Ime` Varchar(20) NOT NULL,
   `Sifra` Varchar(20) NOT NULL,
-  `Email` Varchar(255) NOT NULL,
+  `Email` Varchar(100) NOT NULL,
   `ID_K` Int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`ID_K`),
   UNIQUE `ID_K` (`ID_K`)
