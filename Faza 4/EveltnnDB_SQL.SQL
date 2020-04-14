@@ -1,9 +1,6 @@
-﻿/*
-Created: 4/7/2020
-Modified: 4/12/2020
-Model: MySQL 8.0
-Database: MySQL 8.0
-*/
+﻿
+CREATE DATABASE IF NOT EXISTS `EvelynnDB` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `EvelynnDB`;
 
 -- Create tables section -------------------------------------------------
 
