@@ -1,0 +1,49 @@
+<section class="headerPic bg-fullwh" style="background-image: url('<?php echo base_url('assets/img/register.jpeg') ?>')">
+    <div class="container d-flex h-100 align-items-center">
+    </div>
+</section>
+
+<div class="page_title" style="background-color: #222E50;">
+    REGISTRACIJA
+</div>
+
+<div class="container text-center" style="height: 100%;">
+    <div class="row">
+        <div class="col-sm-12 text-center izaberiNaslov fontJost">IZABERI KOM TIPU KORISNIKA PRIPADAS</div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12 col-lg-4 p-3">
+            <div class="kartica h-100 BGwhiteLetterColor whiteLetterColor d-flex align-items-center flex-column p-4">
+                <div class="fontJost text-uppercase h4 ls-2 mt-3">
+                    IZVODJAC
+                </div>
+
+                <div class="text-justify fontLongText font18 mt-3">Izvođači su korisnici na platformi koji se registruju unošenjem e-mail adrese, šifre, ličnih podataka kao i tipa koji se kasnije moze izmeniti.Izvođači na platformi mogu da dodaju novi sadržaj na svoje profile kako bi se pretstavili organizatorima i posetiocima. Takođe, mogu se prijavljivati na konkurse i učestvovati u realizaciji događaja.</div>
+
+                <a href="<?php echo base_url('/Gost/registracija_izvodjac'); ?>" class="mt-auto pt-3"><button class="btn my_button">Registruj se</button></a>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4 p-3">
+            <div class="kartica h-100 BGwhiteLetterColor whiteLetterColor d-flex align-items-center flex-column p-4">
+                <div class="fontJost text-uppercase h4 ls-2 mt-3">
+                    ORGANIZATOR
+                </div>
+
+                <div class="text-justify fontLongText font18 mt-3">Organizatori mogu da kreiraju događaje bilo kog tipa, i za njih unose odgovarajuce podatke i biraju izvođače koji će nastupati na događajima. Organizator bira izvođače na različite načine. Mogu raspisati konkurs, pri čemu se pored informacija o događaju mogu naznačiti i koji tipovi izvođača bi bili poželjni kao i potencijalno obaveštavanje svih izvođača odgovarajućeg tipa</div>
+
+                <a href="registracija_izvodjac.html" class="mt-auto pt-3"><button class="btn my_button">Registruj se</button></a>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4 p-3">
+            <div class="kartica h-100 BGwhiteLetterColor whiteLetterColor d-flex align-items-center flex-column p-4">
+                <div class="fontJost text-uppercase h4 ls-2 mt-3">
+                    POSETILAC
+                </div>
+
+                <div class="text-justify fontLongText font18 mt-3 mb-2">Registrovani posetioci mogu, pored pretrage predstojećih događaja i izdođača na platformi, da se pretplate na određenog organizatora ili izvođača i da ostavljaju komentare i ocene na završene događaje ili određene izvođače.</div>
+
+                <a href="registracija_izvodjac.html" class="mt-auto pt-3"><button class="btn my_button">Registruj se</button></a>
+            </div>
+        </div>
+    </div>
+</div>

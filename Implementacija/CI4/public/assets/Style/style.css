@@ -1,0 +1,260 @@
+html, body {
+    height: 100%;
+}
+
+.headerColor
+{
+    background-color: #414361;
+}
+
+.headerFont
+{
+    font-family: 'Righteous', cursive;
+    font-size: 48px;
+    color: #FFF9EC;
+
+
+}
+.footerPadd
+{
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.whiteLetterColor
+{
+    color:#FFF9EC;
+}
+
+.BGwhiteLetterColor
+{
+    background-color: #222E50;;
+}
+.fontDec
+{
+    font-size: 28px;
+    word-spacing: 10px;
+    text-align: right;
+    padding-top:20px;
+}
+
+.font-fredoka {
+    font-family: 'Fredoka One', cursive; 
+}
+
+.sml
+{
+    font-size: 22px;
+}
+
+.big
+{
+    font-size: 52px;
+}
+
+.my_button
+{
+    border: none !important;
+    background-color: #586994;
+    font-family: 'Fredoka One', cursive;
+    color:#FFF9EC;
+    text-transform: uppercase;
+    font-size: 15px;
+    letter-spacing: 3px;
+    box-shadow: none;
+    border-radius: 0;
+    transition: 0.3s;
+    padding: 10px 20px;
+}
+
+.bg_color
+{
+    background-color: #222E50;
+    font-family: 'Crimson Text', serif;
+    color:#FFF9EC;
+    letter-spacing: 1px;
+}
+
+.paddTop
+{
+    padding-top: 15px;
+}
+
+.footFont
+{
+    font-family: 'Crimson Text', serif;
+}
+
+#emailHelp
+{
+    color:#FFF9EC;
+    font-size: 16px;
+}
+
+.font22
+{
+    font-size: 20px;
+}
+
+.nalogButton
+{
+    letter-spacing: 2px;
+    font-size:20px;
+    margin-bottom: 10px;
+}
+
+.registrujSe
+{
+    color:#FFF9EC;
+}
+
+.registrujSe2
+{
+    color:#FFF9EC;
+    font-size: 22px;
+    letter-spacing: 1px;
+    font-family: 'Crimson Text', serif;
+}
+
+.bg-fullwh {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.heightVH
+{
+    height: 90%;
+}
+
+.subDugme
+{
+    padding-top: 50px;
+}
+
+.headerPic
+{
+    padding-top: 50px;
+    height: 280px;
+    position: relative;
+}
+
+.page_title
+{
+    text-transform: uppercase;
+    font-size: 50px !important;
+    color:#FFF9EC;
+    font-family: 'Indie Flower', cursive;
+    text-align: center;
+}
+
+.kartica {
+    -webkit-box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.35);
+    -moz-box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.35);
+    box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.35);
+}
+
+.kartica-velicina {
+    padding-bottom: 50%;
+}
+
+.karticaIgrac
+{
+    color:#222E50;
+    background-color:#FFF9EC ;
+}
+
+.fontJost
+{
+    font-family: 'Jost', sans-serif;
+}
+
+.izaberiNaslov
+{
+    color:#3A405A;
+    font-size: 40px;
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 10px;
+}
+
+.ls-1 {
+    letter-spacing: 1px;
+}
+
+.ls-2 {
+    letter-spacing: 2px;
+}
+
+.ls-3 {
+    letter-spacing: 3px;
+}
+
+.fontLongText
+{
+    font-family: 'Dancing Script', cursive;
+}
+
+.font18
+{
+    font-size: 20px;
+}
+
+.mix,
+.gap {
+    display: inline-flex;
+    vertical-align: top;
+    width: 100%;
+}
+
+.absolute-fullwh {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.z-ind-2 {
+    z-index: 2 !important;
+} 
+
+.z-ind-3 {
+    z-index: 3 !important;
+}
+
+.checked {
+    color: orange;
+}
+
+
+.bar-5 { height: 18px; background-color: #4CAF50;}
+.bar-4 { height: 18px; background-color: #2196F3;}
+.bar-3 { height: 18px; background-color: #00bcd4;}
+.bar-2 { height: 18px; background-color: #ff9800;}
+.bar-1 { height: 18px; background-color: #f44336;}
+
+.bar-container {
+    width: 100%;
+    background-color: #f1f1f1;
+    text-align: center;
+}
+
+.blur-bg {
+    background-color: rgba(20, 20, 20, 0.8);
+}
+
+@supports ((backdrop-filter: blur(6px)) or (-webkit-backdrop-filter: blur(6px))) {
+    .blur-bg {
+        background-color: rgba(20, 20, 20, 0.3);
+        -webkit-backdrop-filter: blur(6px);
+        backdrop-filter: blur(6px);
+    }
+}
+
+.hover-clear .blur-bg {
+    transition: 0.4s;
+}
+
+.hover-clear:hover .blur-bg {
+    opacity: 0;
+}
