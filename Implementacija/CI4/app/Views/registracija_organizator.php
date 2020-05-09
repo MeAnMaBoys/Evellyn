@@ -1,5 +1,5 @@
 <div class="bg_color" style="height: 100vh;">
-    <?php echo form_open('Gost/registruj_izvodjac',['id'=>'myform','name'=>'izvodjac']);?>
+    <?php echo form_open('Gost/registruj_organizator',['id'=>'myform','name'=>'organizator']);?>
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 h-100">

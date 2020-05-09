@@ -1,11 +1,11 @@
 <div class="bg_color" style="height: 100vh;">
-    <?php echo form_open('Gost/registruj_izvodjac',['id'=>'myform','name'=>'izvodjac']);?>
+    <?php echo form_open('Gost/registruj_posetilac',['id'=>'myform','name'=>'posetilac']);?>
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 h-100">
 
                     <div class="form-group h-100">
-                        <label style="padding-top: 15px; font-size:28px;" required>Email adresa</label>
+                        <label style="padding-top: 15px; font-size:28px;">Email adresa</label>
                         <?php
                         $class="form-control font22 ";
                         $val = "";
@@ -27,46 +27,14 @@
                     <div class="form-group h-100">
                         <label style="font-size:28px;">Lozinka</label>
                         <input name="password" type="password" class="form-control font22" placeholder="Password">
-                        
                     </div>
 
-                    <div class="form-group h-100">
-                        <label style="font-size:28px;">Ime</label> <! pattern="[a-zA-Z]{2,15}">
-                        <?php 
-
-                        $class="form-control font22 ";
-                        $val = "";
-                        if(isset($name))
-                        {
-                            $class=$class.$name;
-                            $val=$name_val;
-                        }
-                        echo "<input name=\"name\" type=\"text\" class=\"$class\" value=\"$val\" id=\"exampleInputEmail3\" aria-describedby=\"emailHelp\" placeholder=\"Nikola\" title=\"Ime moze sadrzati samo mala i velika slova u opsegu 2-15!\">";
-                        ?>
-                    </div>
-
-                    <div class="form-group h-100">
-                        <label style="font-size:28px;">Telefon</label><! pattern="[0-9]{9,12}">
-                        <?php 
-                        $class="form-control font22 ";
-                        $val = "";
-
-                        if(isset($phone))
-                        {
-                            $class=$class.$phone;
-                            $val = $phone_val;
-                        }
-
-                        echo "<input name=\"phone\" type=\"text\" class=\"$class\" value=\"$val\" id=\"exampleInputEmail5\" aria-describedby=\"emailHelp\" placeholder=\"065/3550751\">";                        
-                        ?>
-                    </div>
 
                 </div>
 
                 <div class="col-sm-6 h-100">
                     <div class="form-group h-100">
-                        <label style="padding-top:15px; font-size:28px;">Korisnicko ime</label><! pattern="[a-zA-Z0-9]{3,15}">
-                        
+                        <label  style="padding-top:15px; font-size:28px;">Korisnicko ime</label>
                         <?php 
                         $class="form-control font22 ";
                         $val = "";
@@ -83,47 +51,28 @@
                             echo '<small style="padding-bottom:18px;"><small>';
                         }                        
                         ?>
-                        
                     </div>
 
                     <div class="form-group h-100">
                         <label style="font-size:28px;">Potvrda lozinke</label>
                         <?php 
-
                         $class="form-control font22 ";
-
                         if(isset($password_cf))
                         {
                             $class=$class.$password_cf;
                         }
-
-                        echo "<input name=\"password_cf\" type=\"password\" class=\"$class\" placeholder=\"Password\">";                        
-
+                            echo "<input name=\"password_cf\" type=\"password\" class=\"$class\" placeholder=\"Password\">";                        
                         ?>
                     </div>
+                </div>
+            </div>
 
-                    <div class="form-group h-100">
-                        <label style="font-size:28px;">Prezime</label><! pattern="[a-zA-Z]{2,15}">
-
-                        <?php 
-                        $class="form-control font22 ";
-                        $val = "";
-
-                        if(isset($surename))
-                        {
-                            $class=$class.$surename;
-                            $val = $surename_val;
-                        }
-
-                        echo "<input name=\"surename\" type=\"text\" class=\"$class\" value=\"$val\" placeholder=\"Jugovic\">";                        
-                        ?>
-                    </div>
-
+            <div class="row">
+                <div class="col-sm-12">
                     <div class="text-center subDugme h-100">
                           <button type="submit" class="btn btn-success nalogButton btn-lg btn-block" style="padding-bottom: -4px;">Submit</button>
                     </div>
                 </div>
             </div>
         </div>
-</form>
 </div>
