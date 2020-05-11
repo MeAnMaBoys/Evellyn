@@ -2,6 +2,16 @@ html, body {
     height: 100%;
 }
 
+.fit-img {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.image-size {
+    padding-bottom: 60%;
+}
+
 .headerColor
 {
     background-color: #414361;

@@ -15,6 +15,8 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightcase/2.5.0/css/lightcase.min.css" integrity="sha256-+bytSlt6ZKCfCCfKimCjD4CsDW9a0GpM85ZCOBDiLVI=" crossorigin="anonymous" />
+
     <link rel="stylesheet" href=<?php echo base_url('assets/Style/style.css')?>>
 
     

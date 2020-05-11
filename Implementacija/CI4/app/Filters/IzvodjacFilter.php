@@ -8,13 +8,6 @@ class IzvodjacFilter implements FilterInterface
 {
     public function before(RequestInterface $request)
     {
-        $session=session();
-
-        if((strpos(current_url(),$session->get('tip')))==false)
-        {
-            return redirect()->to(site_url($session->get('tip')));
-        }
-
     }
 
     //--------------------------------------------------------------------

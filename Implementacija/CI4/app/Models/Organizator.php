@@ -4,7 +4,7 @@ use CodeIgniter\Model;
 
 class Organizator extends Model{
 
-    protected $table = "Izvodjac";
+    protected $table = "Organizator";
     protected $primaryKey = 'ID_K';
 
     protected $returnType = 'object';

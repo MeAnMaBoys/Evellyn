@@ -4,6 +4,7 @@ use App\Models\Izvodjac;
 use App\Models\Organizator;
 use App\Models\Korisnik;
 use App\Models\Posetilac;
+use App\Models\Verifikacija;
 use \Config\Services\Email;
 
 class Gost extends BaseController
@@ -184,22 +185,67 @@ class Gost extends BaseController
         $izvModel->ubaci_el($vector['data']);
     }
 
+    public function ver_kod()
+    {
+        $num=$this->request->getPost('first').$this->request->getPost('second').$this->request->getPost('third').$this->request->getPost('fourth').$this->request->getPost('fifth');
+
+        $num=(int)$num;
+
+        $verModel = new Verifikacija();
+        $rows = $verModel->where('kod',$num)->findAll();
+
+        if($rows===null)
+        {
+            return $this->prikaz('ver_kod',['opis'=>'Pogresan verifikacioni kod!']);
+        }
+        $vector = $this->session->get('vector');
+        
+        foreach($rows as $row):
+            if(($row->email!==$vector['data']['email_val']))
+            {
+                return $this->prikaz('ver_kod',['opis'=>'Pogresan verifikacioni kod!']);
+            }
+        endforeach;
+
+        $row2 = $this->kreiraj_korisnika($vector);
+
+        $vector['data']['id']=$row2->ID_K;
+
+        $reg_tip = $this->session->get('reg_tip');
+        if($reg_tip==='i')
+        {
+            $this->kreiraj_izvodjaca($vector);
+        }
+        else if($reg_tip==='o')
+        {
+            $this->kreiraj_organizatora($vector);
+        }
+        else
+        {
+            $this->kreiraj_posetioca(($vector));
+        }
+
+        $this->unsetAll($vector);
+
+        return $this->prikaz('ver_kod',['flag'=>'prosao']);
+    }
+
     public function registruj_izvodjac()
     {   
         $vector = $this->proveri_podatke();
         if($vector['flag']==true)
         {
             $this->prikaz('registracija_izvodjac',$vector['data']);
-            $this->unsetAll();
+            $this->unsetAll($vector);
             return;
         }
-        $row = $this->kreiraj_korisnika($vector);
-
-        $vector['data']['id']=$row->ID_K;
-
-        $this->kreiraj_izvodjaca($vector);
-        $this->unsetAll();
-        $this->moj_nalog();
+        if($this->sendEmail($vector['data']['email_val'])==true){
+            $this->session->set('vector',$vector); 
+            $this->session->set('reg_tip','i');
+            return $this->prikaz('ver_kod',[]);
+        }
+        //ispisi gresku da mail ne valja, i obrisi iz tabele Verifikacija taj red
+        return $this->prikaz('proba',['radi'=>'ne radi']);
     }
 
     public function registruj_organizator()
@@ -211,14 +257,14 @@ class Gost extends BaseController
             $this->unsetAll($vector);
             return;
         }
-        $row = $this->kreiraj_korisnika($vector);
-
-        $vector['data']['id']=$row->ID_K;
-
-        $this->kreiraj_organizatora($vector);
-
-        $this->unsetAll($vector);
-        $this->moj_nalog();
+        
+        if($this->sendEmail($vector['data']['email_val'])==true){
+            $this->session->set('vector',$vector); 
+            $this->session->set('reg_tip','o');
+            return $this->prikaz('ver_kod',[]);
+        }
+        //ispisi gresku da mail ne valja, i obrisi iz tabele Verifikacija taj red
+        return $this->prikaz('proba',['radi'=>'ne radi']);
     }
 
     public function registruj_posetilac()
@@ -230,14 +276,14 @@ class Gost extends BaseController
             $this->unsetAll($vector);
             return;
         }
-        $row = $this->kreiraj_korisnika($vector);
 
-        $vector['data']['id']=$row->ID_K;
-
-        $this->kreiraj_posetioca($vector);
-
-        $this->unsetAll($vector);
-        $this->moj_nalog();
+        if($this->sendEmail($vector['data']['email_val'])==true){
+            $this->session->set('vector',$vector); 
+            $this->session->set('reg_tip','p');
+            return $this->prikaz('ver_kod',[]);
+        }
+        //ispisi gresku da mail ne valja, i obrisi iz tabele Verifikacija taj red
+        return $this->prikaz('proba',['radi'=>'Error trying to send email!']);
     }
 
     private function unsetAll($vector)
@@ -313,7 +359,6 @@ class Gost extends BaseController
 
         $this->session->set('IzvodjacController',$user);
         $this->session->set('tip','IzvodjacController');
-
         return redirect()->to(site_url('IzvodjacController'));
     }
 }

@@ -27,6 +27,12 @@
                     <div class="form-group h-100">
                         <label style="font-size:28px;">Lozinka</label>
                         <input name="password" type="password" class="form-control font22" placeholder="Password">
+                        <?php 
+                        if(isset($email_val)&&($enter==true))
+                        {
+                            echo "<small style=\"color:#59FFA0; font-size:18px;\" class=\"form-text is-invalid\">Molim vas da ponovo unesete lozinku.</small>";
+                        }
+                        ?>
                     </div>
 
 
@@ -46,9 +52,16 @@
                         }
 
                         echo "<input name=\"username\" type=\"text\" class=\"$class\" value=\"$val\" placeholder=\"rale198\">";
-                        if(isset($email_val)&&strcmp($email_val,"")!=0)
+                        if(isset($email_val)&&($enter==true))
                         {
-                            echo '<small style="padding-bottom:18px;"><small>';
+                            $txt = "Korisnicko ime validno uneto!";
+                            $clr = "59FFA0";
+                            if($username === "is-invalid")
+                            {
+                                $txt="Korisnicko ime nevalidno uneto!";
+                                $clr = "AD343E";
+                            }
+                            echo "<small style=\"color:#$clr; font-size:18px;\" class=\"form-text is-invalid\">$txt</small>";
                         }                        
                         ?>
                     </div>
@@ -60,8 +73,16 @@
                         if(isset($password_cf))
                         {
                             $class=$class.$password_cf;
+                            echo "<input name=\"password_cf\" type=\"password\" class=\"$class\" placeholder=\"Password\">";                         
                         }
-                            echo "<input name=\"password_cf\" type=\"password\" class=\"$class\" placeholder=\"Password\">";                        
+                        else
+                        {
+                            echo "<input name=\"password_cf\" type=\"password\" class=\"$class\" placeholder=\"Password\">";                            
+                            if(isset($email_val)&&($enter==true))
+                            {
+                                echo "<small style=\"color:#59FFA0; font-size:18px;\" class=\"form-text is-invalid\">Molim vas da ponovo unesete lozinku.</small>";
+                            }
+                        }                           
                         ?>
                     </div>
                 </div>
@@ -70,7 +91,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="text-center subDugme h-100">
-                          <button type="submit" class="btn btn-success nalogButton btn-lg btn-block" style="padding-bottom: -4px;">Submit</button>
+                          <button type="submit" class="btn btn-success nalogButton btn-lg btn-block" style="padding-bottom: -4px;">PROSLEDI</button>
                     </div>
                 </div>
             </div>
