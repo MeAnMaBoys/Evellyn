@@ -28,7 +28,7 @@
            <div class="col-6  font-fredoka font22 whiteLetterColor"><?php echo($konkurs->Rok_Za_Projavu)?></div>
         </div>
         <div class="col-12 text-center">
-         <form action="<?php echo base_url("Izvodjac/prijava_na_konkurs")?>" method="post" >
+         <form action="<?php echo base_url("IzvodjacController/prijava_na_konkurs")?>" method="post" >
             <br>
             <br>
             <input type="hidden" name="id" value="<?php echo($konkurs->ID_Dog)?>">

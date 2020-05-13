@@ -1,5 +1,5 @@
 <div class="bg_color" style="height: 100vh;">
-    <?php echo form_open('Organizator/kreiraj_dogadjaj',['id'=>'myform']);?>
+    <?php echo form_open('OrganizatorController/kreiraj_dogadjaj',['id'=>'myform']);?>
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 h-100">

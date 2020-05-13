@@ -10,21 +10,21 @@
 
           <div class="row">
             <div class="col-sm-12 text-center">
-              <span class="h1 text-center"><?php echo("$organizator->Ime $organizator->Prezime")?></span><br/>
+              <span class="h1 text-center"><?php echo("$tip->Ime $tip->Prezime")?></span><br/>
               <span>Organizator</span><br>
 
               <span class="heading">User Rating</span>
-              <span class="fa fa-star <?php if($organizator->Prosek_Ocena>1) echo('checked')?>"></span>
-              <span class="fa fa-star <?php if($organizator->Prosek_Ocena>1) echo('checked')?>"></span>
-              <span class="fa fa-star <?php if($organizator->Prosek_Ocena>1) echo('checked')?>"></span>
-              <span class="fa fa-star <?php if($organizator->Prosek_Ocena>1) echo('checked')?>"></span>
+              <span class="fa fa-star <?php if($tip->Prosek_Ocena>1) echo('checked')?>"></span>
+              <span class="fa fa-star <?php if($tip->Prosek_Ocena>1) echo('checked')?>"></span>
+              <span class="fa fa-star <?php if($tip->Prosek_Ocena>1) echo('checked')?>"></span>
+              <span class="fa fa-star <?php if($tip->Prosek_Ocena>1) echo('checked')?>"></span>
               <span class="fa fa-star"></span>
               <p><?php 
-              if($organizator->Prosek_Ocena==0){
+              if($tip->Prosek_Ocena==0){
                   echo("No reviews.");
               }
               else{
-                  echo("$organizator->Prosek_Ocena average based on $organizator->Broj_Ocena reviews.");
+                  echo("$tip->Prosek_Ocena average based on $tip->Broj_Ocena reviews.");
               }
                 ?></p>
               <hr style="border:3px solid #f1f1f1">
@@ -79,19 +79,19 @@
           
           <div class="row d-flex justify-content-center mt-4">
             <div class="col-6 col-md-3">
-              <form action="<?php echo base_url('Organizator/kreiranje_konkursa')?>">
+              <form action="<?php echo base_url('OrganizatorController/kreiranje_konkursa')?>">
                 <button class="btn btn-outline-success ls-1" type="submit">Napravi konkurs</button>
               </form>
             </div>
             <div class="col-6 col-md-3">
-              <form action="<?php echo base_url('Organizator/kreiranje_dogadjaja')?>">
+              <form action="<?php echo base_url('OrganizatorController/kreiranje_dogadjaja')?>">
                 <button class="btn btn-outline-danger ls-2" type="submit">Napravi dogadjaj</button>
               </form>
             </div>
           </div>
       </div>
       <div class="col-6 text-center">
-         <form action="<?php echo base_url('Organizator/zamena_loga')?>">
+         <form action="<?php echo base_url('OrganizatorController/zamena_loga')?>">
             <br>
             <br>
             <button class="btn btn-success ls-2" type="submit">Zameni logo</button>

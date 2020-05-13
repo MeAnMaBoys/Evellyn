@@ -49,21 +49,21 @@
 
           <div class="row">
             <div class="col-sm-12 text-center">
-              <span class="h1 text-center"><?php echo("$izvodjac->Ime $izvodjac->Prezime")?></span><br/>
-              <span><?php echo($izvodjac->Tipovi)?></span><br>
+              <span class="h1 text-center"><?php echo("$tip->Ime $tip->Prezime")?></span><br/>
+              <span><?php echo($tip->Tipovi)?></span><br>
 
               <span class="heading">User Rating</span>
-              <span class="fa fa-star <?php if($izvodjac->Prosek_Ocena>1) echo('checked')?>"></span>
-              <span class="fa fa-star <?php if($izvodjac->Prosek_Ocena>1) echo('checked')?>"></span>
-              <span class="fa fa-star <?php if($izvodjac->Prosek_Ocena>1) echo('checked')?>"></span>
-              <span class="fa fa-star <?php if($izvodjac->Prosek_Ocena>1) echo('checked')?>"></span>
+              <span class="fa fa-star <?php if($tip->Prosek_Ocena>1) echo('checked')?>"></span>
+              <span class="fa fa-star <?php if($tip->Prosek_Ocena>1) echo('checked')?>"></span>
+              <span class="fa fa-star <?php if($tip->Prosek_Ocena>1) echo('checked')?>"></span>
+              <span class="fa fa-star <?php if($tip->Prosek_Ocena>1) echo('checked')?>"></span>
               <span class="fa fa-star"></span>
               <p><?php 
-              if($izvodjac->Prosek_Ocena==0){
+              if($tip->Prosek_Ocena==0){
                   echo("No reviews.");
               }
               else{
-                  echo("$izvodjac->Prosek_Ocena average based on $izvodjac->Broj_Ocena reviews.");
+                  echo("$tip->Prosek_Ocena average based on $tip->Broj_Ocena reviews.");
               }
                 ?></p>
               <hr style="border:3px solid #f1f1f1">
@@ -118,7 +118,7 @@
           
           <div class="row d-flex justify-content-center mt-4">
             <div class="col-6 col-md-3">
-              <form action="<?php echo base_url('Izvodjac/konkursi')?>">
+              <form action="<?php echo base_url('IzvodjacController/konkursi')?>">
                 <button class="btn btn-outline-success ls-1" type="submit">Pogledaj konkurse</button>
               </form>
             </div>
@@ -126,7 +126,7 @@
           </div>
       </div>
       <div class="col-6 text-center">
-         <form action="<?php echo base_url('Izvodjac/kacenje_sadrzaja')?>">
+         <form action="<?php echo base_url('IzvodjacController/kacenje_sadrzaja')?>">
             <br>
             <br>
             <button class="btn btn-success ls-2" type="submit">Okaci fotografiju ili video</button>
