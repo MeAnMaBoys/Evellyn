@@ -8,7 +8,7 @@ class Gost extends BaseController
         $data['controller']='gost';
 
         echo view('header_gost');
-        echo view($page);
+        echo view($page,$data);
         echo view('footer');
     }
 

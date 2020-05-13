@@ -15,6 +15,9 @@ namespace App\Controllers;
  */
 
 use CodeIgniter\Controller;
+use App\Models\OrganizatorModel;
+use App\Models\KorisnikModel;
+use App\Models\IzvodjacModel;
 
 class BaseController extends Controller
 {
@@ -40,7 +43,17 @@ class BaseController extends Controller
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------
 		// E.g.:
+
+		$org_model=new OrganizatorModel();
+		$kor_model=new KorisnikModel();
+		$izv_model=new IzvodjacModel();
+		
+      
+
 		$this->session = \Config\Services::session();
+		$this->session->set('korisnik',  $kor_model->find('2'));
+		$this->session->set('izvodjac', $izv_model->find('2'));
+		//$this->session->set('organizator', $org_model->find('3'));
 	}
 
 	protected function prikaz($page,$data)
@@ -52,6 +65,19 @@ class BaseController extends Controller
 	{
 		$this->prikaz('index',[]);
 	}
-
-
+	public function izvodjaci(){
+		$izvModel = new IzvodjacModel();
+		$izvodjaci = $izvModel->findAll();
+		return $this->prikaz('izvodjaci',['izvodjaci'=>$izvodjaci]);
+	}
+	public function izvodjac(){
+		$izv_model = new IzvodjacModel();
+		$kor_model=new KorisnikModel();
+		$id=$_GET['id'];
+		$korisnik=$kor_model->find("$id");
+		$izvodjac=$izv_model->find("$id");
+		$data['korisnik_prikaz']=$korisnik;
+		$data['izvodjac_prikaz']=$izvodjac;
+		return $this->prikaz('izvodjac',$data);
+	}
 }

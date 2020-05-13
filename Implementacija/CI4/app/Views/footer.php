@@ -1,9 +1,11 @@
 <footer class="headerColor whiteLetterColor footerPadd footFont">
 <div class="container">
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12 text-center">
+            
             Copyright © Rastko Šapić, Nikola Mirković, Mladen Jugović<br>
             Odsek za Softversko inženjerstvo, Elektrotehnički fakultet u Beogradu
+            
         </div>
     </div>
 </div>
