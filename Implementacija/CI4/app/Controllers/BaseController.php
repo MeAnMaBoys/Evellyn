@@ -15,12 +15,10 @@ namespace App\Controllers;
  */
 
 use CodeIgniter\Controller;
-use App\Models\Izvodjac;
-use App\Models\Organizator;
-use App\Models\Korisnik;
-use App\Models\Posetilac;
-use App\Models\Verifikacija;
-use \Config\Services\Email;
+
+use App\Models\OrganizatorModel;
+use App\Models\KorisnikModel;
+use App\Models\IzvodjacModel;
 
 class BaseController extends Controller
 {
@@ -46,6 +44,13 @@ class BaseController extends Controller
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------
 		// E.g.:
+
+		$org_model=new OrganizatorModel();
+		$kor_model=new KorisnikModel();
+		$izv_model=new IzvodjacModel();
+		
+      
+
 		$this->session = \Config\Services::session();
 		$this->email = \Config\Services::email();
 	}
@@ -60,6 +65,22 @@ class BaseController extends Controller
 		$this->prikaz('index',[]);
 	}
 
+	public function izvodjaci(){
+		$izvModel = new IzvodjacModel();
+		$izvodjaci = $izvModel->findAll();
+		return $this->prikaz('izvodjaci',['izvodjaci'=>$izvodjaci]);
+	}
+	public function izvodjac(){
+		$izv_model = new IzvodjacModel();
+		$kor_model=new KorisnikModel();
+		$id=$_GET['id'];
+		$korisnik=$kor_model->find("$id");
+		$izvodjac=$izv_model->find("$id");
+		$data['korisnik_prikaz']=$korisnik;
+		$data['izvodjac_prikaz']=$izvodjac;
+		return $this->prikaz('izvodjac',$data);
+  }
+  
 	protected function sendEmail($email)
     {
         $this->email->setFrom('sapicr23@gmail.com','Evelynn');
@@ -77,16 +98,4 @@ class BaseController extends Controller
         return $this->email->send();
     }
 
-	public function izvodjaci()
-	{
-		$izvModel = new Izvodjac();
-		$izvodjaci = $izvModel->findAll();
-		return $this->prikaz('izvodjaci',['izvodjaci'=>$izvodjaci]);
-
-	}
-
-	public function izvodjac()
-	{
-		return $this->prikaz('izvodjac',[]);
-	}
 }

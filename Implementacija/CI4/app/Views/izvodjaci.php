@@ -10,8 +10,27 @@
         <div class="row">
             <?php 
             foreach($izvodjaci as $izvodjac):
+
+                $tipovi=explode(' ',$izvodjac->Tipovi);
                 $slika = base_url("assets/img/singer4.jpeg");
-                $cpath = base_url($controller.'/izvodjac'); //dodati za id kako svakog iscrtavati posebno
+                foreach($tipovi as $tip){
+                    if($tip=='gitarista'){
+                        $slika=base_url("assets/img/guitarist.jpg");
+                        break;
+                    }
+                    else if($tip=='pevac'){
+                        $slika=base_url("assets/img/singer.jpeg");
+                        break;
+                    }
+                    else if($tip=='basista'){
+                        $slika=base_url("assets/img/bass.jpg");
+                        break;
+                    }
+                    
+                }
+                
+                $cpath = base_url($controller."/izvodjac?id=$izvodjac->ID_K"); //dodati za id kako svakog iscrtavati posebno
+                
                 echo "<div class=\"col-12 col-md-6 col-lg-4 p-3 m-0\">
                 <a href='$cpath' class=\"hover-clear\">
                     <div class=\"position-relative\">
