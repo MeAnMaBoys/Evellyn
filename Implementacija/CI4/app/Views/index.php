@@ -6,7 +6,7 @@
         <span class="sml font-fredoka whiteLetterColor">Pregled svih prijavljenih izvodjaca</span><br>
         <span class="big font-fredoka whiteLetterColor">NAJBOLJI IZVODJACI</span><br>
         <span class="big font-fredoka whiteLetterColor">U DRZAVI</span><br />
-        <a href="izvodjaci.html"><button class="btn my_button">Pregled</button></a>
+        <a href="<?php echo base_url("$controller/izvodjaci");?>"><button class="btn my_button">Pregled</button></a>
       </div>
     </div>
   </div>    
@@ -18,7 +18,7 @@
         <span class="big font-fredoka whiteLetterColor">GARANTUJEMO</span><br>
         <span class="big font-fredoka whiteLetterColor">NAJBOLJI PROVOD</span> <br />
 
-        <a href="dogadjaji.html"><button class="btn my_button">Pregled</button></a>
+        <a href="<?php echo base_url("$controller/izvodjaci");?>"><button class="btn my_button">Pregled</button></a>
       </div>
     </div>
   </div>

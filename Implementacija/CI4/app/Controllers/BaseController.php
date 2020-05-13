@@ -15,6 +15,12 @@ namespace App\Controllers;
  */
 
 use CodeIgniter\Controller;
+use App\Models\Izvodjac;
+use App\Models\Organizator;
+use App\Models\Korisnik;
+use App\Models\Posetilac;
+use App\Models\Verifikacija;
+use \Config\Services\Email;
 
 class BaseController extends Controller
 {
@@ -41,6 +47,7 @@ class BaseController extends Controller
 		//--------------------------------------------------------------------
 		// E.g.:
 		$this->session = \Config\Services::session();
+		$this->email = \Config\Services::email();
 	}
 
 	protected function prikaz($page,$data)
@@ -53,5 +60,33 @@ class BaseController extends Controller
 		$this->prikaz('index',[]);
 	}
 
+	protected function sendEmail($email)
+    {
+        $this->email->setFrom('sapicr23@gmail.com','Evelynn');
+        $this->email->setTo($email);
 
+        $verModel = new Verifikacija();
+        $rnd = rand(10000,99999);
+        $pod = ['email'=>$email,"kod"=>$rnd];
+        $verModel->ubaci_el($pod);
+        $row = $verModel->where('email',$email)->first();
+
+        $this->email->setSubject('Verifikacija naloga');
+        $this->email->setMessage('Postovani, Vas verifikacioni kod je '.$row->kod.'.');
+
+        return $this->email->send();
+    }
+
+	public function izvodjaci()
+	{
+		$izvModel = new Izvodjac();
+		$izvodjaci = $izvModel->findAll();
+		return $this->prikaz('izvodjaci',['izvodjaci'=>$izvodjaci]);
+
+	}
+
+	public function izvodjac()
+	{
+		return $this->prikaz('izvodjac',[]);
+	}
 }

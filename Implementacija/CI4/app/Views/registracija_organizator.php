@@ -1,5 +1,5 @@
 <div class="bg_color" style="height: 100vh;">
-    <?php echo form_open('Gost/registruj_izvodjac',['id'=>'myform','name'=>'izvodjac']);?>
+    <?php echo form_open('Gost/registruj_organizator',['id'=>'myform','name'=>'organizator']);?>
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 h-100">
@@ -47,7 +47,6 @@
                             $val=$name_val;
                         }
                         echo "<input name=\"name\" type=\"text\" class=\"$class\" value=\"$val\" id=\"exampleInputEmail3\" aria-describedby=\"emailHelp\" placeholder=\"Nikola\" title=\"Ime moze sadrzati samo mala i velika slova u opsegu 2-15!\">";
-
                         if(isset($email_val)&&($enter==true))
                         {
                             $txt = "Ime validno uneto!";
@@ -85,7 +84,7 @@
                                 $clr = "AD343E";
                             }
                             echo "<small style=\"color:#$clr; font-size:18px;\" class=\"form-text is-invalid\">$txt</small>";
-                        }                        
+                        }                              
                         ?>
                     </div>
 
@@ -139,7 +138,7 @@
                             {
                                 echo "<small style=\"color:#59FFA0; font-size:18px;\" class=\"form-text is-invalid\">Molim vas da ponovo unesete lozinku.</small>";
                             }
-                        }
+                        }                        
 
                         ?>
                     </div>
@@ -168,7 +167,7 @@
                                 $clr = "AD343E";
                             }
                             echo "<small style=\"color:#$clr; font-size:18px;\" class=\"form-text is-invalid\">$txt</small>";
-                        }                            
+                        }                             
                         ?>
                     </div>
 
