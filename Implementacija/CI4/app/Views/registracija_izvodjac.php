@@ -93,7 +93,7 @@
 
                 <div class="col-sm-6 h-100">
                     <div class="form-group h-100">
-                        <label style="padding-top:15px; font-size:28px;">Korisnicko ime</label><! pattern="[a-zA-Z0-9]{3,15}">
+                        <label style="padding-top:15px; font-size:28px;">Korisnicko ime</label><! >
                         
                         <?php 
                         $class="form-control font22 ";
@@ -105,7 +105,7 @@
                             $val = $username_val;
                         }
 
-                        echo "<input name=\"username\" type=\"text\" class=\"$class\" value=\"$val\" placeholder=\"rale198\">";
+                        echo "<input name=\"username\" type=\"text\" class=\"$class\" value=\"$val\" placeholder=\"rale198\" pattern=\"[a-zA-Z0-9]{3,15}\">";
                         if(isset($email_val)&&($enter==true))
                         {
                             $txt = "Korisnicko ime validno uneto!";
