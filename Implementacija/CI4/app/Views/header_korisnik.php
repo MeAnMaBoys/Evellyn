@@ -29,7 +29,7 @@
                 <div class="col-12 col-lg-6 fontDec">
                     <a href="<?php echo base_url()?>" style="color:#FFF9EC">Početna</a>
                     <a href="<?php echo current_url(); ?>" style="color:#FFF9EC">O nama</a>
-                    <a href="<?php echo base_url('Gost/moj_nalog');?>" style="color:#FFF9EC">
+                    <a href="<?php echo base_url("$controller/moj_nalog");?>" style="color:#FFF9EC">
                     <?php 
                     echo $korisnik->Korisnicko_Ime;
                     ?>
