@@ -1,7 +1,5 @@
-﻿
-CREATE DATABASE IF NOT EXISTS `EvelynnDB` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+﻿CREATE DATABASE IF NOT EXISTS `EvelynnDB` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE `EvelynnDB`;
-
 -- Create tables section -------------------------------------------------
 
 -- Table Korisnik
@@ -10,7 +8,7 @@ CREATE TABLE `Korisnik`
 (
   `Korisnicko_Ime` Varchar(20) NOT NULL,
   `Sifra` Varchar(20) NOT NULL,
-  `Email` Varchar(100) NOT NULL,
+  `Email` Varchar(255) NOT NULL,
   `ID_K` Int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`ID_K`),
   UNIQUE `ID_K` (`ID_K`)
@@ -49,7 +47,8 @@ CREATE TABLE `Organizator`
   `Telefon` Varchar(20) NOT NULL,
   `Prosek_Ocena` Double DEFAULT 0,
   `Broj_Ocena` Int,
-  `ID_K` Int NOT NULL
+  `ID_K` Int NOT NULL,
+  `Status` Varchar(20)
 )
 ;
 
@@ -66,6 +65,8 @@ CREATE TABLE `Dogadjaj`
   `Lokacija` Varchar(50) NOT NULL,
   `Organizator` Int NOT NULL,
   `Status` Varchar(20),
+  `Naziv` Varchar(40) NOT NULL,
+  `Opis` Varchar(100),
   PRIMARY KEY (`ID_Dog`)
 )
 ;
@@ -104,7 +105,7 @@ ALTER TABLE `Nastupa` ADD PRIMARY KEY (`ID_Dog`, `Izvodjac`)
 
 CREATE TABLE `Konkurs`
 (
-  `Rok_Za_Projavu` Timestamp NOT NULL,
+  `Rok_Za_Prijavu` Timestamp NOT NULL,
   `ID_Dog` Int NOT NULL
 )
 ;
@@ -185,6 +186,52 @@ CREATE TABLE `Static`
 )
 ;
 
+-- Table Prijave_Na_Konkurs
+
+CREATE TABLE `Prijave_Na_Konkurs`
+(
+  `ID_K` Int NOT NULL,
+  `ID_Dog` Int NOT NULL
+)
+;
+
+ALTER TABLE `Prijave_Na_Konkurs` ADD PRIMARY KEY (`ID_K`, `ID_Dog`)
+;
+
+-- Table Zahtev_Za_Nastupanje
+
+CREATE TABLE `Zahtev_Za_Nastupanje`
+(
+  `ID_Dog` Int NOT NULL,
+  `ID_K` Int NOT NULL
+)
+;
+
+ALTER TABLE `Zahtev_Za_Nastupanje` ADD PRIMARY KEY (`ID_Dog`, `ID_K`)
+;
+
+-- Table Verifikacija
+
+CREATE TABLE `Verifikacija`
+(
+  `id` Int(6) NOT NULL AUTO_INCREMENT,
+  `kod` Int(5) NOT NULL,
+  `email` Varchar(127) NOT NULL,
+  PRIMARY KEY (`id`)
+)
+;
+
+-- Table Zahtev_Za_Organizatora
+
+CREATE TABLE `Zahtev_Za_Organizatora`
+(
+  `ID_K` Int NOT NULL
+)
+;
+
+ALTER TABLE `Zahtev_Za_Organizatora` ADD PRIMARY KEY (`ID_K`)
+;
+
 -- Create foreign keys (relationships) section -------------------------------------------------
 
 ALTER TABLE `Izvodjac` ADD CONSTRAINT `Relationship1` FOREIGN KEY (`ID_K`) REFERENCES `Korisnik` (`ID_K`) ON DELETE RESTRICT ON UPDATE RESTRICT
@@ -230,6 +277,21 @@ ALTER TABLE `Pretplate_Na_Organizatora` ADD CONSTRAINT `Relationship19` FOREIGN 
 ;
 
 ALTER TABLE `Pretplate_Na_Organizatora` ADD CONSTRAINT `Relationship20` FOREIGN KEY (`Posmatrac`) REFERENCES `Posmatrac` (`ID_K`) ON DELETE RESTRICT ON UPDATE RESTRICT
+;
+
+ALTER TABLE `Prijave_Na_Konkurs` ADD CONSTRAINT `Relationship21` FOREIGN KEY (`ID_K`) REFERENCES `Izvodjac` (`ID_K`) ON DELETE RESTRICT ON UPDATE RESTRICT
+;
+
+ALTER TABLE `Prijave_Na_Konkurs` ADD CONSTRAINT `Relationship22` FOREIGN KEY (`ID_Dog`) REFERENCES `Konkurs` (`ID_Dog`) ON DELETE RESTRICT ON UPDATE RESTRICT
+;
+
+ALTER TABLE `Zahtev_Za_Nastupanje` ADD CONSTRAINT `Relationship23` FOREIGN KEY (`ID_Dog`) REFERENCES `Dogadjaj` (`ID_Dog`) ON DELETE RESTRICT ON UPDATE RESTRICT
+;
+
+ALTER TABLE `Zahtev_Za_Nastupanje` ADD CONSTRAINT `Relationship24` FOREIGN KEY (`ID_K`) REFERENCES `Izvodjac` (`ID_K`) ON DELETE RESTRICT ON UPDATE RESTRICT
+;
+
+ALTER TABLE `Zahtev_Za_Organizatora` ADD CONSTRAINT `Relationship25` FOREIGN KEY (`ID_K`) REFERENCES `Organizator` (`ID_K`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ;
 
 
