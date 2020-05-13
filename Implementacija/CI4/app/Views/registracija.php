@@ -31,7 +31,7 @@
 
                 <div class="text-justify fontLongText font18 mt-3">Organizatori mogu da kreiraju događaje bilo kog tipa, i za njih unose odgovarajuce podatke i biraju izvođače koji će nastupati na događajima. Organizator bira izvođače na različite načine. Mogu raspisati konkurs, pri čemu se pored informacija o događaju mogu naznačiti i koji tipovi izvođača bi bili poželjni kao i potencijalno obaveštavanje svih izvođača odgovarajućeg tipa</div>
 
-                <a href="registracija_izvodjac.html" class="mt-auto pt-3"><button class="btn my_button">Registruj se</button></a>
+                <a href="<?php echo base_url('/Gost/registracija_organizator'); ?>"  class="mt-auto pt-3"><button class="btn my_button">Registruj se</button></a>
             </div>
         </div>
         <div class="col-12 col-lg-4 p-3">
@@ -42,7 +42,7 @@
 
                 <div class="text-justify fontLongText font18 mt-3 mb-2">Registrovani posetioci mogu, pored pretrage predstojećih događaja i izdođača na platformi, da se pretplate na određenog organizatora ili izvođača i da ostavljaju komentare i ocene na završene događaje ili određene izvođače.</div>
 
-                <a href="registracija_izvodjac.html" class="mt-auto pt-3"><button class="btn my_button">Registruj se</button></a>
+                <a href="<?php echo base_url('/Gost/registracija_posetilac'); ?>"  class="mt-auto pt-3"><button class="btn my_button">Registruj se</button></a>
             </div>
         </div>
     </div>

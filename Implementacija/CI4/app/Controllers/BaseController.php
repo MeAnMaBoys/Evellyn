@@ -15,6 +15,7 @@ namespace App\Controllers;
  */
 
 use CodeIgniter\Controller;
+
 use App\Models\OrganizatorModel;
 use App\Models\KorisnikModel;
 use App\Models\IzvodjacModel;
@@ -51,9 +52,7 @@ class BaseController extends Controller
       
 
 		$this->session = \Config\Services::session();
-		$this->session->set('korisnik',  $kor_model->find('2'));
-		$this->session->set('izvodjac', $izv_model->find('2'));
-		//$this->session->set('organizator', $org_model->find('3'));
+		$this->email = \Config\Services::email();
 	}
 
 	protected function prikaz($page,$data)
@@ -65,6 +64,7 @@ class BaseController extends Controller
 	{
 		$this->prikaz('index',[]);
 	}
+
 	public function izvodjaci(){
 		$izvModel = new IzvodjacModel();
 		$izvodjaci = $izvModel->findAll();
@@ -79,5 +79,23 @@ class BaseController extends Controller
 		$data['korisnik_prikaz']=$korisnik;
 		$data['izvodjac_prikaz']=$izvodjac;
 		return $this->prikaz('izvodjac',$data);
-	}
+  }
+  
+	protected function sendEmail($email)
+    {
+        $this->email->setFrom('sapicr23@gmail.com','Evelynn');
+        $this->email->setTo($email);
+
+        $verModel = new Verifikacija();
+        $rnd = rand(10000,99999);
+        $pod = ['email'=>$email,"kod"=>$rnd];
+        $verModel->ubaci_el($pod);
+        $row = $verModel->where('email',$email)->first();
+
+        $this->email->setSubject('Verifikacija naloga');
+        $this->email->setMessage('Postovani, Vas verifikacioni kod je '.$row->kod.'.');
+
+        return $this->email->send();
+    }
+
 }

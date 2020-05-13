@@ -10,6 +10,7 @@
         <div class="row">
             <?php 
             foreach($izvodjaci as $izvodjac):
+
                 $tipovi=explode(' ',$izvodjac->Tipovi);
                 $slika = base_url("assets/img/singer4.jpeg");
                 foreach($tipovi as $tip){
