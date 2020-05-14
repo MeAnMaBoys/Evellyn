@@ -12,17 +12,17 @@
             foreach($konkursi as $konkurs):
                 $slika = base_url("assets/img/event.jpg");
                 
-                $cpath = base_url("Izvodjac/konkurs?id=$konkurs->ID_Dog"); //dodati za id kako svakog iscrtavati posebno
+                $cpath = base_url("IzvodjacController/konkurs?id=$konkurs->ID_Dog"); //dodati za id kako svakog iscrtavati posebno
                 
                 echo "<div class=\"col-12 col-md-6 col-lg-4 p-3 m-0\">
-                <a href='$cpath' class=\"hover-clear\">
+                <a href='$cpath' class=\"hover-clear\">S
                     <div class=\"position-relative\">
                         <div class=\"kartica bg-fullwh kartica-velicina w-100\" style=\"background-image: url('$slika');\">
                             <div class=\"absolute-fullwh blur-bg\"></div>
                             <div class=\"absolute-fullwh\">
                                 <div class=\"d-flex h-100 align-items-center justify-content-center\">
                                     <div class=\"font-fredoka font22 whiteLetterColor\">
-                                        Konkurs $konkurs->ID_Dog
+                                         ".$names["$konkurs->ID_Dog"]."
                                     </div>
                                 </div>
                             </div>

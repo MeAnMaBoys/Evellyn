@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Indie+Flower&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
 
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
 
@@ -27,7 +28,7 @@
                     <a href="<?php echo base_url()?>" style="color:#FFF9EC">Evelynn</a>
                 </div>
                 <div class="col-12 col-lg-6 fontDec">
-                    <a href="<?php echo base_url()?>" style="color:#FFF9EC">Početna</a>
+                    <a href="<?php echo base_url($controller)?>" style="color:#FFF9EC">Početna</a>
                     <a href="<?php echo current_url(); ?>" style="color:#FFF9EC">O nama</a>
                     <a href="<?php echo base_url("$controller/moj_nalog");?>" style="color:#FFF9EC">
                     <?php 
