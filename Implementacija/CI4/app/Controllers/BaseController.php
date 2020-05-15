@@ -73,7 +73,7 @@ class BaseController extends Controller
 		$data['korisnik_prikaz']=$korisnik;
 		$data['izvodjac_prikaz']=$izvodjac;
 		return $this->prikaz('izvodjac',$data);
-  }
+        }
   
 	protected function sendEmail($email)
     {

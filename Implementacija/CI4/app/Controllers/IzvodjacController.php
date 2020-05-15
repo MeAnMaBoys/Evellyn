@@ -18,7 +18,10 @@ class IzvodjacController extends KorisnikController
     public function okaci_sadrzaj(){
         $korisnik=$this->session->get('korisnik');
         $dir_path="C:\wamp64\www\CI4\public\assets\uploads\izvodjaci\\$korisnik->Korisnicko_Ime";
-        $images=scandir($dir_path);
+        if(file_exists($dir_path))
+            $images=scandir($dir_path);
+        else 
+            $images=[];
         if(sizeof($images)<9){
             if(isset($_FILES['file'])){
                 $file=$this->request->getFile('file');
@@ -36,7 +39,7 @@ class IzvodjacController extends KorisnikController
         else{
             echo("Maksimalan broj fotografija i snimaka dostignut");
         }
-        return redirect()->to(site_url("Izvodjac/moj_nalog"));
+        return redirect()->to(site_url("IzvodjacController/moj_nalog"));
     }
     public function konkursi(){
         $konk_model=new KonkursModel();

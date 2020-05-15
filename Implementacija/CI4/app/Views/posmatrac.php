@@ -1,3 +1,4 @@
+
 <!-- Bootstrap -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -23,7 +24,7 @@
         <div class="container">
 		<div class="row">
             <?php
-            $username=$korisnik->Korisnicko_Ime;
+            $username=$korisnik_prikaz->Korisnicko_Ime;
                 $dir_path="C:\wamp64\www\CI4\public\assets\uploads\izvodjaci\\$username";
                 //echo($dir_path);
                 try{
@@ -55,21 +56,21 @@
 
           <div class="row">
             <div class="col-sm-12 text-center">
-              <span class="h1 text-center"><?php echo("$tip->Ime $tip->Prezime")?></span><br/>
-              <span><?php echo($tip->Tipovi)?></span><br>
+              <span class="h1 text-center"><?php echo("$izvodjac_prikaz->Ime $izvodjac_prikaz->Prezime")?></span><br/>
+              <span><?php echo($izvodjac_prikaz->Tipovi)?></span><br>
 
               <span class="heading">User Rating</span>
-              <span class="fa fa-star <?php if($tip->Prosek_Ocena>1) echo('checked')?>"></span>
-              <span class="fa fa-star <?php if($tip->Prosek_Ocena>1) echo('checked')?>"></span>
-              <span class="fa fa-star <?php if($tip->Prosek_Ocena>1) echo('checked')?>"></span>
-              <span class="fa fa-star <?php if($tip->Prosek_Ocena>1) echo('checked')?>"></span>
+              <span class="fa fa-star <?php if($izvodjac_prikaz->Prosek_Ocena>1) echo('checked')?>"></span>
+              <span class="fa fa-star <?php if($izvodjac_prikaz->Prosek_Ocena>1) echo('checked')?>"></span>
+              <span class="fa fa-star <?php if($izvodjac_prikaz->Prosek_Ocena>1) echo('checked')?>"></span>
+              <span class="fa fa-star <?php if($izvodjac_prikaz->Prosek_Ocena>1) echo('checked')?>"></span>
               <span class="fa fa-star"></span>
               <p><?php 
-              if($tip->Prosek_Ocena==0){
+              if($izvodjac_prikaz->Prosek_Ocena==0){
                   echo("No reviews.");
               }
               else{
-                  echo("$tip->Prosek_Ocena average based on $tip->Broj_Ocena reviews.");
+                  echo("$izvodjac_prikaz->Prosek_Ocena average based on $izvodjac_prikaz->Broj_Ocena reviews.");
               }
                 ?></p>
               <hr style="border:3px solid #f1f1f1">
@@ -121,23 +122,15 @@
             </div>
             <div class="col-12 col-md-2 d-none d-md-block">10</div>
           </div>
-          
-          <div class="row d-flex justify-content-center mt-4">
-            <div class="col-6 col-md-3">
-              <form action="<?php echo base_url('IzvodjacController/konkursi')?>">
-                <button class="btn btn-outline-success ls-1" type="submit">Pogledaj konkurse</button>
-              </form>
-            </div>
-            
-          </div>
       </div>
-      <div class="col-6 text-center">
-         <form action="<?php echo base_url('IzvodjacController/kacenje_sadrzaja')?>">
-            <br>
-            <br>
-            <button class="btn btn-success ls-2" type="submit">Okaci fotografiju ili video</button>
-          </form>
-      </div>
+        <div class="col-6 text-center">
+            <form action="<?php echo base_url('PosetilacController/pretplacivanje')?>">
+                <br>
+                <br>
+                <input type="hidden" name="id" value="<?php echo($korisnik_prikaz->ID_K)?>">
+                <button class="btn btn-info ls-2" type="submit">Pretplati se</button>
+            </form>
+        </div>
     </div>
   </div>
 </div>
@@ -155,3 +148,4 @@
 	</script>
 </body>
 </html>
+
