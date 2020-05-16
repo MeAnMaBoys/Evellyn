@@ -187,6 +187,7 @@ class OrganizatorController extends KorisnikController
                 'Opis'=>$desc
             ]);
             $id_dog=$dog_model->getInsertId();
+
             if(!empty($izvodjaci)){
                 foreach($izvodjaci as $id){
                     $data=[
@@ -195,6 +196,7 @@ class OrganizatorController extends KorisnikController
                     ];
                     $zahtev_nastupanje->insert($data);
                 }
+
             }
 
             return redirect()->to(site_url("OrganizatorController/moj_nalog"));

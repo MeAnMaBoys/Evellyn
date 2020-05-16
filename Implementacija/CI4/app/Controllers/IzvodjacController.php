@@ -4,6 +4,9 @@ use App\Models\IzvodjacModel;
 use App\Models\OrganizatorModel;
 use App\Models\KorisnikModel;
 use App\Models\PosetilacModel;
+use App\Models\PrijaveKonkursModel;
+use App\Models\KonkursModel;
+use App\Models\DogadjajModel;
 use \Config\Services\Email;
 
 class IzvodjacController extends KorisnikController
@@ -43,8 +46,13 @@ class IzvodjacController extends KorisnikController
     }
     public function konkursi(){
         $konk_model=new KonkursModel();
+        $dog_model=new DogadjajModel();
         $konkursi=$konk_model->findAll();
-        $this->prikaz('konkursi',['konkursi'=>$konkursi]);
+        $names=[];
+        foreach($konkursi as $konkurs){
+            $names["$konkurs->ID_Dog"]=$dog_model->find("$konkurs->ID_Dog")->Naziv;
+        }
+        $this->prikaz('konkursi',['konkursi'=>$konkursi,'names'=>$names]);
     }
     public function konkurs(){
         $konk_model=new KonkursModel();
@@ -58,6 +66,19 @@ class IzvodjacController extends KorisnikController
     }
     public function prijava_na_konkurs(){
         $id=$this->request->getVar('id');
-        echo($id);
+        $id_k=$this->session->get('korisnik')->ID_K;
+        $prijava_model=new PrijaveKonkursModel();
+        $data=[
+            'ID_Dog'=>$id,
+            'ID_K'=>$id_k
+        ];
+        //print_r($data);
+        try{
+            $prijava_model->insert($data);
+        }
+        catch(Exception $e){
+            
+        }
+        return redirect()->to(site_url("IzvodjacController/moj_nalog"));
     }
 }

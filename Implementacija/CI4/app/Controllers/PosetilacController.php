@@ -14,6 +14,7 @@ use App\Models\OceneDogadjajaModel;
 
 class PosetilacController extends KorisnikController
 {
+
     public function izvodjac(){
         $izv_model = new IzvodjacModel();
         $kor_model=new KorisnikModel();
@@ -61,7 +62,15 @@ class PosetilacController extends KorisnikController
         $oc->insert($data);
         return redirect()->to(site_url("PosetilacController/dogadjaj?id=$dog"));
     }
+
+
+
+
+
+    function moj_nalog()
+    {
+        $korisnik = $this->session->get('korisnik');
+        $this->prikaz('nalog_posetilac',['email'=>$korisnik->Email,'username'=>$korisnik->Korisnicko_Ime]);
+    }
 }
-
-
 
