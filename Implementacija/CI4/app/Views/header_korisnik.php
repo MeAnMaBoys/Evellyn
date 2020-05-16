@@ -25,7 +25,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-6">
-                    <a href="<?php echo base_url()?>" style="color:#FFF9EC">Evelynn</a>
+                    <a href="<?php echo base_url($controller)?>" style="color:#FFF9EC">Evelynn</a>
                 </div>
                 <div class="col-12 col-lg-6 fontDec">
                     <a href="<?php echo base_url($controller)?>" style="color:#FFF9EC">Početna</a>

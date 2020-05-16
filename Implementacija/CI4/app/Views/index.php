@@ -18,7 +18,7 @@
         <span class="big font-fredoka whiteLetterColor">GARANTUJEMO</span><br>
         <span class="big font-fredoka whiteLetterColor">NAJBOLJI PROVOD</span> <br />
 
-        <a href="<?php echo base_url("$controller/izvodjaci");?>"><button class="btn my_button">Pregled</button></a>
+        <a href="<?php echo base_url("$controller/dogadjaji");?>"><button class="btn my_button">Pregled</button></a>
       </div>
     </div>
   </div>

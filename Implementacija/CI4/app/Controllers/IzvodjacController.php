@@ -21,7 +21,10 @@ class IzvodjacController extends KorisnikController
     public function okaci_sadrzaj(){
         $korisnik=$this->session->get('korisnik');
         $dir_path="C:\wamp64\www\CI4\public\assets\uploads\izvodjaci\\$korisnik->Korisnicko_Ime";
-        $images=scandir($dir_path);
+        if(file_exists($dir_path))
+            $images=scandir($dir_path);
+        else 
+            $images=[];
         if(sizeof($images)<9){
             if(isset($_FILES['file'])){
                 $file=$this->request->getFile('file');
