@@ -77,8 +77,7 @@
             </div>
             <div class="col-12 col-md-2 d-none d-md-block">10</div>
           </div>
-          
-          <div class="row d-flex justify-content-center mt-4">
+                     <div class="row d-flex justify-content-center mt-4">
             <?php if($controller == 'PosetilacController'): ?>
             <div class="col-12 col-md-6">
               <form action="<?php echo base_url("$controller/pretplacivanje_organizator")?>">

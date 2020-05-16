@@ -7,6 +7,9 @@ use App\Models\PosetilacModel;
 use \Config\Services\EmailModel;
 use App\Models\PretplateIzvodjaciModel;
 use App\Models\PretplateOgranizatoriModel;
+use App\Models\OceneIzvodjacaModel;
+use App\Models\OceneDogadjajaModel;
+
 
 
 class PosetilacController extends KorisnikController
@@ -37,6 +40,26 @@ class PosetilacController extends KorisnikController
         $po->insert(['Organizator'=>$org , 'Posmatrac'=>$id]);
         return redirect()->to(site_url("PosetilacController/dogadjaji"));
         
+    }
+    public function ocenjivanje_i(){
+        $ocena = $this->request->getVar('ocena');
+        $izv = $this->request->getVar('id');
+        $pos = $this->session->get('korisnik')->ID_K;
+        $oc = new OceneIzvodjacaModel();
+        $data = ['Ocena'=>$ocena, 'Izvodjac'=>$izv , 'Posmatrac'=>$pos];
+        $oc->insert($data);
+        return redirect()->to(site_url("PosetilacController/izvodjac?id=$izv"));
+    }
+    
+    
+    public function ocenjivanje_d(){
+        $ocena = $this->request->getVar('ocena');
+        $dog = $this->request->getVar('id');
+        $pos = $this->session->get('korisnik')->ID_K;
+        $oc = new OceneDogadjajaModel();
+        $data = ['Ocena'=>$ocena, 'ID_Dog'=>$dog , 'Posmatrac'=>$pos];
+        $oc->insert($data);
+        return redirect()->to(site_url("PosetilacController/dogadjaj?id=$dog"));
     }
 }
 
