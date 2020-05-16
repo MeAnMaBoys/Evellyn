@@ -6,6 +6,8 @@ use App\Models\KorisnikModel;
 use App\Models\PosetilacModel;
 use \Config\Services\EmailModel;
 use App\Models\PretplateIzvodjaciModel;
+use App\Models\PretplateOgranizatoriModel;
+
 
 class PosetilacController extends KorisnikController
 {
@@ -26,6 +28,15 @@ class PosetilacController extends KorisnikController
         $data = ['Izvodjac'=>$id, 'Posmatrac'=>$idp];
         $pretplate->insert($data);
         return  redirect()->to(site_url("PosetilacController/izvodjaci"));
+    }
+    
+    public function pretplacivanje_organizator(){
+        $org = $this->request->getVar('id');
+        $id = $this->session->get('korisnik')->ID_K;
+        $po = new \App\Models\PretplateOrganizatoriModel();
+        $po->insert(['Organizator'=>$org , 'Posmatrac'=>$id]);
+        return redirect()->to(site_url("PosetilacController/dogadjaji"));
+        
     }
 }
 

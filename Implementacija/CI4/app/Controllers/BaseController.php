@@ -20,6 +20,7 @@ use App\Models\OrganizatorModel;
 use App\Models\KorisnikModel;
 use App\Models\IzvodjacModel;
 use App\Models\VerifikacijaModel;
+use App\Models\DogadjajModel;
 
 class BaseController extends Controller
 {
@@ -90,6 +91,28 @@ class BaseController extends Controller
         $this->email->setMessage('Postovani, Vas verifikacioni kod je '.$row->kod.'.');
 
         return $this->email->send();
+    }
+    
+    public function dogadjaj(){
+        $dogadjaj = new DogadjajModel();
+        $dogadjajj = $dogadjaj->find($_GET['id']);
+        $this->prikaz('dogadjaj', ['dogadjaj'=>$dogadjajj]);
+    }
+    public function dogadjaji(){
+        $dogadjajmodel = new DogadjajModel();
+        $dogadjaji = $dogadjajmodel->findAll();
+        $this -> prikaz("dogadjaji", ['dogadjaji'=>$dogadjaji]);
+        
+    }
+    
+    public function organizator(){
+        $id = $this->request->getVar('id');
+        $organizator = new OrganizatorModel();        
+        $korisnik = new KorisnikModel();
+        
+        $org = $organizator->find($id);
+        $kor = $korisnik->find($id);
+        $this->prikaz('organizator',['korisnik_prikaz'=>$kor , 'organizator'=>$org]);
     }
 
 }
