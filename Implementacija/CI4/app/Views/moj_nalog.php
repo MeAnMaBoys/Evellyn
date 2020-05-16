@@ -43,7 +43,7 @@
                       </div>
 
                       <div class="text-center subDugme h-100">
-                           <button type="submit" class="btn btn-primary nalogButton">Prijavi se</button>
+                           <button type="submit" class="btn btn-primary nalogButton">Prijavite se</button>
                           <br>
                           <span class="registrujSe">
                           <a href="<?php echo base_url('Gost/registracija'); ?>"><span class="registrujSe2"><u>Registruj se</u></span></a>

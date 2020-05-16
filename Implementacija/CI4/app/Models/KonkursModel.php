@@ -4,7 +4,7 @@ use CodeIgniter\Model;
 
 class KonkursModel extends Model
 {
-    protected $table      = 'konkurs';
+    protected $table      = 'Konkurs';
     protected $primaryKey = 'ID_Dog';
     protected $returnType = 'object';
    
