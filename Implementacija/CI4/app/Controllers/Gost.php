@@ -194,19 +194,32 @@ class Gost extends BaseController
         $verModel = new VerifikacijaModel();
         $rows = $verModel->where('kod',$num)->findAll();
 
-        if($rows===null)
+        if(count($rows)===0)
         {
             return $this->prikaz('ver_kod',['opis'=>'Pogresan verifikacioni kod!']);
         }
         $vector = $this->session->get('vector');
         
+        $flag = false;
         foreach($rows as $row):
-            if(($row->email!==$vector['data']['email_val']))
-            {
-                return $this->prikaz('ver_kod',['opis'=>'Pogresan verifikacioni kod!']);
+            if(($row->email===$vector['data']['email_val']))
+            { 
+                $flag= true;
+            break;
             }
         endforeach;
 
+        if($flag===false)
+        {
+            return $this->prikaz('ver_kod',['opis'=>'Pogresan verifikacioni kod!']);
+        }
+        
+        $korModel = new KorisnikModel();
+        $rowx = $korModel->where('email',$vector['data']['email_val'])->findAll();
+        if(count($rowx)>0):
+            return $this->prikaz('ver_kod',['opis'=>'Nalog sa ovim emailom je nazalost vec verifikovan!']);
+        endif;
+        
         $row2 = $this->kreiraj_korisnika($vector);
 
         $vector['data']['id']=$row2->ID_K;
@@ -226,7 +239,6 @@ class Gost extends BaseController
         }
 
         $this->unsetAll($vector);
-
         return $this->prikaz('ver_kod',['flag'=>'prosao']);
     }
 

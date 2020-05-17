@@ -100,6 +100,12 @@ class PosetilacController extends KorisnikController
         }
         return redirect()->to(site_url("PosetilacController/dogadjaj?id=$dog"));
     }
+
+    function moj_nalog()
+    {
+        $korisnik = $this->session->get('korisnik');
+        $this->prikaz('nalog_posetilac',['email'=>$korisnik->Email,'username'=>$korisnik->Korisnicko_Ime]);
+    }
 }
 
 

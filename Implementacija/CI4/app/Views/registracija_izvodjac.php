@@ -15,7 +15,7 @@
                             $class=$class.$email;
                             $val = $email_val;                    
                         }
-                        echo "<input name='email' type='text' class=\"$class\" value=\"$val\" placeholder='user@gmail.com'>";
+                        echo "<input name='email' type='email' class=\"$class\" value=\"$val\" placeholder='user@gmail.com' required>";
                         
                         if(isset($email_val)&&($enter==true))
                         {
@@ -26,7 +26,7 @@
 
                     <div class="form-group h-100">
                         <label style="font-size:28px;">Lozinka</label>
-                        <input name="password" type="password" class="form-control font22" placeholder="Password">
+                        <input name="password" type="password" class="form-control font22" placeholder="Password" pattern=".{3,20}" title="lozinka mora biti izmedju 3 i 20 karaktera bilo kog tipa!" required>
                         <?php 
                         if(isset($email_val)&&($enter==true))
                         {
@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="form-group h-100">
-                        <label style="font-size:28px;">Ime</label> <! pattern="[a-zA-Z]{2,15}">
+                        <label style="font-size:28px;">Ime</label>
                         <?php 
 
                         $class="form-control font22 ";
@@ -46,7 +46,7 @@
                             $class=$class.$name;
                             $val=$name_val;
                         }
-                        echo "<input name=\"name\" type=\"text\" class=\"$class\" value=\"$val\" id=\"exampleInputEmail3\" aria-describedby=\"emailHelp\" placeholder=\"Nikola\" title=\"Ime moze sadrzati samo mala i velika slova u opsegu 2-15!\">";
+                        echo "<input name=\"name\" type=\"text\" class=\"$class\" value=\"$val\"  pattern=\"[a-zA-Z]{2,15}\" placeholder=\"Nikola\" title=\"Ime moze sadrzati samo mala i velika slova u opsegu 2-15!\" required>";
 
                         if(isset($email_val)&&($enter==true))
                         {
@@ -63,7 +63,7 @@
                     </div>
 
                     <div class="form-group h-100">
-                        <label style="font-size:28px;">Telefon</label><! pattern="[0-9]{9,12}">
+                        <label style="font-size:28px;">Telefon</label><! ">
                         <?php 
                         $class="form-control font22 ";
                         $val = "";
@@ -74,7 +74,7 @@
                             $val = $phone_val;
                         }
 
-                        echo "<input name=\"phone\" type=\"text\" class=\"$class\" value=\"$val\" id=\"exampleInputEmail5\" aria-describedby=\"emailHelp\" placeholder=\"065/3550751\">";
+                        echo "<input name=\"phone\" type=\"text\" class=\"$class\" value=\"$val\" pattern=\"[0-9]{9,12}\" placeholder=\"0653550751\" required>";
                         if(isset($email_val)&&($enter==true))
                         {
                             $txt = "Telefon validno unet!";
@@ -105,7 +105,7 @@
                             $val = $username_val;
                         }
 
-                        echo "<input name=\"username\" type=\"text\" class=\"$class\" value=\"$val\" placeholder=\"rale198\">";
+                        echo "<input name=\"username\" type=\"text\" class=\"$class\" value=\"$val\" pattern=\"[a-zA-Z0-9]{3,15}\" placeholder=\"rale198\" title=\"Slova i brojevi u opsegu od 3 do 15\" required>";
                         if(isset($email_val)&&($enter==true))
                         {
                             $txt = "Korisnicko ime validno uneto!";
@@ -130,11 +130,11 @@
                         if(isset($password_cf))
                         {
                             $class=$class.$password_cf;
-                            echo "<input name=\"password_cf\" type=\"password\" class=\"$class\" placeholder=\"Password\">";                         
+                            echo "<input name=\"password_cf\" type=\"password\" class=\"$class\" pattern=\".{3,20}\" placeholder=\"Password\" required>";                         
                         }
                         else
                         {
-                            echo "<input name=\"password_cf\" type=\"password\" class=\"$class\" placeholder=\"Password\">";                            
+                            echo "<input name=\"password_cf\" type=\"password\" class=\"$class\" pattern=\".{3,20}\" placeholder=\"Password\" required>";                            
                             if(isset($email_val)&&($enter==true))
                             {
                                 echo "<small style=\"color:#59FFA0; font-size:18px;\" class=\"form-text is-invalid\">Molim vas da ponovo unesete lozinku.</small>";
@@ -157,7 +157,7 @@
                             $val = $surename_val;
                         }
 
-                        echo "<input name=\"surename\" type=\"text\" class=\"$class\" value=\"$val\" placeholder=\"Jugovic\">";
+                        echo "<input name=\"surename\" type=\"text\" class=\"$class\" value=\"$val\" pattern=\"[a-zA-Z]{2,15}\" placeholder=\"Jugovic\" title=\"mala i velika slova u opsegu od 2 do 15\"required>";
                         if(isset($email_val)&&($enter==true))
                         {
                             $txt = "Prezime validno uneto!";

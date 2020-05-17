@@ -83,9 +83,12 @@ class BaseController extends Controller
         $this->email->setTo($email);
 
         $verModel = new VerifikacijaModel();
-        $rnd = rand(10000,99999);
+		$rnd = rand(10000,99999);
+		$rows = $verModel->where('email',$email)->findAll();
+		if(count($rows)==0):
         $pod = ['email'=>$email,"kod"=>$rnd];
-        $verModel->ubaci_el($pod);
+		$verModel->ubaci_el($pod);
+		endif;
         $row = $verModel->where('email',$email)->first();
 
         $this->email->setSubject('Verifikacija naloga');
@@ -104,7 +107,7 @@ class BaseController extends Controller
         $dogadjaji = $dogadjajmodel->findAll();
         $this -> prikaz("dogadjaji", ['dogadjaji'=>$dogadjaji]);
         
-    }
+	}
     
     public function organizator(){
         $id = $this->request->getVar('id');

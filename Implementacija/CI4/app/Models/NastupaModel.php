@@ -4,7 +4,7 @@ use CodeIgniter\Model;
 
 class NastupaModel extends Model
 {
-    protected $table      = 'nastupa';
+    protected $table      = 'Nastupa';
     protected $primaryKey = 'ID_Dog';
     protected $returnType = 'object';
     protected $allowedFields = ['ID_Dog','Izvodjac'];
