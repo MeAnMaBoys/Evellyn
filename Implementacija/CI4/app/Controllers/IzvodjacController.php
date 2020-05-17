@@ -21,10 +21,7 @@ class IzvodjacController extends KorisnikController
     public function okaci_sadrzaj(){
         $korisnik=$this->session->get('korisnik');
         $dir_path="C:\wamp64\www\CI4\public\assets\uploads\izvodjaci\\$korisnik->Korisnicko_Ime";
-        if(file_exists($dir_path))
-            $images=scandir($dir_path);
-        else 
-            $images=[];
+        $images=scandir($dir_path);
         if(sizeof($images)<9){
             if(isset($_FILES['file'])){
                 $file=$this->request->getFile('file');
@@ -57,27 +54,33 @@ class IzvodjacController extends KorisnikController
     public function konkurs(){
         $konk_model=new KonkursModel();
         $dog_model=new DogadjajModel();
-		$id=$_GET['id'];
+        $prijava_model=new PrijaveKonkursModel();
+        $id=$_GET['id'];
+        $id_k=$this->session->get('korisnik')->ID_K;
 		$konkurs=$konk_model->find("$id");
-		$dogadjaj=$dog_model->find("$id");
+        $dogadjaj=$dog_model->find("$id");
+        
+        $prijavljen=!empty($prijava_model->where('ID_K',$id_k)->where('ID_Dog',$id)->findAll());
+
 		$data['konkurs']=$konkurs;
-		$data['dogadjaj']=$dogadjaj;
+        $data['dogadjaj']=$dogadjaj;
+        $data['prijavljen']=$prijavljen;
 		return $this->prikaz('konkurs',$data);
     }
     public function prijava_na_konkurs(){
         $id=$this->request->getVar('id');
         $id_k=$this->session->get('korisnik')->ID_K;
         $prijava_model=new PrijaveKonkursModel();
-        $data=[
-            'ID_Dog'=>$id,
-            'ID_K'=>$id_k
-        ];
-        //print_r($data);
-        try{
-            $prijava_model->insert($data);
+        $prijave=$prijava_model->where('ID_K',$id_k)->where('ID_Dog',$id)->findAll();
+        if(empty($prijave)){
+            $data=[
+                'ID_Dog'=>$id,
+                'ID_K'=>$id_k
+            ];
+                $prijava_model->insert($data);
         }
-        catch(Exception $e){
-            
+        else{
+           //print_r($prijave);
         }
         return redirect()->to(site_url("IzvodjacController/moj_nalog"));
     }

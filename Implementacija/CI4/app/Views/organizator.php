@@ -82,7 +82,13 @@
             <div class="col-12 col-md-6">
               <form action="<?php echo base_url("$controller/pretplacivanje_organizator")?>">
                   <input type="hidden" name="id" value="<?php echo($organizator->ID_K)?>">
-                <button class="btn btn-outline-info ls-1" type="submit">Pretplati se na organizatora</button>
+                  <?php
+                  if(!$pretplacen){
+                    echo("<button class=\"btn btn-info ls-2\" type=\"submit\">Pretplati se na organizatora</button>");
+                  }
+                  else{
+                    echo("<div class=\"font-fredoka font22\">Pretplaceni ste</div>");
+                  }?>
               </form>
             </div>
               <?php endif; ?>

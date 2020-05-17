@@ -21,6 +21,7 @@ use App\Models\KorisnikModel;
 use App\Models\IzvodjacModel;
 use App\Models\VerifikacijaModel;
 use App\Models\DogadjajModel;
+use App\Models\PretplateOrganizatoriModel;
 
 class BaseController extends Controller
 {
@@ -109,10 +110,14 @@ class BaseController extends Controller
         $id = $this->request->getVar('id');
         $organizator = new OrganizatorModel();        
         $korisnik = new KorisnikModel();
-        
+        $pretplacivanje=new PretplateOrganizatoriModel();
         $org = $organizator->find($id);
-        $kor = $korisnik->find($id);
-        $this->prikaz('organizator',['korisnik_prikaz'=>$kor , 'organizator'=>$org]);
+		$kor = $korisnik->find($id);
+		
+		$id_k=$this->session->get('korisnik')->ID_K;
+		$pretplacen=!empty($pretplacivanje->where('Organizator',$org->ID_K)->where('Posmatrac',$id_k)->findAll());
+		
+        $this->prikaz('organizator',['korisnik_prikaz'=>$kor , 'organizator'=>$org,'pretplacen'=>$pretplacen]);
     }
 
 }

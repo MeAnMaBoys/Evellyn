@@ -7,6 +7,12 @@
     <div class="page_title"><?php echo("$dogadjaj->Naziv")?></div>
 
     <div class="container">
+
+        <div class="row">
+            <div class="col-2"></div>
+           <div class="col-4  font-fredoka font22 whiteLetterColor ">Naziv:</div>
+           <div class="col-6  font-fredoka font22 whiteLetterColor"><?php echo($dogadjaj->Naziv)?></div>
+        </div>
         <div class="row">
             <div class="col-2"></div>
            <div class="col-4  font-fredoka font22 whiteLetterColor ">Tip dogadjaja:</div>
@@ -37,8 +43,14 @@
             <br>
             <br>
             <input type="hidden" name="id" value="<?php echo($konkurs->ID_Dog)?>">
-            <button class="font-fredoka whiteLetterColor btn btn-success ls-2" type="submit">Prijavi se na konkurs</button>
-          </form>
+            <?php 
+            if(!$prijavljen)
+                echo ("<button class=\"font-fredoka whiteLetterColor btn btn-success ls-2\" type=\"submit\">Prijavi se na konkurs</button>");
+            else{
+                echo ("<div class=\"col-2\"></div><div class=\"col-10  font-fredoka font22 whiteLetterColor \">Prijavljeni ste!!</div>");
+            }
+            ?>
+         </form>
       </div>
     </div>
 </div>

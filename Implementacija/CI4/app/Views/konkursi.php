@@ -15,7 +15,7 @@
                 $cpath = base_url("IzvodjacController/konkurs?id=$konkurs->ID_Dog"); //dodati za id kako svakog iscrtavati posebno
                 
                 echo "<div class=\"col-12 col-md-6 col-lg-4 p-3 m-0\">
-                <a href='$cpath' class=\"hover-clear\">S
+                <a href='$cpath' class=\"hover-clear\">
                     <div class=\"position-relative\">
                         <div class=\"kartica bg-fullwh kartica-velicina w-100\" style=\"background-image: url('$slika');\">
                             <div class=\"absolute-fullwh blur-bg\"></div>

@@ -147,7 +147,14 @@
                 <br>
                 <br>
                 <input type="hidden" name="id" value="<?php echo($korisnik_prikaz->ID_K)?>">
-                <button class="btn btn-info ls-2" type="submit">Pretplati se</button>
+                <?php
+                  if(!$pretplacen){
+                    echo("<button class=\"btn btn-info ls-2\" type=\"submit\">Pretplati se</button>");
+                  }
+                  else{
+                    echo("<div class=\"font-fredoka font22\">Pretplaceni ste</div>");
+                  }
+                ?>
             </form>
         </div>
     </div>

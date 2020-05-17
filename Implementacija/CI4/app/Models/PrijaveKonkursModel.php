@@ -4,7 +4,7 @@ use CodeIgniter\Model;
 
 class PrijaveKonkursModel extends Model
 {
-    protected $table      = 'Prijave_Na_Konkurs';
+    protected $table      = 'prijave_na_konkurs';
     protected $primaryKey = 'ID_K';
     protected $returnType = 'object';
     protected $allowedFields = ['ID_K','ID_Dog'];

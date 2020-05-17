@@ -6,7 +6,7 @@ use App\Models\KorisnikModel;
 use App\Models\PosetilacModel;
 use \Config\Services\EmailModel;
 use App\Models\PretplateIzvodjaciModel;
-use App\Models\PretplateOgranizatoriModel;
+use App\Models\PretplateOrganizatoriModel;
 use App\Models\OceneIzvodjacaModel;
 use App\Models\OceneDogadjajaModel;
 
@@ -14,16 +14,23 @@ use App\Models\OceneDogadjajaModel;
 
 class PosetilacController extends KorisnikController
 {
-
     public function izvodjac(){
         $izv_model = new IzvodjacModel();
         $kor_model=new KorisnikModel();
+        $pretplacivanje=new PretplateIzvodjaciModel();
+
         $id=$_GET['id'];
         $korisnik=$kor_model->find("$id");
         $izvodjac=$izv_model->find("$id");
+
+        $id_k=$this->session->get('korisnik')->ID_K;
+        $pretplate=$pretplacivanje->where('Izvodjac',$izvodjac->ID_K)->where('Posmatrac',$id_k)->findAll();
+
+        $pretplacen=!empty($pretplate);
         $data['korisnik_prikaz']=$korisnik;
-	$data['izvodjac_prikaz']=$izvodjac;
-	return $this->prikaz('posmatrac',$data);
+        $data['izvodjac_prikaz']=$izvodjac;
+        $data['pretplacen']=$pretplacen;
+	    return $this->prikaz('posmatrac',$data);
     }
     public function pretplacivanje(){
         $id = $this->request->getVar("id");
@@ -37,7 +44,7 @@ class PosetilacController extends KorisnikController
     public function pretplacivanje_organizator(){
         $org = $this->request->getVar('id');
         $id = $this->session->get('korisnik')->ID_K;
-        $po = new \App\Models\PretplateOrganizatoriModel();
+        $po = new PretplateOrganizatoriModel();
         $po->insert(['Organizator'=>$org , 'Posmatrac'=>$id]);
         return redirect()->to(site_url("PosetilacController/dogadjaji"));
         
@@ -46,9 +53,25 @@ class PosetilacController extends KorisnikController
         $ocena = $this->request->getVar('ocena');
         $izv = $this->request->getVar('id');
         $pos = $this->session->get('korisnik')->ID_K;
+        if($ocena>5){
+            $ocena=5;
+        }
+        if($ocena<1){
+            $ocena=1;
+        }
         $oc = new OceneIzvodjacaModel();
+        $stara=$oc->where('Posmatrac',$pos)->where('Izvodjac',$izv)->findAll();
         $data = ['Ocena'=>$ocena, 'Izvodjac'=>$izv , 'Posmatrac'=>$pos];
-        $oc->insert($data);
+        //print_r($data);
+        if(empty($stara)){
+            $oc->insert($data);
+        }
+        else if($ocena!=$stara[0]->Ocena){
+            $oc->replace($data);
+        }
+
+        
+       
         return redirect()->to(site_url("PosetilacController/izvodjac?id=$izv"));
     }
     
@@ -57,20 +80,27 @@ class PosetilacController extends KorisnikController
         $ocena = $this->request->getVar('ocena');
         $dog = $this->request->getVar('id');
         $pos = $this->session->get('korisnik')->ID_K;
+
+        if($ocena>5){
+            $ocena=5;
+        }
+        if($ocena<1){
+            $ocena=1;
+        }
+
         $oc = new OceneDogadjajaModel();
+
+
         $data = ['Ocena'=>$ocena, 'ID_Dog'=>$dog , 'Posmatrac'=>$pos];
-        $oc->insert($data);
+        $stara=$oc->where('Posmatrac',$pos)->where('ID_Dog',$dog)->findAll();
+        if(empty($stara))
+            $oc->insert($data);
+        else if($ocena!=$stara[0]->Ocena){
+            $oc->replace($data);
+        }
         return redirect()->to(site_url("PosetilacController/dogadjaj?id=$dog"));
     }
-
-
-
-
-
-    function moj_nalog()
-    {
-        $korisnik = $this->session->get('korisnik');
-        $this->prikaz('nalog_posetilac',['email'=>$korisnik->Email,'username'=>$korisnik->Korisnicko_Ime]);
-    }
 }
+
+
 

@@ -4,7 +4,7 @@ use CodeIgniter\Model;
 
 class OceneIzvodjacaModel extends Model
 {
-    protected $table      = 'Ocene_Izvodjaca';
+    protected $table      = 'ocene_izvodjaca';
     protected $primaryKey = 'Izvodjac';
     protected $returnType = 'object';
     protected $allowedFields = ['Ocena','Izvodjac','Posmatrac'];

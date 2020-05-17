@@ -4,7 +4,7 @@ use CodeIgniter\Model;
 
 class ZahtevOrganizatorModel extends Model
 {
-    protected $table      = 'Zahtev_Za_Organizatora';
+    protected $table      = 'zahtev_za_organizatora';
     protected $primaryKey = 'ID_K';
     protected $returnType = 'object';
     protected $allowedFields = ['ID_K'];

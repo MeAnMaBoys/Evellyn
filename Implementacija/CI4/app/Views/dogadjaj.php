@@ -7,6 +7,11 @@
     <div class="page_title"> <?php echo("$dogadjaj->Naziv")?></div>
 
     <div class="container">
+    <div class="row">
+            <div class="col-2"></div>
+           <div class="col-4  font-fredoka font22 whiteLetterColor ">Naziv:</div>
+           <div class="col-6  font-fredoka font22 whiteLetterColor"><?php echo($dogadjaj->Naziv)?></div>
+        </div>
         <div class="row">
             <div class="col-2"></div>
            <div class="col-4  font-fredoka font22 whiteLetterColor ">Tip dogadjaja:</div>
@@ -21,6 +26,11 @@
             <div class="col-2"></div>
            <div class="col-4  font-fredoka font22 whiteLetterColor ">Lokacija:</div>
            <div class="col-6  font-fredoka font22 whiteLetterColor"><?php echo($dogadjaj->Lokacija)?></div>
+        </div>
+        <div class="row">
+            <div class="col-2"></div>
+           <div class="col-8  font-fredoka font22 whiteLetterColor "><?php echo($dogadjaj->Opis)?></div>
+           <div class="col-2  font-fredoka font22 whiteLetterColor"></div>
         </div>
         <div class="col-12 text-center">
          <form action="<?php echo base_url("$controller/organizator?id=$dogadjaj->Organizator")?>" method="post" >

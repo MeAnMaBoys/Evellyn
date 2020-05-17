@@ -4,7 +4,7 @@ use CodeIgniter\Model;
 
 class DogadjajModel extends Model
 {
-    protected $table      = 'Dogadjaj';
+    protected $table      = 'dogadjaj';
     protected $primaryKey = 'ID_Dog';
     protected $returnType = 'object';
     protected $allowedFields = ['Datum_Vreme', 'Tip', 'Lokacija', 'Organizator','Status','Naziv','Opis'];
