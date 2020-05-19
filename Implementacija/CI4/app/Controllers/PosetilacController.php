@@ -3,6 +3,7 @@
 use App\Models\IzvodjacModel;
 use App\Models\OrganizatorModel;
 use App\Models\KorisnikModel;
+use App\Models\DogadjajModel;
 use App\Models\PosetilacModel;
 use \Config\Services\EmailModel;
 use App\Models\PretplateIzvodjaciModel;
@@ -90,7 +91,12 @@ class PosetilacController extends KorisnikController
     
     public function ocenjivanje_d(){
         $ocena = $this->request->getVar('ocena');
+        $org = new OrganizatorModel();
+        $dogadjaj = new DogadjajModel();
         $dog = $this->request->getVar('id');
+        $d = $dogadjaj ->find($dog);
+        $organizator = $org -> find($d->Organizator);
+        
         $pos = $this->session->get('korisnik')->ID_K;
 
         if($ocena>5){
@@ -103,12 +109,19 @@ class PosetilacController extends KorisnikController
         $oc = new OceneDogadjajaModel();
 
 
-        $data = ['Ocena'=>$ocena, 'ID_Dog'=>$dog , 'Posmatrac'=>$pos];
+        $data = ['Ocena'=>$ocena, 'ID_Dog'=>$dog , 'Posmatrac'=>$pos ,'Organizator'=>$d -> Organizator];
         $stara=$oc->where('Posmatrac',$pos)->where('ID_Dog',$dog)->findAll();
-        if(empty($stara))
+        if(empty($stara)){
             $oc->insert($data);
+            $organizator ->Broj_Ocena++;
+            $organizator -> Prosek_Ocena += $ocena / $organizator -> Broj_Ocena;
+            $org -> update($d -> Organizator,['Prosek_Ocena' => $organizator->Prosek_Ocena , 'Broj_Ocena'=> $organizator->Broj_Ocena ]);
+        }
         else if($ocena!=$stara[0]->Ocena){
             $oc->replace($data);
+            $razlika = $ocena - $stara[0] -> Ocena;
+            $organizator -> Prosek_Ocena += $razlika / $organizator -> Broj_Ocena;
+            $org -> update($d -> Organizator,['Prosek_Ocena' => $organizator->Prosek_Ocena ]);
         }
         return redirect()->to(site_url("PosetilacController/dogadjaj?id=$dog"));
     }

@@ -8,6 +8,7 @@ use App\Models\DogadjajModel;
 use App\Models\KonkursModel;
 use App\Models\ZahtevNastupanjeModel;
 use \Config\Services\EmailModel;
+use \App\Models\OceneDogadjajaModel;
 
 class OrganizatorController extends KorisnikController
 {
@@ -28,7 +29,10 @@ class OrganizatorController extends KorisnikController
     }
     public function moj_nalog()
     {
-        $this->prikaz('moj_nalog_o',[]);
+        $ocd = new OceneDogadjajaModel();
+        $id = $this -> session-> get('korisnik')->ID_K;
+        $ocene = $ocd -> where('Organizator', $id)-> findAll(); 
+        $this->prikaz('moj_nalog_o',['ocene'=>$ocene]);
     }
     public function kreiranje_konkursa(){
         $this->prikaz('kreiranje_konkursa',[]);
