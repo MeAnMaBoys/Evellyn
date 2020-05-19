@@ -16,10 +16,12 @@ class PosetilacController extends KorisnikController
 {
     public function izvodjac(){
         $izv_model = new IzvodjacModel();
+        $ocene_izv = new OceneIzvodjacaModel();
         $kor_model=new KorisnikModel();
         $pretplacivanje=new PretplateIzvodjaciModel();
 
         $id=$_GET['id'];
+        $ocene = $ocene_izv->where('izvodjac', $id )->findAll();
         $korisnik=$kor_model->find("$id");
         $izvodjac=$izv_model->find("$id");
 
@@ -30,7 +32,8 @@ class PosetilacController extends KorisnikController
         $data['korisnik_prikaz']=$korisnik;
         $data['izvodjac_prikaz']=$izvodjac;
         $data['pretplacen']=$pretplacen;
-	    return $this->prikaz('posmatrac',$data);
+        $data['ocene'] = $ocene;
+	return $this->prikaz('posmatrac',$data);
     }
     public function pretplacivanje(){
         $id = $this->request->getVar("id");
@@ -60,16 +63,25 @@ class PosetilacController extends KorisnikController
             $ocena=1;
         }
         $oc = new OceneIzvodjacaModel();
+        $iz = new IzvodjacModel();
+        $izvodjac = $iz->find($izv);
         $stara=$oc->where('Posmatrac',$pos)->where('Izvodjac',$izv)->findAll();
         $data = ['Ocena'=>$ocena, 'Izvodjac'=>$izv , 'Posmatrac'=>$pos];
         //print_r($data);
         if(empty($stara)){
+            $izvodjac->Broj_Ocena++;
+            $izvodjac->Prosek_Ocena+= $ocena / $izvodjac->Broj_Ocena;
+            //$userModel->update($id, $data);
+            $iz -> update($izv,['Prosek_Ocena' => $izvodjac->Prosek_Ocena , 'Broj_Ocena'=> $izvodjac->Broj_Ocena ]);
             $oc->insert($data);
         }
         else if($ocena!=$stara[0]->Ocena){
             $oc->replace($data);
+            $razlika = $ocena - $stara[0]->Ocena;
+            $izvodjac->Prosek_Ocena += $razlika / $izvodjac->Broj_Ocena;
+            $iz -> update($izv,['Prosek_Ocena' => $izvodjac->Prosek_Ocena]);
         }
-
+        
         
        
         return redirect()->to(site_url("PosetilacController/izvodjac?id=$izv"));

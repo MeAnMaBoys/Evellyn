@@ -22,6 +22,7 @@ use App\Models\IzvodjacModel;
 use App\Models\VerifikacijaModel;
 use App\Models\DogadjajModel;
 use App\Models\PretplateOrganizatoriModel;
+use App\Models\OceneIzvodjacaModel;
 
 class BaseController extends Controller
 {
@@ -69,11 +70,14 @@ class BaseController extends Controller
 	public function izvodjac(){
 		$izv_model = new IzvodjacModel();
 		$kor_model=new KorisnikModel();
+                $ocene_izv = new OceneIzvodjacaModel();
 		$id=$_GET['id'];
+                $ocene = $ocene_izv->where('izvodjac', $id )->findAll();
 		$korisnik=$kor_model->find("$id");
 		$izvodjac=$izv_model->find("$id");
 		$data['korisnik_prikaz']=$korisnik;
 		$data['izvodjac_prikaz']=$izvodjac;
+                $data['ocene'] = $ocene;
 		return $this->prikaz('izvodjac',$data);
         }
   

@@ -16,10 +16,10 @@
 
               <span class="heading">User Rating</span>
               <span class="fa fa-star <?php if($organizator->Prosek_Ocena>1) echo('checked')?>"></span>
-              <span class="fa fa-star <?php if($organizator->Prosek_Ocena>1) echo('checked')?>"></span>
-              <span class="fa fa-star <?php if($organizator->Prosek_Ocena>1) echo('checked')?>"></span>
-              <span class="fa fa-star <?php if($organizator->Prosek_Ocena>1) echo('checked')?>"></span>
-              <span class="fa fa-star"></span>
+              <span class="fa fa-star <?php if($organizator->Prosek_Ocena>1.5) echo('checked')?>"></span>
+              <span class="fa fa-star <?php if($organizator->Prosek_Ocena>2.5) echo('checked')?>"></span>
+              <span class="fa fa-star <?php if($organizator->Prosek_Ocena>3.5) echo('checked')?>"></span>
+              <span class="fa fa-star <?php if($organizator->Prosek_Ocena>4.5) echo('checked')?>"></span>
               <p><?php 
               if($organizator->Prosek_Ocena==0){
                   echo("No reviews.");
