@@ -22,6 +22,8 @@ use App\Models\IzvodjacModel;
 use App\Models\VerifikacijaModel;
 use App\Models\DogadjajModel;
 use App\Models\PretplateOrganizatoriModel;
+use App\Models\OceneIzvodjacaModel;
+use App\Models\OceneDogadjajaModel;
 
 class BaseController extends Controller
 {
@@ -69,11 +71,14 @@ class BaseController extends Controller
 	public function izvodjac(){
 		$izv_model = new IzvodjacModel();
 		$kor_model=new KorisnikModel();
+                $ocene_izv = new OceneIzvodjacaModel();
 		$id=$_GET['id'];
+                $ocene = $ocene_izv->where('izvodjac', $id )->findAll();
 		$korisnik=$kor_model->find("$id");
 		$izvodjac=$izv_model->find("$id");
 		$data['korisnik_prikaz']=$korisnik;
 		$data['izvodjac_prikaz']=$izvodjac;
+                $data['ocene'] = $ocene;
 		return $this->prikaz('izvodjac',$data);
         }
   
@@ -115,12 +120,13 @@ class BaseController extends Controller
         $korisnik = new KorisnikModel();
         $pretplacivanje=new PretplateOrganizatoriModel();
         $org = $organizator->find($id);
-		$kor = $korisnik->find($id);
+        $kor = $korisnik->find($id);
+	$ocd = new OceneDogadjajaModel();
+        $ocene = $ocd -> where('Organizator', $id)->findAll();
+        $id_k=$this->session->get('korisnik')->ID_K;
+	$pretplacen=!empty($pretplacivanje->where('Organizator',$org->ID_K)->where('Posmatrac',$id_k)->findAll());
 		
-		$id_k=$this->session->get('korisnik')->ID_K;
-		$pretplacen=!empty($pretplacivanje->where('Organizator',$org->ID_K)->where('Posmatrac',$id_k)->findAll());
-		
-        $this->prikaz('organizator',['korisnik_prikaz'=>$kor , 'organizator'=>$org,'pretplacen'=>$pretplacen]);
+        $this->prikaz('organizator',['korisnik_prikaz'=>$kor , 'organizator'=>$org,'pretplacen'=>$pretplacen,'ocene'=>$ocene]);
     }
 
 }

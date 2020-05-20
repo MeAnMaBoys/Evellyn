@@ -61,16 +61,30 @@
 
               <span class="heading">User Rating</span>
               <span class="fa fa-star <?php if($izvodjac_prikaz->Prosek_Ocena>1) echo('checked')?>"></span>
-              <span class="fa fa-star <?php if($izvodjac_prikaz->Prosek_Ocena>1) echo('checked')?>"></span>
-              <span class="fa fa-star <?php if($izvodjac_prikaz->Prosek_Ocena>1) echo('checked')?>"></span>
-              <span class="fa fa-star <?php if($izvodjac_prikaz->Prosek_Ocena>1) echo('checked')?>"></span>
-              <span class="fa fa-star"></span>
+              <span class="fa fa-star <?php if($izvodjac_prikaz->Prosek_Ocena>1.5) echo('checked')?>"></span>
+              <span class="fa fa-star <?php if($izvodjac_prikaz->Prosek_Ocena>2.5) echo('checked')?>"></span>
+              <span class="fa fa-star <?php if($izvodjac_prikaz->Prosek_Ocena>3.5) echo('checked')?>"></span>
+              <span class="fa fa-star <?php if($izvodjac_prikaz->Prosek_Ocena>4.5) echo('checked')?>"></span>
               <p><?php 
               if($izvodjac_prikaz->Prosek_Ocena==0){
                   echo("No reviews.");
               }
               else{
                   echo("$izvodjac_prikaz->Prosek_Ocena average based on $izvodjac_prikaz->Broj_Ocena reviews.");
+              }
+              $jedinice = 0;
+              $dvojke = 0;
+              $trojke = 0;
+              $cetvorke = 0;
+              $petice = 0;
+              foreach($ocene as $oc){
+                  switch($oc->Ocena){
+                      case 1: $jedinice++; break;
+                      case 2: $dvojke++; break;
+                      case 3: $trojke ++; break;
+                      case 4: $cetvorke++; break;
+                      case 5: $petice++; break;
+                  }
               }
                 ?></p>
               <hr style="border:3px solid #f1f1f1">
@@ -81,46 +95,46 @@
             <div class="col-12 col-md-3">5 star</div>
             <div class="col-12 col-md-7">
               <div class="bar-container">
-                <div style="width: 40%;" class="bar-5"></div>
+                  <div style="width: <?php $pom = round($petice/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-5"></div>
               </div>
             </div>
-            <div class="col-12 col-md-2 d-none d-md-block">151</div>
+            <div class="col-12 col-md-2 d-none d-md-block"> <?php echo $petice ?></div>
           </div>
           <div class="row">
             <div class="col-12 col-md-3">4 star</div>
             <div class="col-12 col-md-7">
               <div class="bar-container">
-                <div style="width: 60%;" class="bar-4"></div>
+                <div style="width:<?php $pom = round($cetvorke/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-4"></div>
               </div>
             </div>
-            <div class="col-12 col-md-2 d-none d-md-block">151</div>
+            <div class="col-12 col-md-2 d-none d-md-block"><?php echo $cetvorke ?></div>
           </div>
           <div class="row">
             <div class="col-12 col-md-3">3 star</div>
             <div class="col-12 col-md-7">
               <div class="bar-container">
-                <div style="width: 30%;" class="bar-3"></div>
+                <div style="width: <?php $pom = round($trojke/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-3"></div>
               </div>
             </div>
-            <div class="col-12 col-md-2 d-none d-md-block">151</div>
+            <div class="col-12 col-md-2 d-none d-md-block"><?php echo $trojke ?></div>
           </div>
           <div class="row">
             <div class="col-12 col-md-3">2 star</div>
             <div class="col-12 col-md-7">
               <div class="bar-container">
-                <div style="width: 20%;" class="bar-2"></div>
+                <div style="width: <?php $pom = round($dvojke/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-2"></div>
               </div>
             </div>
-            <div class="col-12 col-md-2 d-none d-md-block">151</div>
+            <div class="col-12 col-md-2 d-none d-md-block"><?php echo $dvojke ?></div>
           </div>
           <div class="row">
             <div class="col-12 col-md-3">1 star</div>
             <div class="col-12 col-md-7">
               <div class="bar-container">
-                <div style="width: 5%;" class="bar-1"></div>
+                <div style="width: <?php $pom = round($jedinice/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-1"></div>
               </div>
             </div>
-            <div class="col-12 col-md-2 d-none d-md-block">10</div>
+            <div class="col-12 col-md-2 d-none d-md-block"><?php echo $jedinice ?></div>
           </div>
           <form action="<?php echo base_url('PosetilacController/ocenjivanje_i')?>">
           <div class="row">
