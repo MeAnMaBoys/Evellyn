@@ -23,7 +23,7 @@
                           echo "<small style=\"color:#AD343E; font-size:18px;\" class=\"form-text is-invalid\">$user_msg</small>";
                         }
                         else
-                        echo "<small id=\"emailHelp\" class=\"form-text text-muted\">Budite sigurno da necemo deliti vasu email adresu ni sa kim.</small>";
+                        echo "<small id=\"emailHelp\" class=\"form-text text-muted\">Budite sigurni da necemo deliti vasu email adresu ni sa kim.</small>";
                         ?>
                       </div>
 
