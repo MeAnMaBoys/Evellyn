@@ -25,7 +25,8 @@
                   echo("No reviews.");
               }
               else{
-                  echo("$organizator->Prosek_Ocena average based on $organizator->Broj_Ocena reviews.");
+                $br = round($organizator->Prosek_Ocena ,2);
+                echo("$br average based on $organizator->Broj_Ocena reviews.");
               }
               $jedinice = 0;
               $dvojke = 0;

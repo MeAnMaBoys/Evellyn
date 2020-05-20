@@ -18,6 +18,7 @@ class IzvodjacModel extends Model
             $data_in['Prezime']=$data['surename_val'];
             $data_in['Telefon']=$data['phone_val'];
             $data_in['ID_K']=$data['id'];
+            $data_in['Tipovi']=$data['tip_val'];
             $this->insert($data_in);
         }
 }

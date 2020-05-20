@@ -23,24 +23,6 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-4">
-                                    <input class="form-check-input" type="radio" name="Radios" id="Radios1" value="privatna_zurka" checked>
-                                    <label class="form-check-label" for="Radios1">
-                                        Privatna zurka
-                                    </label>
-                                </div>
-                                <div class="col-4">
-                                    <input class="form-check-input" type="radio" name="Radios" id="Radios2" value="svadba">
-                                    <label class="form-check-label" for="Radios2">
-                                        Svadba
-                                    </label>
-                                </div>
-                                <div class="col-4">
-                                    <input class="form-check-input" type="radio" name="Radios" id="Radios3" value="rodjendan">
-                                    <label class="form-check-label" for="Radios3">
-                                        Rodjendan
-                                    </label>
-                                </div>
-                                <div class="col-4">
                                     <input class="form-check-input" type="radio" name="Radios" id="Radios4" value="zurka">
                                     <label class="form-check-label" for="Radios4">
                                         Zurka

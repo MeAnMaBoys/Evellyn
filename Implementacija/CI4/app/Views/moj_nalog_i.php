@@ -74,7 +74,8 @@
                   echo("No reviews.");
               }
               else{
-                  echo("$tip->Prosek_Ocena average based on $tip->Broj_Ocena reviews.");
+                $br = round($tip->Prosek_Ocena ,2);
+                echo("$br average based on $tip->Broj_Ocena reviews.");
               }
               $jedinice = 0;
               $dvojke = 0;

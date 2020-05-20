@@ -25,7 +25,8 @@
                   echo("No reviews.");
               }
               else{
-                  echo("$tip->Prosek_Ocena average based on $tip->Broj_Ocena reviews.");
+                $br = round($tip->Prosek_Ocena ,2);
+                echo("$br average based on $tip->Broj_Ocena reviews.");
               }
               $jedinice = 0;
               $dvojke = 0;
@@ -95,7 +96,7 @@
           <div class="row d-flex justify-content-center mt-4">
             <div class="col-4">
               <form action="<?php echo base_url('OrganizatorController/kreiranje_konkursa')?>">
-                <button class="btn btn-outline-success ls-1" type="submit">Napravi konkurs</button>
+                <button class="btn btn-outline-success ls-2" type="submit">Napravi konkurs</button>
               </form>
             </div>
             <div class="col-4">

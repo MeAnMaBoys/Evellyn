@@ -70,8 +70,7 @@ class PosetilacController extends KorisnikController
         $data = ['Ocena'=>$ocena, 'Izvodjac'=>$izv , 'Posmatrac'=>$pos];
         //print_r($data);
         if(empty($stara)){
-            $izvodjac->Broj_Ocena++;
-            $izvodjac->Prosek_Ocena+= $ocena / $izvodjac->Broj_Ocena;
+            $izvodjac->Prosek_Ocena= ($izvodjac->Prosek_Ocena*$izvodjac->Broj_Ocena+$ocena) / (++$izvodjac->Broj_Ocena);
             //$userModel->update($id, $data);
             $iz -> update($izv,['Prosek_Ocena' => $izvodjac->Prosek_Ocena , 'Broj_Ocena'=> $izvodjac->Broj_Ocena ]);
             $oc->insert($data);
@@ -79,7 +78,7 @@ class PosetilacController extends KorisnikController
         else if($ocena!=$stara[0]->Ocena){
             $oc->replace($data);
             $razlika = $ocena - $stara[0]->Ocena;
-            $izvodjac->Prosek_Ocena += $razlika / $izvodjac->Broj_Ocena;
+            $izvodjac->Prosek_Ocena += $razlika / $izvodjac->Broj_Ocena*1.;
             $iz -> update($izv,['Prosek_Ocena' => $izvodjac->Prosek_Ocena]);
         }
         
@@ -109,18 +108,17 @@ class PosetilacController extends KorisnikController
         $oc = new OceneDogadjajaModel();
 
 
-        $data = ['Ocena'=>$ocena, 'ID_Dog'=>$dog , 'Posmatrac'=>$pos ,'Organizator'=>$d -> Organizator];
+        $data = ['Ocena'=>$ocena, 'ID_Dog'=>$dog , 'Posmatrac'=>$pos ,'Organizator'=>$d ->Organizator];
         $stara=$oc->where('Posmatrac',$pos)->where('ID_Dog',$dog)->findAll();
         if(empty($stara)){
             $oc->insert($data);
-            $organizator ->Broj_Ocena++;
-            $organizator -> Prosek_Ocena += $ocena / $organizator -> Broj_Ocena;
+            $organizator->Prosek_Ocena= ($organizator->Prosek_Ocena*$organizator->Broj_Ocena+$ocena) / (++$organizator->Broj_Ocena);
             $org -> update($d -> Organizator,['Prosek_Ocena' => $organizator->Prosek_Ocena , 'Broj_Ocena'=> $organizator->Broj_Ocena ]);
         }
         else if($ocena!=$stara[0]->Ocena){
             $oc->replace($data);
-            $razlika = $ocena - $stara[0] -> Ocena;
-            $organizator -> Prosek_Ocena += $razlika / $organizator -> Broj_Ocena;
+            $razlika = $ocena - $stara[0]->Ocena;
+            $organizator->Prosek_Ocena += $razlika / $organizator ->Broj_Ocena*1.;
             $org -> update($d -> Organizator,['Prosek_Ocena' => $organizator->Prosek_Ocena ]);
         }
         return redirect()->to(site_url("PosetilacController/dogadjaj?id=$dog"));

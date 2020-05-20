@@ -172,9 +172,18 @@
                         ?>
                     </div>
 
-                    <div class="text-center subDugme h-100">
-                          <button type="submit" class="btn btn-success nalogButton btn-lg btn-block" style="padding-bottom: -4px;">PROSLEDI</button>
+                      <div class="form-group">
+                        <label style="font-size:28px;">Tipovi</label><! pattern="[a-zA-Z]{2,15}">
+                        <select class="form-control font22" name="tip" id="exampleFormControlSelect1">
+                        <option>Muzicar</option>
+                        <option>Bend</option>
+                        <option>Zabavljac</option>
+                        </select>
                     </div>
+                </div>
+
+                <div class="text-center subDugme h-100">
+                        <button type="submit" class="btn btn-success nalogButton btn-lg btn-block" style="padding-bottom: -4px;">PROSLEDI</button>
                 </div>
             </div>
         </div>

@@ -65,6 +65,10 @@ class BaseController extends Controller
 		$this->prikaz('index',[]);
 	}
 
+	public function moj_nalog()
+	{
+		throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+	}
 	public function izvodjaci(){
 		$izvModel = new IzvodjacModel();
 		$izvodjaci = $izvModel->findAll();
@@ -75,12 +79,19 @@ class BaseController extends Controller
 		$kor_model=new KorisnikModel();
                 $ocene_izv = new OceneIzvodjacaModel();
 		$id=$_GET['id'];
-                $ocene = $ocene_izv->where('izvodjac', $id )->findAll();
+		$usr=$this->session->get('korisnik');
+		if((isset($usr))&&($usr->ID_K === $id))
+		{
+			$this->moj_nalog();
+		}
+
+        $ocene = $ocene_izv->where('izvodjac', $id )->findAll();
 		$korisnik=$kor_model->find("$id");
 		$izvodjac=$izv_model->find("$id");
 		$data['korisnik_prikaz']=$korisnik;
 		$data['izvodjac_prikaz']=$izvodjac;
-                $data['ocene'] = $ocene;
+				$data['ocene'] = $ocene;
+				
 		return $this->prikaz('izvodjac',$data);
 	}
 	public function obavesti_posetioce($email,$korisnik,$link){

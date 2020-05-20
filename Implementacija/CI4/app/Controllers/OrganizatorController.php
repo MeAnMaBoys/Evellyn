@@ -16,10 +16,12 @@ use \App\Models\OceneDogadjajaModel;
 
 class OrganizatorController extends KorisnikController
 {
-    public function obavesti_izvodjace($organizator)
+    public function obavesti_izvodjace($organizator,$type)
     {
+        $arr = ['zurka'=>['Muzicar','Zabavljac'],'nastup'=>['Bend','Muzicar'],'koncert'=>['Bend','Muzicar'],'drugo'=>['Bend','Muzicar','Zabavljac']];
         $izvModel = new IzvodjacModel();
-        $tipovi = array('muzicar','bend','zabavljac');
+        $tipovi = $arr[$type];
+
         $korModel = new KorisnikModel();
         foreach($tipovi as $tip):
             $rows = $izvModel->where('Tipovi',$tip)->findAll();
@@ -141,13 +143,16 @@ class OrganizatorController extends KorisnikController
             if($file->isValid()){
                 
                 $username=$this->session->get('korisnik')->Korisnicko_Ime;
-                $path=$_SERVER['DOCUMENT_ROOT'];
+                $pth = $_SERVER['SCRIPT_FILENAME'];
+                $rest = substr($pth,0,strlen($pth)-10);
+                $root_path=$rest;
+                $path="$root_path/assets/uploads/organizatori/$username";
 
-                echo($path);
-                if(file_exists("$path/assets/uploads/organizatori/$username/Logo.png")){
-                    unlink("$path/assets/uploads/organizatori/$username/Logo.png");
+                //echo($path);
+                if(file_exists("$path/Logo.png")){
+                    unlink("$path/Logo.png");
                 }
-                $file->move("$path/assets/uploads/organizatori/$username",'Logo.png');
+                $file->move("$path",'Logo.png');
             }
             else{
                
@@ -223,7 +228,7 @@ class OrganizatorController extends KorisnikController
             ];
             $konk_model->insert($data);
             if($mail=='send_mails'){
-                $this->obavesti_izvodjace($this->session->get('korisnik'));
+                $this->obavesti_izvodjace($this->session->get('korisnik'),$type);
             }
 
             return redirect()->to(site_url("OrganizatorController/moj_nalog"));

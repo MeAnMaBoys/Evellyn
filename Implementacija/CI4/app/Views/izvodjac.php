@@ -23,23 +23,25 @@
         <span class="h1">Slike i video</span>
         <div class="container">
 		<div class="row">
-            <?php
-            $username=$korisnik_prikaz->Korisnicko_Ime;
-            $root_path=$_SERVER['DOCUMENT_ROOT'];
-                $dir_path="$root_path\assets\uploads\izvodjaci\\$username";
-                //echo($dir_path);
+    <?php
+              $username=$korisnik_prikaz->Korisnicko_Ime;
+              
+              $pth = $_SERVER['SCRIPT_FILENAME'];
+              $rest = substr($pth,0,strlen($pth)-10);
+              $root_path=$rest;
+              $dir_path="$root_path/assets/uploads/izvodjaci/$korisnik_prikaz->Korisnicko_Ime";
                 try{
                     $images=scandir($dir_path);
                 
+                    $burl = base_url();
                     foreach($images as $image){
                         if($image=='.'||$image=='..')
                             continue;
-                        // echo($image);
                         echo(" 
                         <div class=\"col-6 col-md-4 p-2\">
                         
-                        <a href='http://localhost:8080/assets/uploads/izvodjaci/$username/$image' data-rel=\"lightcase:galerija\">
-                            <div style=\"background-image: url('http://localhost:8080/assets/uploads/izvodjaci/$username/$image');\" class=\"w-100 fit-img image-size\"></div>
+                        <a href='$burl/assets/uploads/izvodjaci/$username/$image' data-rel=\"lightcase:galerija\">
+                            <div style=\"background-image: url('$burl/assets/uploads/izvodjaci/$username/$image');\" class=\"w-100 fit-img image-size\"></div>
                         </a>
                     </div>
                     ");
@@ -71,7 +73,8 @@
                   echo("No reviews.");
               }
               else{
-                  echo("$izvodjac_prikaz->Prosek_Ocena average based on $izvodjac_prikaz->Broj_Ocena reviews.");
+                  $br = round($izvodjac_prikaz->Prosek_Ocena ,2);
+                  echo("$br average based on $izvodjac_prikaz->Broj_Ocena reviews.");
               }
               $jedinice = 0;
               $dvojke = 0;
