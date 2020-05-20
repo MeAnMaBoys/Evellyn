@@ -49,6 +49,8 @@ class BaseController extends Controller
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------
 		// E.g.:
+
+		date_default_timezone_set("Europe/Belgrade");
 		$this->session = \Config\Services::session();
 		$this->email = \Config\Services::email();
 	}
@@ -80,11 +82,20 @@ class BaseController extends Controller
 		$data['izvodjac_prikaz']=$izvodjac;
                 $data['ocene'] = $ocene;
 		return $this->prikaz('izvodjac',$data);
-        }
+	}
+	public function obavesti_posetioce($email,$korisnik,$link){
+        $this->email->setFrom('evelynn.app.psi@gmail.com','Evelynn');
+        $this->email->setTo($email);
+
+        $this->email->setSubject('Nastupi');
+        $this->email->setMessage("Postovani,\n\tObavestavamo vas da ce izvodjac $korisnik->Korisnicko_Ime nastupati na pretstojecem dogadjaju: $link \n\n\n\tHvala vam sto koristite Evelynn!");
+
+        return $this->email->send();
+    }
   
 	protected function sendEmail($email)
     {
-        $this->email->setFrom('sapicr23@gmail.com','Evelynn');
+        $this->email->setFrom('evelynn.app.psi@gmail.com','Evelynn');
         $this->email->setTo($email);
 
         $verModel = new VerifikacijaModel();

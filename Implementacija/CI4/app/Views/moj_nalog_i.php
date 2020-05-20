@@ -23,8 +23,9 @@
         <div class="container">
 		<div class="row">
             <?php
-            $username=$korisnik->Korisnicko_Ime;
-                $dir_path="C:\wamp64\www\CI4\public\assets\uploads\izvodjaci\\$username";
+              $username=$korisnik->Korisnicko_Ime;
+              $root_path=$_SERVER['DOCUMENT_ROOT'];
+              $dir_path="$root_path\assets\uploads\izvodjaci\\$username";
                 //echo($dir_path);
                 try{
                     $images=scandir($dir_path);
@@ -128,8 +129,13 @@
                 <button class="btn btn-outline-success ls-1" type="submit">Pogledaj konkurse</button>
               </form>
             </div>
-            
+            <div class="col-6 col-md-3">
+              <form action="<?php echo base_url('IzvodjacController/zahtevi')?>">
+                <button class="btn btn-outline-success ls-1" type="submit">Zahtevi za nastupanje</button>
+              </form>
+            </div>
           </div>
+          
       </div>
       <div class="col-6 text-center">
          <form action="<?php echo base_url('IzvodjacController/kacenje_sadrzaja')?>">
