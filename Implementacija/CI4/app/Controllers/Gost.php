@@ -55,7 +55,7 @@ class Gost extends BaseController
         $data['password_val']=$this->request->getPost('password');
 
         $flag = false;
-        if(preg_match("/^\w+@\w+([\.-]\w+)*(\.\w{2,3})+$/",$this->request->getPost('email'))==0)
+        if(preg_match("/^[\w\.]+@\w+([\.-]\w+)*(\.\w{2,3})+$/",$this->request->getPost('email')===0))
         {
             $data['email']="is-invalid";
             $flag = true;
@@ -107,7 +107,7 @@ class Gost extends BaseController
         $data['password_val']=$this->request->getPost('password');
 
         $flag = false;
-        if(preg_match("/^\w+@\w+([\.-]\w+)*(\.\w{2,3})+$/",$this->request->getPost('email'))==0)
+        if(preg_match("/^[\w\.]+@\w+([\.-]\w+)*(\.\w{2,3})+$/",$this->request->getPost('email'))==0)
         {
             $data['email']="is-invalid";
             $flag = true;

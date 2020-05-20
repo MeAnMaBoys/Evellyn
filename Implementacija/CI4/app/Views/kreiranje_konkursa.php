@@ -97,7 +97,7 @@
                 </div>
                 
                 <div class="col-4">
-                <input class="form-check-input" type="checkbox" value="send_mails" id="defaultCheck1">
+                <input class="form-check-input" type="checkbox" name="send_mails" value="send_mails" id="defaultCheck1">
                     <label class="form-check-label" for="defaultCheck1">
                         Posalji mail-ove izvodjacima
                     </label>

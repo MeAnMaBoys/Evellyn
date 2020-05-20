@@ -101,7 +101,7 @@
                 <div class="col-4">
                     
                     <div class="text-center subDugme h-100">
-                        <button type="submit" class="btn btn-success nalogButton btn-lg btn-block" style="padding-bottom: -4px;">Raspiši konkurs</button>
+                        <button type="submit" class="btn btn-success nalogButton btn-lg btn-block" style="padding-bottom: -4px;">Objavi dogadjaj</button>
                     </div>
                 </div>
                 <div class="col-4">

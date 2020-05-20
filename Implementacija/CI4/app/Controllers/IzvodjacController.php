@@ -8,6 +8,9 @@ use App\Models\PrijaveKonkursModel;
 use App\Models\KonkursModel;
 use App\Models\DogadjajModel;
 use \Config\Services\Email;
+use App\Models\ZahtevNastupanjeModel;
+use App\Models\NastupaModel;
+use App\Models\PretplateIzvodjaciModel;
 
 class IzvodjacController extends KorisnikController
 {
@@ -15,21 +18,79 @@ class IzvodjacController extends KorisnikController
     {
         $this->prikaz('moj_nalog_i',[]);
     }
+    public function zahtevi(){
+        $zn=new ZahtevNastupanjeModel();
+        $id=$this->session->get('korisnik')->ID_K;
+
+        $zahtevi=$zn->where('ID_K',$id)->findAll();
+
+        $data=['zahtevi'=>$zahtevi];
+
+        $this->prikaz('zahtevi',$data);
+    }
+    public function zahtev(){
+        $id=$_GET['id'];
+        $dm=new DogadjajModel();
+        $dogadjaj=$dm->find($id);
+
+        $this->prikaz('zahtev',['dogadjaj'=>$dogadjaj]);
+    }
+    public function prihvati_zahtev(){
+        $id_dog=$this->request->getVar('id');
+        $id_k=$this->session->get('korisnik')->ID_K;
+
+        $zn=new ZahtevNastupanjeModel();
+        $zahtev=$zn->where('ID_Dog',$id_dog)->where('ID_K',$id_k)->findAll();
+
+        if(sizeof($zahtev)==1){
+
+            $nm=new NastupaModel();
+            $nm->insert(['ID_Dog'=>$id_dog,'Izvodjac'=>$id_k]);
+
+            $zn->where('ID_Dog',$id_dog)->where('ID_K',$id_k)->delete();
+            $po=new PretplateIzvodjaciModel();
+            $posetioci=$po->where('Izvodjac',$id_k)->findAll();
+
+            $kor=new KorisnikModel();
+            $izvodjac=$this->session->get('korisnik');
+            $dog=new DogadjajModel();
+            $dogadjaj=$dog->find($id_dog);
+            $path=base_url("gost/dogadjaj?id=$id_dog");
+            $link=$path;
+            foreach($posetioci as $posetilac){
+                $mail=$kor->find($posetilac->Posmatrac)->Email;
+                $this->obavesti_posetioce($mail,$izvodjac,$link);
+            }
+        }
+
+        
+        return redirect()->to(site_url("IzvodjacController/moj_nalog"));
+    }
+    
     public function kacenje_sadrzaja(){
         $this->prikaz('kacenje_sadrzaja',[]);
     }
     public function okaci_sadrzaj(){
         $korisnik=$this->session->get('korisnik');
-        $dir_path="C:\wamp64\www\CI4\public\assets\uploads\izvodjaci\\$korisnik->Korisnicko_Ime";
-        $images=scandir($dir_path);
-        if(sizeof($images)<9){
+
+        $root_path=$_SERVER['DOCUMENT_ROOT'];
+
+        $dir_path="$root_path\assets\uploads\izvodjaci\\$korisnik->Korisnicko_Ime";
+        //echo($dir_path);
+        if(file_exists($dir_path)){
+            $images=scandir($dir_path);
+        }
+        else{
+            $images=[];
+        }
+        if(sizeof($images)<11){
             if(isset($_FILES['file'])){
                 $file=$this->request->getFile('file');
                 helper('filesystem');
                 $username=$korisnik->Korisnicko_Ime;
                 //echo($file->getName());
                 if($file->isValid()){
-                    $file->move("C:/wamp64/www/CI4/public/assets/uploads/izvodjaci/$username");
+                    $file->move("$root_path/assets/uploads/izvodjaci/$username");
                 }
             }
             else{

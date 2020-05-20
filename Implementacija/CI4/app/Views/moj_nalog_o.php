@@ -79,14 +79,19 @@
           </div>
           
           <div class="row d-flex justify-content-center mt-4">
-            <div class="col-6 col-md-3">
+            <div class="col-4">
               <form action="<?php echo base_url('OrganizatorController/kreiranje_konkursa')?>">
                 <button class="btn btn-outline-success ls-1" type="submit">Napravi konkurs</button>
               </form>
             </div>
-            <div class="col-6 col-md-3">
+            <div class="col-4">
               <form action="<?php echo base_url('OrganizatorController/kreiranje_dogadjaja')?>">
                 <button class="btn btn-outline-danger ls-2" type="submit">Napravi dogadjaj</button>
+              </form>
+            </div>
+            <div class="col-4">
+              <form action="<?php echo base_url('OrganizatorController/zavrseni_konkursi')?>">
+                <button class="btn btn-outline-info ls-1" type="submit">Pregledaj zavrsene konkurse</button>
               </form>
             </div>
           </div>

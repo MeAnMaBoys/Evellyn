@@ -2,16 +2,20 @@
 
 use App\Models\IzvodjacModel;
 use App\Models\OrganizatorModel;
+use App\Models\PretplateOrganizatoriModel;
+use App\Models\PretplateIzvodjaciModel;
 use App\Models\KorisnikModel;
 use App\Models\PosetilacModel;
 use App\Models\DogadjajModel;
 use App\Models\KonkursModel;
+use App\Models\NastupaModel;
+use App\Models\PrijaveKonkursModel;
 use App\Models\ZahtevNastupanjeModel;
 use \Config\Services\EmailModel;
 
 class OrganizatorController extends KorisnikController
 {
-    public function obavesti_izvodjace()
+    public function obavesti_izvodjace($organizator)
     {
         $izvModel = new IzvodjacModel();
         $tipovi = array('muzicar','bend','zabavljac');
@@ -22,9 +26,91 @@ class OrganizatorController extends KorisnikController
             foreach($rows as $row):
                 $user = $korModel->find($row->ID_K);
 
-                $this->sendEmail($user->Email);
+                $this->posalji_obavestenje($user->Email,$organizator);
             endforeach;
         endforeach;
+    }
+    public function posalji_obavestenje($email,$organizator){
+        $this->email->setFrom('evelynn.app.psi@gmail.com','Evelynn');
+        $this->email->setTo($email);
+
+        $this->email->setSubject('Kreiran konkurs');
+        $this->email->setMessage("Postovani,\n\tObavestavamo vas da je organizator $organizator->Korisnicko_Ime objavio konkurs za izvodjace koji ce nastupati na pretstojecem dogadjaju. \n\tHvala vam sto koristite Evelynn!");
+
+        return $this->email->send();
+    }
+    public function zavrseni_konkursi(){
+        $konk=new KonkursModel();
+        $org=$this->session->get('korisnik');
+        $konkursi=$konk->findAll();
+        $dog=new DogadjajModel();
+        $validni_konkursi=[];
+        $curr_date=date("Y-m-d H:i:s");
+        foreach($konkursi as $konkurs){
+            $dogadjaj=$dog->find($konkurs->ID_Dog);
+            
+            if($dogadjaj->Organizator==$org->ID_K && strcmp($konkurs->Rok_Za_Prijavu,$curr_date)<0&&$dogadjaj->Status=='Konkurs'){
+                $validni_konkursi[]=$konkurs;
+            }
+        }
+        $this->prikaz('zavrseni_konkursi',['konkursi'=>$validni_konkursi]);
+    }
+    public function z_konkurs(){
+        $id_dog= $_GET['id_k'];
+        $pk=new PrijaveKonkursModel();
+        $izv=new IzvodjacModel();
+        $prijave=$pk->where('ID_Dog',$id_dog)->findAll();
+        $izvodjaci=[];
+        foreach($prijave as $prijava){
+            $izvodjaci[]=$izv->find($prijava->ID_K);
+        }
+        $this->prikaz('odaberi_izvodjace',['id_dog'=>$id_dog,'izvodjaci'=>$izvodjaci]);
+    }
+    public function prihvati_zahteve(){
+        $id_dog=$this->request->getVar('id_dog');
+        $izvodjaci=$this->request->getVar('izvodjaci');
+        $nm=new NastupaModel();
+        $po=new PretplateOrganizatoriModel();
+        $pi=new PretplateIzvodjaciModel();
+        $km=new KorisnikModel();
+        $dm=new DogadjajModel();
+        $dogadjaj=$dm->find($id_dog);
+        if(!empty($izvodjaci)){
+            foreach($izvodjaci as $izvodjac){
+                $izv=$km->find($izvodjac);
+                $nm->insert(['ID_Dog'=>$id_dog,'Izvodjac'=>$izvodjac]);
+                $pretplate=$pi->where('Izvodjac',$izvodjac)->findAll();
+                foreach($pretplate as $pretplata){
+                    $korisnik=$km->find($pretplata->Posmatrac);
+                    $path=base_url("gost/dogadjaj?id=$id_dog");
+                    $link=$path;
+                    $this->obavesti_posetioce($korisnik->Email,$izv,$link);
+                }
+            }
+        }
+       
+        $id_o=$this->session->get('korisnik')->ID_K;
+        $org=$km->find($id_o);
+        $pretplate_o=$po->where('Organizator',$id_o)->findAll();
+        if(!empty($pretplate_o)){
+            foreach($pretplate_o as $pretplata_o){
+                $korisnik=$km->find($pretplata_o->Posmatrac);
+                $path=base_url("gost/dogadjaj?id=$id_dog");
+                $link=$path;
+                //echo("$pretplata_o->Posmatrac");
+                $this->obavesti_posetioce_o($korisnik->Email,$org,$link);
+            }
+        }
+        return redirect()->to(site_url("OrganizatorController/moj_nalog"));
+    }
+    public function obavesti_posetioce_o($email,$korisnik,$link){
+        $this->email->setFrom('evelynn.app.psi@gmail.com','Evelynn');
+        $this->email->setTo($email);
+
+        $this->email->setSubject('Nastupi');
+        $this->email->setMessage("Postovani,\n\tObavestavamo vas da je organizator $korisnik->Korisnicko_Ime objavio jos jedan dogadjaj dogadjaj: $link \n\n\n\tHvala vam sto koristite Evelynn!");
+
+        return $this->email->send();
     }
     public function moj_nalog()
     {
@@ -51,10 +137,13 @@ class OrganizatorController extends KorisnikController
             if($file->isValid()){
                 
                 $username=$this->session->get('korisnik')->Korisnicko_Ime;
-                if(file_exists("C:/wamp64/www/CI4/public/assets/uploads/organizatori/$username/Logo.png")){
-                    unlink("C:/wamp64/www/CI4/public/assets/uploads/organizatori/$username/Logo.png");
+                $path=$_SERVER['DOCUMENT_ROOT'];
+
+                echo($path);
+                if(file_exists("$path/assets/uploads/organizatori/$username/Logo.png")){
+                    unlink("$path/assets/uploads/organizatori/$username/Logo.png");
                 }
-                $file->move("C:/wamp64/www/CI4/public/assets/uploads/organizatori/$username",'Logo.png');
+                $file->move("$path/assets/uploads/organizatori/$username",'Logo.png');
             }
             else{
                
@@ -64,7 +153,8 @@ class OrganizatorController extends KorisnikController
         else{
             echo('GRESKA!!!');
         }
-     return redirect()->to(site_url("OrganizatorController/moj_nalog"));
+
+    return redirect()->to(site_url("OrganizatorController/moj_nalog"));
     }
     public function kreiraj_konkurs(){
         $date=$this->request->getVar('date');
@@ -129,7 +219,7 @@ class OrganizatorController extends KorisnikController
             ];
             $konk_model->insert($data);
             if($mail=='send_mails'){
-                $this->obavesti_izvodjace();
+                $this->obavesti_izvodjace($this->session->get('korisnik'));
             }
 
             return redirect()->to(site_url("OrganizatorController/moj_nalog"));
