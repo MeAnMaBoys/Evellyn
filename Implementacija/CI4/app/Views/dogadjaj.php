@@ -39,25 +39,28 @@
             <button class="btn btn-success ls-2" type="submit">Profil organizatora</button>
           </form>
       </div>
-        <form action="<?php echo base_url('PosetilacController/ocenjivanje_d')?>">
-          <div class="row">
-            <div class="slidecontainer pt-4" >
-                <input type="range" min="1" max="5" value="5" step="1" class="slider" id="myRange" name="ocena">
+      <?php if($controller == 'PosetilacController'): ?>
+
+            <form action="<?php echo base_url('PosetilacController/ocenjivanje_d')?>">
+            <div class="row">
+                <div class="slidecontainer pt-4" >
+                    <input type="range" min="1" max="5" value="5" step="1" class="slider" id="myRange" name="ocena">
+                </div>
+                <div class="marks">
+                    <span class="sigle-mark font-fredoka font22">1</span>
+                    <span class="sigle-mark font-fredoka font22">2</span>
+                    <span class="sigle-mark font-fredoka font22">3</span>
+                    <span class="sigle-mark font-fredoka font22">4</span>
+                    <span class="sigle-mark font-fredoka font22">5</span>
+                </div>
+                    
             </div>
-              <div class="marks">
-                  <span class="sigle-mark font-fredoka font22">1</span>
-                  <span class="sigle-mark font-fredoka font22">2</span>
-                  <span class="sigle-mark font-fredoka font22">3</span>
-                  <span class="sigle-mark font-fredoka font22">4</span>
-                  <span class="sigle-mark font-fredoka font22">5</span>
-              </div>
-                 
-          </div>
-          <input type="hidden" name="id" value="<?php echo($dogadjaj->ID_Dog)?>">
-          <div class="row pt-2">
-              <button class="btn btn-info ls-2 mid_btn " type="submit">Oceni</button>
-          </div>
-          </form>
+            <input type="hidden" name="id" value="<?php echo($dogadjaj->ID_Dog)?>">
+            <div class="row pt-2">
+                <button class="btn btn-info ls-2 mid_btn " type="submit">Oceni</button>
+            </div>
+            </form>
+      <?php endif;?>
 
     </div>
 </div>

@@ -1,5 +1,5 @@
 <div class="bg_color" style="height: 100vh;">
-<form action="http://localhost:8080/index.php/IzvodjacController/okaci_sadrzaj" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+<form action="<?php echo base_url("$controller/okaci_sadrzaj");?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 h-100">

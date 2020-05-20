@@ -35,7 +35,7 @@ class BaseController extends Controller
 	 *
 	 * @var array
 	 */
-	protected $helpers = ['form','url'];
+	protected $helpers = ['form','url','filesystem'];
 
 	/**
 	 * Constructor.
@@ -133,10 +133,15 @@ class BaseController extends Controller
         $org = $organizator->find($id);
         $kor = $korisnik->find($id);
 	$ocd = new OceneDogadjajaModel();
-        $ocene = $ocd -> where('Organizator', $id)->findAll();
-        $id_k=$this->session->get('korisnik')->ID_K;
-	$pretplacen=!empty($pretplacivanje->where('Organizator',$org->ID_K)->where('Posmatrac',$id_k)->findAll());
-		
+		$ocene = $ocd -> where('Organizator', $id)->findAll();
+		if($this->session->get('controller')==='PosetilacController'){ 
+			$id_k=$this->session->get('korisnik')->ID_K;
+			$pretplacen=!empty($pretplacivanje->where('Organizator',$org->ID_K)->where('Posmatrac',$id_k)->findAll());
+		}
+		else
+		{
+			$pretplacen=false;
+		}		
         $this->prikaz('organizator',['korisnik_prikaz'=>$kor , 'organizator'=>$org,'pretplacen'=>$pretplacen,'ocene'=>$ocene]);
     }
 

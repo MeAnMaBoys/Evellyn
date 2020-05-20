@@ -24,12 +24,16 @@
 		<div class="row">
             <?php
               $username=$korisnik->Korisnicko_Ime;
-              $root_path=$_SERVER['DOCUMENT_ROOT'];
-              $dir_path="$root_path\assets\uploads\izvodjaci\\$username";
+              
+              $pth = $_SERVER['SCRIPT_FILENAME'];
+              $rest = substr($pth,0,strlen($pth)-10);
+              $root_path=$rest;
+              $dir_path="$root_path/assets/uploads/izvodjaci/$korisnik->Korisnicko_Ime";
                 //echo($dir_path);
                 try{
                     $images=scandir($dir_path);
                 
+                    $burl = base_url();
                     foreach($images as $image){
                         if($image=='.'||$image=='..')
                             continue;
@@ -37,8 +41,8 @@
                         echo(" 
                         <div class=\"col-6 col-md-4 p-2\">
                         
-                        <a href='http://localhost:8080/assets/uploads/izvodjaci/$username/$image' data-rel=\"lightcase:galerija\">
-                            <div style=\"background-image: url('http://localhost:8080/assets/uploads/izvodjaci/$username/$image');\" class=\"w-100 fit-img image-size\"></div>
+                        <a href='$burl/assets/uploads/izvodjaci/$username/$image' data-rel=\"lightcase:galerija\">
+                            <div style=\"background-image: url('$burl/assets/uploads/izvodjaci/$username/$image');\" class=\"w-100 fit-img image-size\"></div>
                         </a>
                     </div>
                     ");
@@ -72,6 +76,20 @@
               else{
                   echo("$tip->Prosek_Ocena average based on $tip->Broj_Ocena reviews.");
               }
+              $jedinice = 0;
+              $dvojke = 0;
+              $trojke = 0;
+              $cetvorke = 0;
+              $petice = 0;
+              foreach($ocene as $oc){
+                  switch($oc->Ocena){
+                      case 1: $jedinice++; break;
+                      case 2: $dvojke++; break;
+                      case 3: $trojke ++; break;
+                      case 4: $cetvorke++; break;
+                      case 5: $petice++; break;
+                  }
+              }
                 ?></p>
               <hr style="border:3px solid #f1f1f1">
             </div>
@@ -81,46 +99,46 @@
             <div class="col-12 col-md-3">5 star</div>
             <div class="col-12 col-md-7">
               <div class="bar-container">
-                <div style="width: 40%;" class="bar-5"></div>
+                <div style="width: <?php $pom =sizeof($ocene)==0? 0: round($petice/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-5"></div>
               </div>
             </div>
-            <div style="width: <?php $pom =sizeof($ocene)==0? 0: round($petice/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-5"></div>
+            <div class="col-12 col-md-2 d-none d-md-block"><?php echo $petice;?></div>
           </div>
           <div class="row">
             <div class="col-12 col-md-3">4 star</div>
             <div class="col-12 col-md-7">
               <div class="bar-container">
-                <div style="width: 60%;" class="bar-4"></div>
+                <div style="width: <?php $pom =sizeof($ocene)==0? 0: round($cetvorke/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-5"></div>
               </div>
             </div>
-            <div style="width: <?php $pom =sizeof($ocene)==0? 0: round($cetvorke/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-5"></div>
+              <div class="col-12 col-md-2 d-none d-md-block"><?php echo $cetvorke;?></div>
           </div>
           <div class="row">
             <div class="col-12 col-md-3">3 star</div>
             <div class="col-12 col-md-7">
               <div class="bar-container">
-                <div style="width: 30%;" class="bar-3"></div>
+                <div style="width: <?php $pom =sizeof($ocene)==0? 0: round($trojke/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-5"></div>
               </div>
             </div>
-            <div style="width: <?php $pom =sizeof($ocene)==0? 0: round($trojke/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-5"></div>
+             <div class="col-12 col-md-2 d-none d-md-block"><?php echo $trojke;?></div>
           </div>
           <div class="row">
             <div class="col-12 col-md-3">2 star</div>
             <div class="col-12 col-md-7">
               <div class="bar-container">
-                <div style="width: 20%;" class="bar-2"></div>
+                  <div style="width: <?php $pom =sizeof($ocene)==0? 0: round($dvojke/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-5"></div>
               </div>
             </div>
-            <div style="width: <?php $pom = sizeof($ocene)==0? 0: round($dvojke/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-5"></div>
+                <div class="col-12 col-md-2 d-none d-md-block"><?php echo $dvojke;?></div>
           </div>
           <div class="row">
             <div class="col-12 col-md-3">1 star</div>
             <div class="col-12 col-md-7">
               <div class="bar-container">
-                <div style="width: 5%;" class="bar-1"></div>
+                  <div style="width: <?php $pom =sizeof($ocene)==0? 0: round($jedinice/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-5"></div>
               </div>
             </div>
-            <div style="width: <?php $pom = sizeof($ocene)==0? 0:round($jedinice/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-5"></div>
+              <div class="col-12 col-md-2 d-none d-md-block"><?php echo $jedinice;?></div>
           </div>
           
           <div class="row d-flex justify-content-center mt-4">

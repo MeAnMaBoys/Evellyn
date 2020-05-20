@@ -11,6 +11,7 @@ use \Config\Services\Email;
 use App\Models\ZahtevNastupanjeModel;
 use App\Models\NastupaModel;
 use App\Models\PretplateIzvodjaciModel;
+use App\Models\OceneIzvodjacaModel;
 
 class IzvodjacController extends KorisnikController
 {
@@ -77,10 +78,11 @@ class IzvodjacController extends KorisnikController
     public function okaci_sadrzaj(){
         $korisnik=$this->session->get('korisnik');
 
-        $root_path=$_SERVER['DOCUMENT_ROOT'];
+        $pth = $_SERVER['SCRIPT_FILENAME'];
+        $rest = substr($pth,0,strlen($pth)-10);
+        $root_path=$rest;
+        $dir_path="$root_path/assets/uploads/izvodjaci/$korisnik->Korisnicko_Ime";
 
-        $dir_path="$root_path\assets\uploads\izvodjaci\\$korisnik->Korisnicko_Ime";
-        //echo($dir_path);
         if(file_exists($dir_path)){
             $images=scandir($dir_path);
         }
@@ -90,11 +92,10 @@ class IzvodjacController extends KorisnikController
         if(sizeof($images)<11){
             if(isset($_FILES['file'])){
                 $file=$this->request->getFile('file');
-                helper('filesystem');
-                $username=$korisnik->Korisnicko_Ime;
-                //echo($file->getName());
+
                 if($file->isValid()){
-                    $file->move("$root_path/assets/uploads/izvodjaci/$username");
+                   // return $this->prikaz('proba',['opis'=>"$root_path/assets/uploads/izvodjaci"]);
+                    $file->move("$dir_path");
                 }
             }
             else{

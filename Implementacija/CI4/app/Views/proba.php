@@ -1,3 +1,3 @@
 <h1>
-<?php echo $opis;?>
+<?php echo $opis?>
 </h1>

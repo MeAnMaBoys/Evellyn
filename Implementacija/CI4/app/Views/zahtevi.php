@@ -35,7 +35,7 @@
             endforeach;
             }
             else{
-                echo("<div class=\"text-center\">Nema zahteva :(</div>");
+                echo("<div class=\"col-12 d-flex justify-content-center p-5 fontFredoka\" style=\"font-size:38px;\">Nazalost, trenutno nema ni jedan zahtev.</div>");
             }
             ?>
         </div>
