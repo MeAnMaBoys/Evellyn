@@ -145,4 +145,8 @@ class BaseController extends Controller
         $this->prikaz('organizator',['korisnik_prikaz'=>$kor , 'organizator'=>$org,'pretplacen'=>$pretplacen,'ocene'=>$ocene]);
     }
 
+	public function o_nama()
+	{
+		return $this->prikaz('o_nama',[]);
+	}
 }

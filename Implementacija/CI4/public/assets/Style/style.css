@@ -179,6 +179,11 @@ html, body {
     padding-top: 50px;
 }
 
+.pangolin
+{
+    font-family: 'Pangolin', cursive;
+}
+
 .headerPic
 {
     padding-top: 50px;
@@ -201,8 +206,13 @@ html, body {
     box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.35);
 }
 
-.kartica-velicina {
+.kartica-velicina2 {
     padding-bottom: 50%;
+}
+
+
+.kartica-velicina2 {
+    padding-bottom: 120%;
 }
 
 .karticaIgrac

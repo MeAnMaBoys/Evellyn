@@ -1,12 +1,16 @@
 <footer class="headerColor whiteLetterColor footerPadd footFont">
 <div class="container">
     <div class="row">
-        <div class="col-sm-12 text-center">
+        <div class="col-6 text-left">
             
             Copyright © Rastko Šapić, Nikola Mirković, Mladen Jugović<br>
             Odsek za Softversko inženjerstvo, Elektrotehnički fakultet u Beogradu
             
         </div>
+        <div class="col-6 text-right">
+           Team SeconMid, <br>Evelynn 2020
+        </div>
+
     </div>
 </div>
 </footer>
