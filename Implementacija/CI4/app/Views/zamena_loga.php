@@ -7,6 +7,11 @@
                     <input type="file" name="file" id="file">
                     <br>
                     <br>
+                    <?php
+                        if(isset($poruka)){
+                            echo("<div class=\"font-fredoka\">$poruka</div>");
+                        }
+                    ?>
                     <br>
                     <br>
                 </div>

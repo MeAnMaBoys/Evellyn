@@ -89,28 +89,51 @@ class IzvodjacController extends KorisnikController
         else{
             $images=[];
         }
+        $poruka='';
         if(sizeof($images)<11){
             if(isset($_FILES['file'])){
                 $file=$this->request->getFile('file');
-
+                
                 if($file->isValid()){
                    // return $this->prikaz('proba',['opis'=>"$root_path/assets/uploads/izvodjaci"]);
-                    $file->move("$dir_path");
+                    
+                    $type=$file->getMimeType();
+                    $test_img="/image/";
+                    $test_vid="/video/";
+                    $ext=$file->guessExtension();
+                    if(preg_match($test_img,$type)+preg_match($test_vid,$type)!=0){
+                        $file->move("$dir_path","".time().".$ext");
+                    }
+                    else{
+                        $poruka='Format nije dozvoljen!!!';
+                    }
+                }
+                else{
+                    $poruka='Greska prilikom prijema fajla!!!';
                 }
             }
             else{
-                echo('GRESKA!!!');
+                $poruka='Fajl nije poslat!!!';
             }
         }
         else{
-            echo("Maksimalan broj fotografija i snimaka dostignut");
+            $poruka="Maksimalan broj fotografija i snimaka je dostignut.";
+        }
+        if($poruka!=''){
+            return $this->prikaz('kacenje_sadrzaja',['poruka'=>$poruka]);
         }
         return redirect()->to(site_url("IzvodjacController/moj_nalog"));
     }
     public function konkursi(){
         $konk_model=new KonkursModel();
         $dog_model=new DogadjajModel();
-        $konkursi=$konk_model->findAll();
+        $k=$konk_model->findAll();
+        $curr_date=date("Y-m-d H:i:s");
+        foreach($k as $ko){
+            if(strcmp($ko->Rok_Za_Prijavu,$curr_date)>0){
+                $konkursi[]=$ko;
+            }
+        }
         $names=[];
         foreach($konkursi as $konkurs){
             $names["$konkurs->ID_Dog"]=$dog_model->find("$konkurs->ID_Dog")->Naziv;

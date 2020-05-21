@@ -32,7 +32,6 @@
               $dir_path="$root_path/assets/uploads/izvodjaci/$korisnik_prikaz->Korisnicko_Ime";
                 try{
                     $images=scandir($dir_path);
-                
                     $burl = base_url();
                     foreach($images as $image){
                         if($image=='.'||$image=='..')
@@ -73,7 +72,6 @@
                   echo("No reviews.");
               }
               else{
-
                 $br = round($izvodjac_prikaz->Prosek_Ocena ,2);
                 echo("$br average based on $izvodjac_prikaz->Broj_Ocena reviews.");
               }
@@ -171,7 +169,7 @@
                     echo("<button class=\"btn btn-info ls-2\" type=\"submit\">Pretplati se</button>");
                   }
                   else{
-                    echo("<div class=\"font-fredoka font22\">Pretplaceni ste</div>");
+                    echo("<button class=\"btn btn-outline-info ls-2\" type=\"submit\">Odjavi pretplatu</button>");
                   }
                 ?>
             </form>

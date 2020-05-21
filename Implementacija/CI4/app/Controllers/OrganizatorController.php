@@ -18,10 +18,9 @@ class OrganizatorController extends KorisnikController
 {
     public function obavesti_izvodjace($organizator,$type)
     {
-        $arr = ['zurka'=>['Muzicar','Zabavljac'],'nastup'=>['Bend','Muzicar'],'koncert'=>['Bend','Muzicar'],'drugo'=>['Bend','Muzicar','Zabavljac']];
         $izvModel = new IzvodjacModel();
+        $arr = ['zurka'=>['Muzicar','Zabavljac'],'nastup'=>['Bend','Muzicar'],'koncert'=>['Bend','Muzicar'],'drugo'=>['Bend','Muzicar','Zabavljac']];
         $tipovi = $arr[$type];
-
         $korModel = new KorisnikModel();
         foreach($tipovi as $tip):
             $rows = $izvModel->where('Tipovi',$tip)->findAll();
@@ -104,6 +103,7 @@ class OrganizatorController extends KorisnikController
                 $this->obavesti_posetioce_o($korisnik->Email,$org,$link);
             }
         }
+        $dm->update($id_dog,['Status'=>'Objavljen']);
         return redirect()->to(site_url("OrganizatorController/moj_nalog"));
     }
     public function obavesti_posetioce_o($email,$korisnik,$link){
@@ -139,28 +139,38 @@ class OrganizatorController extends KorisnikController
             $file=$this->request->getFile('file');
             helper('filesystem');
            
-            //echo($file->getName());
             if($file->isValid()){
-                
-                $username=$this->session->get('korisnik')->Korisnicko_Ime;
-                $pth = $_SERVER['SCRIPT_FILENAME'];
-                $rest = substr($pth,0,strlen($pth)-10);
-                $root_path=$rest;
-                $path="$root_path/assets/uploads/organizatori/$username";
 
-                //echo($path);
-                if(file_exists("$path/Logo.png")){
-                    unlink("$path/Logo.png");
+                
+                
+                $type=$file->getMimeType();
+                $test_img="/image/";
+                if(preg_match($test_img,$type)!=0){
+                    $username=$this->session->get('korisnik')->Korisnicko_Ime;
+                    $pth = $_SERVER['SCRIPT_FILENAME'];
+                    $rest = substr($pth,0,strlen($pth)-10);
+                    $root_path=$rest;
+                    $path="$root_path/assets/uploads/organizatori/$username";
+                    if(file_exists("$path/Logo.png")){
+                        unlink("$path/Logo.png");
+                    }
+                    $file->move("$path",'Logo.png');
+
                 }
-                $file->move("$path",'Logo.png');
+                else{
+                    $poruka='Format fajla nije podrzan!!!';
+                    return $this->prikaz('zamena_loga',['poruka'=>$poruka]);
+                }
             }
             else{
-               
+                $poruka='Greska prilikom prijema fajla!!!';
+                return $this->prikaz('zamena_loga',['poruka'=>$poruka]);
             }
            
         }
         else{
-            echo('GRESKA!!!');
+            $poruka='GRESKA!!!';
+            return $this->prikaz('zamena_loga',['poruka'=>$poruka]);
         }
 
     return redirect()->to(site_url("OrganizatorController/moj_nalog"));
@@ -177,37 +187,74 @@ class OrganizatorController extends KorisnikController
         $data_valid=true;
         $mail=$this->request->getVar('send_mails');
 
-        $curr_date=date("Y-m-d");
 
-        $test='/^[^;]*$/';
+
+        $valid=[
+            'date'=>true,
+            'time'=>true,
+            'type'=>true,
+            'location'=>true,
+            'deadline_date'=>true,
+            'deadline_time'=>true,
+            'name'=>true,
+            'desc'=>true
+        ];
+        $values=[
+            'date'=>$date,
+            'time'=>$time,
+            'type'=>$type,
+            'location'=>$location,
+            'deadline_date'=>$deadline_date,
+            'deadline_time'=>$deadline_time,
+            'name'=>$name,
+            'desc'=>$desc
+        ];
+        $curr_date=date("Y-m-d");
+        $test='/^[^;]{3,40}$/';
         if($date==''||!(strcmp($curr_date,$date)<0)){
             $data_valid=false;
-            echo("Greska 1");
+            $valid['date']=false;
+            $valid['time']=false;
         }
-        else if($deadline_date==''||!(strcmp($deadline_date,$date)<0)){
+        if($deadline_date==''||!(strcmp($deadline_date,$date)<0)){
             $data_valid=false;
-           
+            $valid['deadline_date']=false;
+            $valid['deadline_time']=false;
         }
-
-        else if($time==''||$type==''||$location==''||$deadline_time==''||$name==''){
+        if($time==''){
             $data_valid=false;
-           
+            $valid['time']=false;
         }
-       
-        else if(preg_match($test,$name)==0){
+        if($deadline_time==''){
             $data_valid=false;
-           
+            $valid['deadline_time']=false;
         }
-        else if(preg_match($test,$desc)==0){
+        if($type==''){
             $data_valid=false;
-           
+            $valid['type']=false;
         }
-        else if(preg_match($test,$location)==0){
+        if($location==''){
             $data_valid=false;
-            
+            $valid['location']=false;
         }
-
-
+        if($name==''){
+            $data_valid=false;
+            $valid['name']=false;
+        }
+        if(preg_match($test,$name)==0){
+            $data_valid=false;
+            $valid['name']=false;
+        }
+        $test_opis='/^[^;]{3,100}$/';
+        if(preg_match($test_opis,$desc)==0){
+            $data_valid=false;
+            $valid['desc']=false;
+        }
+        
+        if(preg_match($test,$location)==0){
+            $data_valid=false;
+            $valid['location']=false;
+        }
         if($data_valid){
             $dog_model=new DogadjajModel();
             $konk_model=new KonkursModel();
@@ -234,10 +281,11 @@ class OrganizatorController extends KorisnikController
             return redirect()->to(site_url("OrganizatorController/moj_nalog"));
         }
         else{
-            $this->prikaz('kreiranje_konkursa',[]);
+            $this->prikaz('kreiranje_konkursa',['values'=>$values,'valid'=>$valid]);
         }
     }
     public function kreiraj_dogadjaj(){
+        
         $date=$this->request->getVar('date');
         $time=$this->request->getVar('time');
         $type=$this->request->getVar('Radios');
@@ -248,28 +296,62 @@ class OrganizatorController extends KorisnikController
         $desc=$this->request->getVar('opis');
         $izvodjaci=$this->request->getVar('izvodjaci');
         $data_valid=true;
-        
+        $valid=[
+            'date'=>true,
+            'time'=>true,
+            'type'=>true,
+            'location'=>true,
+            'deadline_date'=>true,
+            'deadline_time'=>true,
+            'name'=>true,
+            'desc'=>true
+        ];
+        $values=[
+            'date'=>$date,
+            'time'=>$time,
+            'type'=>$type,
+            'location'=>$location,
+            'deadline_date'=>$deadline_date,
+            'deadline_time'=>$deadline_time,
+            'name'=>$name,
+            'desc'=>$desc
+        ];
         $curr_date=date("Y-m-d");
-        $test='/^[^;]*$/';
-        if(!(strcmp($curr_date,$date)<0)){
+        $test='/^[^;]{3,40}$/';
+        if($date==''||!(strcmp($curr_date,$date)<0)){
             $data_valid=false;
+            $valid['date']=false;
+            $valid['time']=false;
         }
-        else if($time==''||$type==''||$location==''||$name==''){
+        if($time==''){
             $data_valid=false;
-           
+            $valid['time']=false;
         }
-       
-        else if(preg_match($test,$name)==0){
+        if($type==''){
             $data_valid=false;
-           
+            $valid['type']=false;
         }
-        else if(preg_match($test,$desc)==0){
+        if($location==''){
             $data_valid=false;
-           
+            $valid['location']=false;
         }
-        else if(preg_match($test,$location)==0){
+        if($name==''){
             $data_valid=false;
-            
+            $valid['name']=false;
+        }
+        if(preg_match($test,$name)==0){
+            $data_valid=false;
+            $valid['name']=false;
+        }
+        $test_opis='/^[^;]{3,100}$/';
+        if(preg_match($test_opis,$desc)==0){
+            $data_valid=false;
+            $valid['desc']=false;
+        }
+      
+        if(preg_match($test,$location)==0){
+            $data_valid=false;
+            $valid['location']=false;
         }
         if($data_valid){
             $dog_model=new DogadjajModel();
@@ -301,7 +383,9 @@ class OrganizatorController extends KorisnikController
             return redirect()->to(site_url("OrganizatorController/moj_nalog"));
         }
         else{
-            $this->prikaz('kreiranje_konkursa',[]);
+            $im=new IzvodjacModel();
+            $izv=$im->findAll();
+            $this->prikaz('kreiranje_dogadjaja',['izvodjaci'=>$izv,'values'=>$values,'valid'=>$valid]);
         }
     }
 }

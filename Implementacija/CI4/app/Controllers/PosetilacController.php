@@ -40,17 +40,29 @@ class PosetilacController extends KorisnikController
         $id = $this->request->getVar("id");
         $idp = $this->session->get('korisnik')->ID_K;
         $pretplate = new PretplateIzvodjaciModel();
-        $data = ['Izvodjac'=>$id, 'Posmatrac'=>$idp];
-        $pretplate->insert($data);
-        return  redirect()->to(site_url("PosetilacController/izvodjaci"));
+        $pretplata=$pretplate->where('Izvodjac',$id)->where('Posmatrac',$idp)->findAll();
+        if(empty($pretplata)){
+            $data = ['Izvodjac'=>$id, 'Posmatrac'=>$idp];
+            $pretplate->insert($data);
+        }
+        else{
+            $pretplate->where('Izvodjac',$id)->where('Posmatrac',$idp)->delete();
+        }
+        return  redirect()->to(site_url("PosetilacController/izvodjac?id=$id"));
     }
     
     public function pretplacivanje_organizator(){
         $org = $this->request->getVar('id');
         $id = $this->session->get('korisnik')->ID_K;
         $po = new PretplateOrganizatoriModel();
-        $po->insert(['Organizator'=>$org , 'Posmatrac'=>$id]);
-        return redirect()->to(site_url("PosetilacController/dogadjaji"));
+        $pretplata=$po->where('Organizator',$org)->where('Posmatrac',$id)->findAll();
+        if(empty($pretplata)){
+            $po->insert(['Organizator'=>$org , 'Posmatrac'=>$id]);
+        }
+        else{
+            $po->where('Organizator',$org)->where('Posmatrac',$id)->delete();
+        }
+        return redirect()->to(site_url("PosetilacController/organizator?id=$org"));
         
     }
     public function ocenjivanje_i(){

@@ -102,7 +102,7 @@
                     echo("<button class=\"btn btn-info ls-2\" type=\"submit\">Pretplati se na organizatora</button>");
                   }
                   else{
-                    echo("<div class=\"font-fredoka font22\">Pretplaceni ste</div>");
+                    echo("<button class=\"btn btn-outline-info ls-2\" type=\"submit\">Odjavi pretplatu</button>");
                   }?>
               </form>
             </div>

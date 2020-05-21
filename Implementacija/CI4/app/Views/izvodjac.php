@@ -25,14 +25,13 @@
 		<div class="row">
     <?php
               $username=$korisnik_prikaz->Korisnicko_Ime;
-              
               $pth = $_SERVER['SCRIPT_FILENAME'];
               $rest = substr($pth,0,strlen($pth)-10);
               $root_path=$rest;
               $dir_path="$root_path/assets/uploads/izvodjaci/$korisnik_prikaz->Korisnicko_Ime";
                 try{
                     $images=scandir($dir_path);
-                
+
                     $burl = base_url();
                     foreach($images as $image){
                         if($image=='.'||$image=='..')

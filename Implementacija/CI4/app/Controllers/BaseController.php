@@ -49,7 +49,7 @@ class BaseController extends Controller
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------
 		// E.g.:
-
+		
 		date_default_timezone_set("Europe/Belgrade");
 		$this->session = \Config\Services::session();
 		$this->email = \Config\Services::email();
@@ -64,7 +64,6 @@ class BaseController extends Controller
 	{
 		$this->prikaz('index',[]);
 	}
-
 	public function moj_nalog()
 	{
 		throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
@@ -77,21 +76,21 @@ class BaseController extends Controller
 	public function izvodjac(){
 		$izv_model = new IzvodjacModel();
 		$kor_model=new KorisnikModel();
-                $ocene_izv = new OceneIzvodjacaModel();
+    	$ocene_izv = new OceneIzvodjacaModel();
 		$id=$_GET['id'];
+
 		$usr=$this->session->get('korisnik');
 		if((isset($usr))&&($usr->ID_K === $id))
 		{
 			$this->moj_nalog();
 		}
-
+		
         $ocene = $ocene_izv->where('izvodjac', $id )->findAll();
 		$korisnik=$kor_model->find("$id");
 		$izvodjac=$izv_model->find("$id");
 		$data['korisnik_prikaz']=$korisnik;
 		$data['izvodjac_prikaz']=$izvodjac;
-				$data['ocene'] = $ocene;
-				
+        $data['ocene'] = $ocene;
 		return $this->prikaz('izvodjac',$data);
 	}
 	public function obavesti_posetioce($email,$korisnik,$link){
@@ -137,15 +136,20 @@ class BaseController extends Controller
 	}
     
     public function organizator(){
-        $id = $this->request->getVar('id');
+		$id = $this->request->getVar('id');
+		$k=$this->session->get('korisnik');
+		if(isset($k)&&($k->ID_K==$id)){
+			return $this->moj_nalog();
+		}
         $organizator = new OrganizatorModel();        
         $korisnik = new KorisnikModel();
         $pretplacivanje=new PretplateOrganizatoriModel();
         $org = $organizator->find($id);
         $kor = $korisnik->find($id);
-	$ocd = new OceneDogadjajaModel();
+		$ocd = new OceneDogadjajaModel();
 		$ocene = $ocd -> where('Organizator', $id)->findAll();
-		if($this->session->get('controller')==='PosetilacController'){ 
+		
+		if($this->session->get('tip')==='PosetilacController'){ 
 			$id_k=$this->session->get('korisnik')->ID_K;
 			$pretplacen=!empty($pretplacivanje->where('Organizator',$org->ID_K)->where('Posmatrac',$id_k)->findAll());
 		}
