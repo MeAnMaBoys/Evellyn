@@ -83,7 +83,7 @@
                 <div style="width: 40%;" class="bar-5"></div>
               </div>
             </div>
-            <div class="col-12 col-md-2 d-none d-md-block">151</div>
+            <div style="width: <?php $pom =sizeof($ocene)==0? 0: round($petice/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-5"></div>
           </div>
           <div class="row">
             <div class="col-12 col-md-3">4 star</div>
@@ -92,7 +92,7 @@
                 <div style="width: 60%;" class="bar-4"></div>
               </div>
             </div>
-            <div class="col-12 col-md-2 d-none d-md-block">151</div>
+            <div style="width: <?php $pom =sizeof($ocene)==0? 0: round($cetvorke/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-5"></div>
           </div>
           <div class="row">
             <div class="col-12 col-md-3">3 star</div>
@@ -101,7 +101,7 @@
                 <div style="width: 30%;" class="bar-3"></div>
               </div>
             </div>
-            <div class="col-12 col-md-2 d-none d-md-block">151</div>
+            <div style="width: <?php $pom =sizeof($ocene)==0? 0: round($trojke/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-5"></div>
           </div>
           <div class="row">
             <div class="col-12 col-md-3">2 star</div>
@@ -110,7 +110,7 @@
                 <div style="width: 20%;" class="bar-2"></div>
               </div>
             </div>
-            <div class="col-12 col-md-2 d-none d-md-block">151</div>
+            <div style="width: <?php $pom = sizeof($ocene)==0? 0: round($dvojke/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-5"></div>
           </div>
           <div class="row">
             <div class="col-12 col-md-3">1 star</div>
@@ -119,7 +119,7 @@
                 <div style="width: 5%;" class="bar-1"></div>
               </div>
             </div>
-            <div class="col-12 col-md-2 d-none d-md-block">10</div>
+            <div style="width: <?php $pom = sizeof($ocene)==0? 0:round($jedinice/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-5"></div>
           </div>
           
           <div class="row d-flex justify-content-center mt-4">

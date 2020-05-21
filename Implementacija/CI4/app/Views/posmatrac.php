@@ -95,7 +95,7 @@
             <div class="col-12 col-md-3">5 star</div>
             <div class="col-12 col-md-7">
               <div class="bar-container">
-                  <div style="width: <?php $pom = round($petice/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-5"></div>
+                  <div style="width: <?php $pom = sizeof($ocene)==0? 0: round($petice/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-5"></div>
               </div>
             </div>
             <div class="col-12 col-md-2 d-none d-md-block"> <?php echo $petice ?></div>
@@ -104,7 +104,7 @@
             <div class="col-12 col-md-3">4 star</div>
             <div class="col-12 col-md-7">
               <div class="bar-container">
-                <div style="width:<?php $pom = round($cetvorke/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-4"></div>
+                <div style="width:<?php $pom = sizeof($ocene)==0? 0:round($cetvorke/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-4"></div>
               </div>
             </div>
             <div class="col-12 col-md-2 d-none d-md-block"><?php echo $cetvorke ?></div>
@@ -113,7 +113,7 @@
             <div class="col-12 col-md-3">3 star</div>
             <div class="col-12 col-md-7">
               <div class="bar-container">
-                <div style="width: <?php $pom = round($trojke/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-3"></div>
+                <div style="width: <?php $pom =sizeof($ocene)==0? 0: round($trojke/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-3"></div>
               </div>
             </div>
             <div class="col-12 col-md-2 d-none d-md-block"><?php echo $trojke ?></div>
@@ -122,7 +122,7 @@
             <div class="col-12 col-md-3">2 star</div>
             <div class="col-12 col-md-7">
               <div class="bar-container">
-                <div style="width: <?php $pom = round($dvojke/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-2"></div>
+                <div style="width: <?php $pom = sizeof($ocene)==0? 0:round($dvojke/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-2"></div>
               </div>
             </div>
             <div class="col-12 col-md-2 d-none d-md-block"><?php echo $dvojke ?></div>
@@ -131,7 +131,7 @@
             <div class="col-12 col-md-3">1 star</div>
             <div class="col-12 col-md-7">
               <div class="bar-container">
-                <div style="width: <?php $pom = round($jedinice/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-1"></div>
+                <div style="width: <?php $pom = sizeof($ocene)==0? 0:round($jedinice/sizeof($ocene)*100) ;echo ("$pom"."%") ?>;" class="bar-1"></div>
               </div>
             </div>
             <div class="col-12 col-md-2 d-none d-md-block"><?php echo $jedinice ?></div>

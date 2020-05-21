@@ -13,7 +13,11 @@ class IzvodjacController extends KorisnikController
 {
     public function moj_nalog()
     {
-        $this->prikaz('moj_nalog_i',[]);
+        $ocene_izv = new OceneIzvodjacaModel();
+        $id = $this->session->get('korisnik')->ID_K;
+        $ocene = $ocene_izv->where('izvodjac', $id )->findAll();
+        $data['ocene'] = $ocene;
+        $this->prikaz('moj_nalog_i',$data);
     }
     public function kacenje_sadrzaja(){
         $this->prikaz('kacenje_sadrzaja',[]);
