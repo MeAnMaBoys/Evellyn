@@ -3,7 +3,7 @@
     </div>
 </section>
 
-<div class="bg_color" style="height: 100%;">
+<div class="bg_color">
     <div class="page_title">Dogadjaji</div>
 
     <div class="container">

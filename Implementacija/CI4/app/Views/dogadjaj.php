@@ -3,7 +3,7 @@
     </div>
 </section>
 
-<div class="bg_color" style="height: 100%;">
+<div class="bg_color" style="height: 80%;">
     <div class="page_title"> <?php echo("$dogadjaj->Naziv")?></div>
 
     <div class="container">
