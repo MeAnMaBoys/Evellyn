@@ -9,11 +9,18 @@
                         <?php
                             if(isset($values)&&$valid['name']==true){
                                 $value=$values['name'];
+                                $vld='is-valid';
                             }
                             else{
+                                if (isset($values)){
+                                    $vld='is-invalid';
+                                }
+                                else{
+                                    $vld='';
+                                }
                                 $value='';
                             }
-                            echo("<input name=\"naziv\" value=\"$value\" type=\"text\" class=\"form-control font22\" placeholder=\"Naziv\" required>");
+                            echo("<input name=\"naziv\" value=\"$value\" type=\"text\" class=\"form-control font22 $vld \" placeholder=\"Naziv\" required>");
                             if(isset($valid)&&$valid['name']==false){
                                 echo("<small style=\"color:#AD343E; font-size:18px;\" class=\"form-text is-invalid\">Neispravan unos imena!</small>");
                             }
@@ -24,11 +31,18 @@
                         <?php
                             if(isset($values)&&$valid['date']==true){
                                 $value=$values['date'];
+                                $vld='is-valid';
                             }
                             else{
+                                if (isset($values)){
+                                    $vld='is-invalid';
+                                }
+                                else{
+                                    $vld='';
+                                }
                                 $value='';
                             }
-                            echo("<input name=\"date\" value=\"$value\" type=\"date\" class=\"form-control font22\" required>");
+                            echo("<input name=\"date\" value=\"$value\" type=\"date\" class=\"form-control font22 $vld\" required>");
                             if(isset($valid)&&$valid['date']==false){
                                 echo("<small style=\"color:#AD343E; font-size:18px;\" class=\"form-text is-invalid\">Datum odrzavanja dogadjaja mora biti u buducnosti!</small>");
                             }
@@ -40,11 +54,18 @@
                         <?php
                             if(isset($values)&&$valid['time']==true){
                                 $value=$values['time'];
+                                $vld='is-valid';
                             }
                             else{
+                                if (isset($values)){
+                                    $vld='is-invalid';
+                                }
+                                else{
+                                    $vld='';
+                                }
                                 $value='';
                             }
-                            echo("<input name=\"time\" value=\"$value\" type=\"time\" class=\"form-control font22\" required>");
+                            echo("<input name=\"time\" value=\"$value\" type=\"time\" class=\"form-control font22 $vld\" required>");
                             if(isset($valid)&&$valid['time']==false){
                                 echo("<small style=\"color:#AD343E; font-size:18px;\" class=\"form-text is-invalid\">Vreme odrzavanja nije korektno!</small>");
                             }
@@ -99,11 +120,18 @@
                         <?php
                             if(isset($values)&&$valid['location']==true){
                                 $value=$values['location'];
+                                $vld='is-valid';
                             }
                             else{
+                                if (isset($values)){
+                                    $vld='is-invalid';
+                                }
+                                else{
+                                    $vld='';
+                                }
                                 $value='';
                             }
-                            echo("<input name=\"location\" value=\"$value\" type=\"text\" class=\"form-control font22\" placeholder=\"Beograd Mije Kovačevića 7a\" required>");
+                            echo("<input name=\"location\" value=\"$value\" type=\"text\" class=\"form-control font22 $vld\" placeholder=\"Beograd Mije Kovačevića 7a\" required>");
                             if(isset($valid)&&$valid['location']==false){
                                 echo("<small style=\"color:#AD343E; font-size:18px;\" class=\"form-text is-invalid\">Neispravna lokacija!</small>");
                             }
@@ -115,11 +143,18 @@
                         <?php
                             if(isset($values)&&$valid['deadline_date']==true){
                                 $value=$values['deadline_date'];
+                                $vld='is-valid';
                             }
                             else{
+                                if (isset($values)){
+                                    $vld='is-invalid';
+                                }
+                                else{
+                                    $vld='';
+                                }
                                 $value='';
                             }
-                            echo("<input name=\"deadline_date\" value=\"$value\" type=\"date\" class=\"form-control font22\" required>");
+                            echo("<input name=\"deadline_date\" value=\"$value\" type=\"date\" class=\"form-control font22 $vld\" required>");
                             if(isset($valid)&&$valid['deadline_date']==false){
                                 echo("<small style=\"color:#AD343E; font-size:18px;\" class=\"form-text is-invalid\">Rok za prijavu mora biti pre odrzavanja dogadjaja!</small>");
                             }
@@ -131,11 +166,18 @@
                         <?php
                             if(isset($values)&&$valid['deadline_time']==true){
                                 $value=$values['deadline_time'];
+                                $vld='is-valid';
                             }
                             else{
+                                if (isset($values)){
+                                    $vld='is-invalid';
+                                }
+                                else{
+                                    $vld='';
+                                }
                                 $value='';
                             }
-                            echo("<input name=\"deadline_time\" value=\"$value\" type=\"time\" class=\"form-control font22\" required>");
+                            echo("<input name=\"deadline_time\" value=\"$value\" type=\"time\" class= \"form-control font22 $vld\" required>");
                             if(isset($valid)&&$valid['time']==false){
                                 echo("<small style=\"color:#AD343E; font-size:18px;\" class=\"form-text is-invalid\">Vreme za prijavu na konkurs nije korektno!</small>");
                             }

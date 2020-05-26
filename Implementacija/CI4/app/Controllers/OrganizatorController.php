@@ -221,6 +221,11 @@ class OrganizatorController extends KorisnikController
             $valid['deadline_date']=false;
             $valid['deadline_time']=false;
         }
+        if($date==''||!(strcmp($curr_date,$deadline_date)<0)){
+            $data_valid=false;
+            $valid['deadline_date']=false;
+            $valid['deadline_time']=false;
+        }
         if($time==''){
             $data_valid=false;
             $valid['time']=false;

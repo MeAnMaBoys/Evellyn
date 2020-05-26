@@ -157,11 +157,24 @@
           
       </div>
       <div class="col-6 text-center">
+        <?php 
+          if(sizeof($images) <11): 
+        ?>
          <form action="<?php echo base_url('IzvodjacController/kacenje_sadrzaja')?>">
             <br>
             <br>
             <button class="btn btn-success ls-2" type="submit">Okaci fotografiju ili video</button>
           </form>
+        <?php endif;?>
+        <?php 
+          if(sizeof($images) ==11): 
+        ?>
+         <form action="<?php echo base_url('IzvodjacController/kacenje_sadrzaja')?>">
+            <br>
+            <br>
+            <span class="h3 text-center">Maksimalan broj datoteka dostignut</span><br/>
+          </form>
+        <?php endif;?>
       </div>
     </div>
   </div>

@@ -21,6 +21,7 @@ class IzvodjacController extends KorisnikController
         $id = $this->session->get('korisnik')->ID_K;
         $ocene = $ocene_izv->where('izvodjac', $id )->findAll();
         $data['ocene'] = $ocene;
+
         $this->prikaz('moj_nalog_i',$data);
     }
     public function zahtevi(){
