@@ -12,7 +12,9 @@ class Filters extends BaseConfig
 		'honeypot' => \CodeIgniter\Filters\Honeypot::class,
 		'gost'     => \App\Filters\GostFilter::class,
 		'korisnik' => \App\Filters\KorisnikFilter::class,
-		'izvodjac' => \App\Filters\IzvodjacFilter::class
+		'izvodjac' => \App\Filters\IzvodjacFilter::class,
+		'organizator'=>\App\Filters\OrganizatorFilter::class,
+		'posetilac' => \App\Filters\PosetilacFilter::class
 	];
 
 	// Always applied before every request
@@ -37,8 +39,10 @@ class Filters extends BaseConfig
 	//    'isLoggedIn' => ['before' => ['account/*', 'profiles/*']],
 	public $filters = [
 		'korisnik' => ['before' => ['IzvodjacController',
-		'IzvodjacController/','OrganizatorController','OrganizatorController/','PosetilacController','PosetilacController/']],
-		'gost' => ['before' => ['Gost/','Gost']],
-		'izvodjac'=>['before'=>['IzvodjacController/','IzvodjacController']]
+		'IzvodjacController/*','OrganizatorController','OrganizatorController/*','PosetilacController','PosetilacController/*']],
+		'gost' => ['before' => ['Gost/*','Gost']],
+		'izvodjac'=>['before'=>['IzvodjacController/*','IzvodjacController']],
+		'posetilac'=>['before'=>['PosetilacController/*','PosetilacController']],
+		'organizator'=>['before'=>['OrganizatorController/*','OrganizatorController']]
 	];
 }

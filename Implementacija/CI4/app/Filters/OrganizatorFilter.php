@@ -4,13 +4,13 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\Filters\FilterInterface;
 
-class IzvodjacFilter implements FilterInterface
+class OrganizatorFilter implements FilterInterface
 {
     public function before(RequestInterface $request)
     {
         $session=session();
 
-        if($session->get('tip')!=="IzvodjacController")
+        if($session->get('tip')!=="OrganizatorController")
         {
             return redirect()->to(site_url($session->get('tip')));
         }
