@@ -187,7 +187,7 @@ class OrganizatorController extends KorisnikController
         $data_valid=true;
         $mail=$this->request->getVar('send_mails');
 
-
+        
 
         $valid=[
             'date'=>true,
@@ -209,19 +209,19 @@ class OrganizatorController extends KorisnikController
             'name'=>$name,
             'desc'=>$desc
         ];
-        $curr_date=date("Y-m-d");
+        $curr_date=date("Y-m-dH:i");
         $test='/^[^;]{3,40}$/';
-        if($date==''||!(strcmp($curr_date,$date)<0)){
+        if($date==''||!(strcmp($curr_date,$date."".$time)<0)){
             $data_valid=false;
             $valid['date']=false;
             $valid['time']=false;
         }
-        if($deadline_date==''||!(strcmp($deadline_date,$date)<0)){
+        if($deadline_date==''||!(strcmp($deadline_date."".$deadline_time,$date."".$time)<0)){
             $data_valid=false;
             $valid['deadline_date']=false;
             $valid['deadline_time']=false;
         }
-        if($date==''||!(strcmp($curr_date,$deadline_date)<0)){
+        if($date==''||!(strcmp($curr_date,$deadline_date."".$deadline_time)<0)){
             $data_valid=false;
             $valid['deadline_date']=false;
             $valid['deadline_time']=false;
@@ -321,9 +321,9 @@ class OrganizatorController extends KorisnikController
             'name'=>$name,
             'desc'=>$desc
         ];
-        $curr_date=date("Y-m-d");
-        $test='/^[^;]{3,40}$/';
-        if($date==''||!(strcmp($curr_date,$date)<0)){
+        $curr_date=date("Y-m-dH:i");
+        $test='/^[^;]{3,40}$/'; 
+        if($date==''||!(strcmp($curr_date,$date."".$time)<0)){
             $data_valid=false;
             $valid['date']=false;
             $valid['time']=false;
