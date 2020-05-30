@@ -44,11 +44,14 @@ class PosetilacController extends KorisnikController
         if(empty($pretplata)){
             $data = ['Izvodjac'=>$id, 'Posmatrac'=>$idp];
             $pretplate->insert($data);
+            echo 'pretplacen';
         }
         else{
             $pretplate->where('Izvodjac',$id)->where('Posmatrac',$idp)->delete();
+            echo 'odjavljen';
         }
-        return  redirect()->to(site_url("PosetilacController/izvodjac?id=$id"));
+        //return  redirect()->to(site_url("PosetilacController/izvodjac?id=$id"));
+        
     }
     
     public function pretplacivanje_organizator(){
@@ -58,12 +61,12 @@ class PosetilacController extends KorisnikController
         $pretplata=$po->where('Organizator',$org)->where('Posmatrac',$id)->findAll();
         if(empty($pretplata)){
             $po->insert(['Organizator'=>$org , 'Posmatrac'=>$id]);
+            echo 'pretplacen';
         }
         else{
             $po->where('Organizator',$org)->where('Posmatrac',$id)->delete();
+            echo 'odjavljen';
         }
-        return redirect()->to(site_url("PosetilacController/organizator?id=$org"));
-        
     }
     public function ocenjivanje_i(){
         $ocena = $this->request->getVar('ocena');

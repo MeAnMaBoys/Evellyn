@@ -94,17 +94,34 @@
           </div>
                      <div class="row d-flex justify-content-center mt-4">
             <?php if($controller == 'PosetilacController'): ?>
+              <script>
+              function pretplata(id){
+                if(id>0){
+                  var xmlhttp=new XMLHttpRequest();
+                  xmlhttp.onreadystatechange=function(){
+                    if(this.readyState==4&&this.status==200){
+                      if(this.responseText.substring(0,10)=='pretplacen'){
+                        document.getElementById('subscribe').innerHTML='Odjavi pretplatu';
+                      }
+                      else{
+                        document.getElementById('subscribe').innerHTML='Pretplati se na organizatora';
+                      }
+                    }
+                  }
+                  xmlhttp.open("GET","<?php echo base_url(); ?>/PosetilacController/pretplacivanje_organizator?id="+id +"&idp="+<?php echo($korisnik->ID_K)?>,true );
+                  xmlhttp.send();
+                }
+              }
+            </script>
             <div class="col-12 col-md-6">
-              <form action="<?php echo base_url("$controller/pretplacivanje_organizator")?>">
-                  <input type="hidden" name="id" value="<?php echo($organizator->ID_K)?>">
                   <?php
                   if(!$pretplacen){
-                    echo("<button class=\"btn btn-info ls-2\" type=\"submit\">Pretplati se na organizatora</button>");
+                    echo("<button class=\"btn btn-info ls-2\"  id=\"subscribe\" onclick=\"pretplata($organizator->ID_K)\">Pretplati se na organizatora</button>");
                   }
                   else{
-                    echo("<button class=\"btn btn-outline-info ls-2\" type=\"submit\">Odjavi pretplatu</button>");
-                  }?>
-              </form>
+                    echo("<button class=\"btn btn-outline-info ls-2\" id=\"subscribe\" onclick=\"pretplata($organizator->ID_K)\">Odjavi pretplatu</button>");
+                  }
+                  ?>
             </div>
               <?php endif; ?>
           </div>
