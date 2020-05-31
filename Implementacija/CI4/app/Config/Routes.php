@@ -15,6 +15,10 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
  * Router Setup
  * --------------------------------------------------------------------
  */
+/**
+ * Autor - Rastko Sapic 0398/2017
+ * Defisnisanje defaultne rute odgovarajuce tipu korisnika koji nije ulogovan
+ */
 $routes->setDefaultNamespace('App\Controllers');
 $routes->setDefaultController('Gost');
 $routes->setDefaultMethod('index');
@@ -31,6 +35,9 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 //$routes->get('/', 'Home::index');
+/**
+ * Definisanje Nove rute, a brisanje Home::index rute
+ */
 $routes->get('Gost/','Gost::index');
 
 /**

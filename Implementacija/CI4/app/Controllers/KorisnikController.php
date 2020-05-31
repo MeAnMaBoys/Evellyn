@@ -1,13 +1,24 @@
 <?php namespace App\Controllers;
-
+/**
+ * @author Rastko Sapic 0398/2017
+ */
 use App\Models\IzvodjacModel;
 use App\Models\OrganizatorModel;
 use App\Models\KorisnikModel;
 use App\Models\PosetilacModel;
 use \Config\Services\Email;
 
+/**
+ * KorisnikController - funkcionalnosti zajednicke za sve korisnike
+ * @version 1.0
+ */
 class KorisnikController extends BaseController
 {
+    /**
+     * Prikaz stranica za sve tipove korisnika
+     * @param string $page
+     * @param array $data
+     */
     protected function prikaz($page,$data)
     {
     
@@ -21,6 +32,10 @@ class KorisnikController extends BaseController
     
     }
 
+    /**
+     * loguout - funkcija za odjavljivanje korisnika
+     * 
+     */
     public function logout()
     {
 		$this->session->destroy();

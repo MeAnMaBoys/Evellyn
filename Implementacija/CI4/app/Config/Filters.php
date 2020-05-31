@@ -6,6 +6,11 @@ class Filters extends BaseConfig
 {
 	// Makes reading things below nicer,
 	// and simpler to change out script that's used.
+
+	/**
+	 * Kreator - Rastko Sapic 0398/2017
+	 *  Aliasi definisani za filter klase k
+	 */
 	public $aliases = [
 		'csrf'     => \CodeIgniter\Filters\CSRF::class,
 		'toolbar'  => \CodeIgniter\Filters\DebugToolbar::class,
@@ -37,6 +42,9 @@ class Filters extends BaseConfig
 	// List filter aliases and any before/after uri patterns
 	// that they should run on, like:
 	//    'isLoggedIn' => ['before' => ['account/*', 'profiles/*']],
+	/**
+	 * Za koje tipove kontrollera je definisano koji filter treba proci
+	 */
 	public $filters = [
 		'korisnik' => ['before' => ['IzvodjacController',
 		'IzvodjacController/*','OrganizatorController','OrganizatorController/*','PosetilacController','PosetilacController/*']],

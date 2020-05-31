@@ -1,6 +1,8 @@
 <?php
 namespace App\Controllers;
-
+/**
+ * @author Rastko Sapic 0398/2017
+ */
 /**
  * Class BaseController
  *
@@ -51,23 +53,41 @@ class BaseController extends Controller
 		// E.g.:
 		
 		date_default_timezone_set("Europe/Belgrade");
+
+		/**
+		 * @var session $session Session
+		 * @var email $email Email
+		 */
 		$this->session = \Config\Services::session();
 		$this->email = \Config\Services::email();
 	}
 
+	/**
+	 * Prikazivanje pogleda
+	 * @throws pageNotFoundException
+	 */
 	protected function prikaz($page,$data)
 	{
 		throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 	}
 
+	/**
+	 * prikaz pogleda indeks
+	 * @return void
+	 */
 	public function index()
 	{
 		$this->prikaz('index',[]);
 	}
+	/**
+	 * prikaz mog naloga
+	 * @throws pageNotFoundException
+	 */
 	public function moj_nalog()
 	{
 		throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 	}
+
 	public function izvodjaci(){
 		$izvModel = new IzvodjacModel();
 		$izvodjaci = $izvModel->findAll();
@@ -103,6 +123,10 @@ class BaseController extends Controller
         return $this->email->send();
     }
   
+	/**
+	 * Funkcija za slanje verifikacionog koda putem emaila
+	 * @return boolean
+	 */
 	protected function sendEmail($email)
     {
         $this->email->setFrom('evelynn.app.psi@gmail.com','Evelynn');
@@ -160,6 +184,10 @@ class BaseController extends Controller
         $this->prikaz('organizator',['korisnik_prikaz'=>$kor , 'organizator'=>$org,'pretplacen'=>$pretplacen,'ocene'=>$ocene]);
     }
 
+	/**
+	 * prikaz pogleda o_nama
+	 * @return void
+	 */
 	public function o_nama()
 	{
 		return $this->prikaz('o_nama',[]);

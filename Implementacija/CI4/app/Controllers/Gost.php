@@ -1,5 +1,7 @@
 <?php namespace App\Controllers;
-
+/**
+ * @author Rastko Sapic 0398/2017
+ */
 use App\Models\IzvodjacModel;
 use App\Models\OrganizatorModel;
 use App\Models\KorisnikModel;
@@ -7,8 +9,18 @@ use App\Models\PosetilacModel;
 use App\Models\VerifikacijaModel;
 use \Config\Services\Email;
 
+/**
+ * Gost - klasa koja podrzava funkcionalnosti za tip korisnika koji nije ulogovan
+ * @version 1.0
+ */
 class Gost extends BaseController
 {
+    /**
+    * Prikaz - funkcija za ispisivanje odredjenog pogleda
+    * @return void
+    * @param string $page
+    * @param array $data
+    */
     protected function prikaz($page,$data)
     {
         $data['controller']='gost';
@@ -18,11 +30,19 @@ class Gost extends BaseController
         echo view('footer');
     }
 
+    /**
+    * moj_nalog - prikaz pogleda moj_nalog
+    * @return void
+    */
+
     public function moj_nalog()
     {
         $this->prikaz('moj_nalog',[]);
     }
-
+    /**
+    * registracija - prikaz pogleda registracija
+    * @return void
+    */
     public function registracija()
     {
         $this->prikaz('registracija',[]);
@@ -43,7 +63,11 @@ class Gost extends BaseController
         $this->prikaz('registracija_posetilac',[]);
     }
 
-
+    /**
+    * proveri_podatke_posetilac - proverava da li je Gost koji je poslao zahtev za registraciju naloga za posetioca uneo validne podatke
+    * @return array $ret
+    */
+    
     private function proveri_podatke_posetilac()
     {
         $data=[];
@@ -89,6 +113,11 @@ class Gost extends BaseController
         $ret = ['data'=>$data,'flag'=>$flag];
         return $ret;
     }
+
+    /**
+    * proveri_podatke - proverava da li je Gost koji je poslao zahtev za registraciju naloga za organizatora ili izvodjaca uneo validne podatke
+    * @return array $ret
+    */
 
     protected function proveri_podatke()
     {
@@ -160,6 +189,11 @@ class Gost extends BaseController
         return $ret;
     }
 
+    /**
+     * kreiraj_korisnika - funkcija koja kreira korisnika u bazi podataka
+     * @param array $vector
+     * @return array
+     */
     protected function kreiraj_korisnika($vector)
     {
         $korModel = new KorisnikModel();
@@ -169,6 +203,11 @@ class Gost extends BaseController
         return $row;
     }
 
+    /**
+     * Funckije koje sluze za kreiranje organizatora/posetioca/izvodjaca u bazi podataka
+     * @param array $vector
+     * @return void
+     */
     protected function kreiraj_organizatora($vector)
     {
         $orgModel = new OrganizatorModel();
@@ -186,6 +225,11 @@ class Gost extends BaseController
         $izvModel->ubaci_el($vector['data']);
     }
 
+
+    /**
+     * ver_kod - funkcija proverava da li je unet validan verifikacioni kod i ispisuje poruku o uspesnosti verfikacije
+     * @return void
+     */
     public function ver_kod()
     {
         $num=$this->request->getPost('first').$this->request->getPost('second').$this->request->getPost('third').$this->request->getPost('fourth').$this->request->getPost('fifth');
@@ -260,7 +304,12 @@ class Gost extends BaseController
         //ispisi gresku da mail ne valja, i obrisi iz tabele Verifikacija taj red
         return $this->prikaz('proba',['radi'=>'ne radi']);
     }
-
+    /**
+     * Funkcije koje kod registrovanja svih tipova korisnika(organizator,posetilac,izvodjac) 
+     * proveravaju da li su podaci validno uneseni, ispisuje gresku ako nisu, odnosno salje verifikacioni kod na email
+     * preusmerava korisnika na pogled ver_kod
+     * @return void
+     */
     public function registruj_organizator()
     {
         $vector = $this->proveri_podatke();
@@ -304,6 +353,10 @@ class Gost extends BaseController
         unset($vector);
     }
 
+    /**
+     * loginSubmit - funkcija koja proverava da li je korisnik uneo validne podatke pri autorizaciji
+     * @return void
+     */
     public function loginSubmit()
     {
         $data = [];

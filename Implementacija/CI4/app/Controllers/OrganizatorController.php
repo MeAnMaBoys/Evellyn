@@ -16,6 +16,11 @@ use \App\Models\OceneDogadjajaModel;
 
 class OrganizatorController extends KorisnikController
 {
+    /**
+     * obavesti_izvodjace - funkcija koja salje emailove svim izvodjacima koji odgovaraju po tipu konkursu za dogadjaj koji je napravljen
+     * @param string $type
+     * @param string $organizator
+     */
     public function obavesti_izvodjace($organizator,$type)
     {
         $izvModel = new IzvodjacModel();
