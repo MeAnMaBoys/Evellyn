@@ -1,4 +1,7 @@
 <?php namespace App\Controllers;
+/**
+ * @author Mladen Jugovic 0502/2017
+ */
 
 use App\Models\IzvodjacModel;
 use App\Models\OrganizatorModel;
@@ -15,6 +18,11 @@ use App\Models\OceneDogadjajaModel;
 
 class PosetilacController extends KorisnikController
 {
+    
+    
+    /**
+     * izvodjac -  prikazuje profil izvodjaca sa funkcijama za pretplacivanje i ocenjivanje
+     */
     public function izvodjac(){
         $izv_model = new IzvodjacModel();
         $ocene_izv = new OceneIzvodjacaModel();
@@ -36,6 +44,10 @@ class PosetilacController extends KorisnikController
         $data['ocene'] = $ocene;
 	return $this->prikaz('posmatrac',$data);
     }
+    /**
+     * pretplacivanje - funkcija kojom se belezi i upisuje pretplata nad odredjenim izvodjacem u bazu
+     */
+    
     public function pretplacivanje(){
         $id = $this->request->getVar("id");
         $idp = $this->session->get('korisnik')->ID_K;
@@ -53,6 +65,9 @@ class PosetilacController extends KorisnikController
         //return  redirect()->to(site_url("PosetilacController/izvodjac?id=$id"));
         
     }
+    /**
+     * pretplacivanje_organizator - funkcija kojom se belezi i upisuje pretplata nad odredjenim organizatorom u bazu
+     */
     
     public function pretplacivanje_organizator(){
         $org = $this->request->getVar('id');
@@ -68,6 +83,10 @@ class PosetilacController extends KorisnikController
             echo 'odjavljen';
         }
     }
+    /**
+     * ocenjivanje_i - funkcija kojom se belezi/update-uje posetioceva ocena izvodjacu, upisuje u bazu i uracunava u prosek ocena izvodjaca
+     */
+    
     public function ocenjivanje_i(){
         $ocena = $this->request->getVar('ocena');
         $izv = $this->request->getVar('id');
@@ -101,7 +120,9 @@ class PosetilacController extends KorisnikController
        
         return redirect()->to(site_url("PosetilacController/izvodjac?id=$izv"));
     }
-    
+    /**
+     * ocenjivanje_d - funkcija kojom se belezi/update-uje posetioceva ocena dogadjaja, upisuje u bazu i uracunava u prosek ocena organizatora
+     */
     
     public function ocenjivanje_d(){
         $ocena = $this->request->getVar('ocena');
@@ -138,6 +159,9 @@ class PosetilacController extends KorisnikController
         }
         return redirect()->to(site_url("PosetilacController/dogadjaj?id=$dog"));
     }
+    /*
+     * * moj_nalog - prikazuje profil posmatraca
+     */
 
     function moj_nalog()
     {

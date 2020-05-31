@@ -87,16 +87,21 @@ class BaseController extends Controller
 	{
 		throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 	}
-
+        /**
+	 * funkcija koja prikazuje aktuelne izvodjace
+	 */
 	public function izvodjaci(){
 		$izvModel = new IzvodjacModel();
 		$izvodjaci = $izvModel->findAll();
 		return $this->prikaz('izvodjaci',['izvodjaci'=>$izvodjaci]);
 	}
+        /**
+         * prikaz izvodjaca
+         */
 	public function izvodjac(){
 		$izv_model = new IzvodjacModel();
 		$kor_model=new KorisnikModel();
-    	$ocene_izv = new OceneIzvodjacaModel();
+                $ocene_izv = new OceneIzvodjacaModel();
 		$id=$_GET['id'];
 
 		$usr=$this->session->get('korisnik');
@@ -146,41 +151,49 @@ class BaseController extends Controller
 
         return $this->email->send();
     }
-    
+    /**
+	 * prikaz dogadjaja
+    */
     public function dogadjaj(){
         $dogadjaj = new DogadjajModel();
         $dogadjajj = $dogadjaj->find($_GET['id']);
         $this->prikaz('dogadjaj', ['dogadjaj'=>$dogadjajj]);
     }
+    /**
+	 * funkcija koja prikazuje aktuelne dogadjaje
+    */
     public function dogadjaji(){
         $dogadjajmodel = new DogadjajModel();
         $dogadjaji = $dogadjajmodel->findAll();
         $this -> prikaz("dogadjaji", ['dogadjaji'=>$dogadjaji]);
         
-	}
+    }
+    /**
+	 * prikaz organizatora
+    */
     
     public function organizator(){
-		$id = $this->request->getVar('id');
-		$k=$this->session->get('korisnik');
-		if(isset($k)&&($k->ID_K==$id)){
-			return $this->moj_nalog();
-		}
+	$id = $this->request->getVar('id');
+	$k=$this->session->get('korisnik');
+	if(isset($k)&&($k->ID_K==$id)){
+		return $this->moj_nalog();
+	}
         $organizator = new OrganizatorModel();        
         $korisnik = new KorisnikModel();
         $pretplacivanje=new PretplateOrganizatoriModel();
         $org = $organizator->find($id);
         $kor = $korisnik->find($id);
-		$ocd = new OceneDogadjajaModel();
-		$ocene = $ocd -> where('Organizator', $id)->findAll();
+	$ocd = new OceneDogadjajaModel();
+	$ocene = $ocd -> where('Organizator', $id)->findAll();
 		
-		if($this->session->get('tip')==='PosetilacController'){ 
-			$id_k=$this->session->get('korisnik')->ID_K;
-			$pretplacen=!empty($pretplacivanje->where('Organizator',$org->ID_K)->where('Posmatrac',$id_k)->findAll());
-		}
-		else
-		{
-			$pretplacen=false;
-		}		
+	if($this->session->get('tip')==='PosetilacController'){ 
+		$id_k=$this->session->get('korisnik')->ID_K;
+		$pretplacen=!empty($pretplacivanje->where('Organizator',$org->ID_K)->where('Posmatrac',$id_k)->findAll());
+	}
+	else
+	{
+		$pretplacen=false;
+	}		
         $this->prikaz('organizator',['korisnik_prikaz'=>$kor , 'organizator'=>$org,'pretplacen'=>$pretplacen,'ocene'=>$ocene]);
     }
 
