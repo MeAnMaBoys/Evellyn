@@ -1,4 +1,7 @@
 <?php namespace App\Controllers;
+/**
+ * @author Nikola Mirkovic 0325/2017
+ */
 
 use App\Models\IzvodjacModel;
 use App\Models\OrganizatorModel;
@@ -13,8 +16,16 @@ use App\Models\NastupaModel;
 use App\Models\PretplateIzvodjaciModel;
 use App\Models\OceneIzvodjacaModel;
 
+
+/**
+ * IzvodjacController - funkcionalnosti specificne za izvodjace na platformi
+ * @version 1.0
+ */
 class IzvodjacController extends KorisnikController
 {
+    /**
+     * moj_nalog-prikaz sopstvenog naloga izvodjaca
+     */
     public function moj_nalog()
     {
         $ocene_izv = new OceneIzvodjacaModel();
@@ -24,6 +35,9 @@ class IzvodjacController extends KorisnikController
 
         $this->prikaz('moj_nalog_i',$data);
     }
+    /**
+     * zahtevi-prikaz svih zahteva za nastupanje na dogadjaju
+     */
     public function zahtevi(){
         $zn=new ZahtevNastupanjeModel();
         $id=$this->session->get('korisnik')->ID_K;
@@ -34,6 +48,9 @@ class IzvodjacController extends KorisnikController
 
         $this->prikaz('zahtevi',$data);
     }
+    /**
+     * zahtev-prikaz konkretnog zahteva za nastupanje na dogadjaju
+     */
     public function zahtev(){
         $id=$_GET['id'];
         $dm=new DogadjajModel();
@@ -41,6 +58,9 @@ class IzvodjacController extends KorisnikController
 
         $this->prikaz('zahtev',['dogadjaj'=>$dogadjaj]);
     }
+    /**
+     * prihvati_zahtev-prihvatanje zahteva za nastupanje na dogadjaju
+     */
     public function prihvati_zahtev(){
         $id_dog=$this->request->getVar('id');
         $id_k=$this->session->get('korisnik')->ID_K;
@@ -72,10 +92,15 @@ class IzvodjacController extends KorisnikController
         
         return redirect()->to(site_url("IzvodjacController/moj_nalog"));
     }
-    
+    /**
+     * kacenje_sadrzaja-prikaz forme za kacenje datoteke
+     */
     public function kacenje_sadrzaja(){
         $this->prikaz('kacenje_sadrzaja',[]);
     }
+    /**
+     * okaci_sadrzaj-funkcija koja cuva datoteku na serveru
+     */
     public function okaci_sadrzaj(){
         $korisnik=$this->session->get('korisnik');
 
@@ -125,6 +150,9 @@ class IzvodjacController extends KorisnikController
         }
         return redirect()->to(site_url("IzvodjacController/moj_nalog"));
     }
+    /**
+     * konkursi-prikaz svih aktuelnih konkursa
+     */
     public function konkursi(){
         $konk_model=new KonkursModel();
         $dog_model=new DogadjajModel();
@@ -141,6 +169,9 @@ class IzvodjacController extends KorisnikController
         }
         $this->prikaz('konkursi',['konkursi'=>$konkursi,'names'=>$names]);
     }
+    /**
+     * konkurs-prikaz konkretnog konkursa
+     */
     public function konkurs(){
         $konk_model=new KonkursModel();
         $dog_model=new DogadjajModel();
@@ -157,6 +188,9 @@ class IzvodjacController extends KorisnikController
         $data['prijavljen']=$prijavljen;
 		return $this->prikaz('konkurs',$data);
     }
+    /**
+     * prijava_na_konkurs-funkcija koja cuva prijavu na konkurs u bazi na serveru
+     */
     public function prijava_na_konkurs(){
         $id=$this->request->getVar('id');
         $id_k=$this->session->get('korisnik')->ID_K;

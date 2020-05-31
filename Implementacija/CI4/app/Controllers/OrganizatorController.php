@@ -1,5 +1,7 @@
 <?php namespace App\Controllers;
-
+/**
+ * @author Nikola Mirkovic 0325/2017
+ */
 use App\Models\IzvodjacModel;
 use App\Models\OrganizatorModel;
 use App\Models\PretplateOrganizatoriModel;
@@ -14,6 +16,11 @@ use App\Models\ZahtevNastupanjeModel;
 use \Config\Services\EmailModel;
 use \App\Models\OceneDogadjajaModel;
 
+
+/**
+ * OrganizatorController - funkcionalnosti specificne za organizatore na platformi
+ * @version 1.0
+ */
 class OrganizatorController extends KorisnikController
 {
     /**
@@ -37,6 +44,11 @@ class OrganizatorController extends KorisnikController
             endforeach;
         endforeach;
     }
+    /**
+     * posalji_obavestenjue - funkcija koja salje email na prosledjenu adresu
+     * @param string $email
+     * @param string $organizator
+     */
     public function posalji_obavestenje($email,$organizator){
         $this->email->setFrom('evelynn.app.psi@gmail.com','Evelynn');
         $this->email->setTo($email);
@@ -46,6 +58,9 @@ class OrganizatorController extends KorisnikController
 
         return $this->email->send();
     }
+    /**
+     * zavrseni_konkursi - funkcija koja prikazuje sve konkurse kojima je prosao rok za prijavu
+     */
     public function zavrseni_konkursi(){
         $konk=new KonkursModel();
         $org=$this->session->get('korisnik');
@@ -62,6 +77,9 @@ class OrganizatorController extends KorisnikController
         }
         $this->prikaz('zavrseni_konkursi',['konkursi'=>$validni_konkursi]);
     }
+    /**
+     * z_konkurs - funkcija koja prikazuje konkurs kome je prosao rok za prijavu
+     */
     public function z_konkurs(){
         $id_dog= $_GET['id_k'];
         $pk=new PrijaveKonkursModel();
@@ -73,6 +91,9 @@ class OrganizatorController extends KorisnikController
         }
         $this->prikaz('odaberi_izvodjace',['id_dog'=>$id_dog,'izvodjaci'=>$izvodjaci]);
     }
+    /**
+     * prihvati_zahteve - funkcija koja vrsi upis odabranih izvodjaca za nastupanje na dogadjaju u bazu podataka
+     */
     public function prihvati_zahteve(){
         $id_dog=$this->request->getVar('id_dog');
         $izvodjaci=$this->request->getVar('izvodjaci');
@@ -111,6 +132,9 @@ class OrganizatorController extends KorisnikController
         $dm->update($id_dog,['Status'=>'Objavljen']);
         return redirect()->to(site_url("OrganizatorController/moj_nalog"));
     }
+    /**
+     * obavesti_posetioce_o - funkcija koja salje email posetiocima da je organizator objavio dogadjaj
+     */
     public function obavesti_posetioce_o($email,$korisnik,$link){
         $this->email->setFrom('evelynn.app.psi@gmail.com','Evelynn');
         $this->email->setTo($email);
@@ -120,6 +144,9 @@ class OrganizatorController extends KorisnikController
 
         return $this->email->send();
     }
+    /**
+     * moj_nalog - funkcija koja prikazuje sopstveni nalog organizatoru
+     */
     public function moj_nalog()
     {
         $ocd = new OceneDogadjajaModel();
@@ -127,17 +154,29 @@ class OrganizatorController extends KorisnikController
         $ocene = $ocd -> where('Organizator', $id)-> findAll(); 
         $this->prikaz('moj_nalog_o',['ocene'=>$ocene]);
     }
+    /**
+     * kreiranje_konkursa - funkcija koja prikazuje formu za kreiranje konkursa
+     */
     public function kreiranje_konkursa(){
         $this->prikaz('kreiranje_konkursa',[]);
     }
+    /**
+     * kreiranje_dogadjaja - funkcija koja prikazuje formu za kreiranje dogadjaja
+     */
     public function kreiranje_dogadjaja(){
         $izv_model=new IzvodjacModel();
         $izvodjaci=$izv_model->findAll();
         $this->prikaz('kreiranje_dogadjaja',['izvodjaci'=>$izvodjaci]);
     }
+    /**
+     * zamena_loga - funkcija koja prikazuje formu za promenu loga
+     */
     public function zamena_loga(){
         $this->prikaz('zamena_loga',[]);
     }
+    /**
+     * zameni_logo - funkcija koja cuva novi logo na serveru
+     */
     public function zameni_logo(){
         
         if(isset($_FILES['file'])){
@@ -180,6 +219,9 @@ class OrganizatorController extends KorisnikController
 
     return redirect()->to(site_url("OrganizatorController/moj_nalog"));
     }
+    /**
+     * kreiraj_konkurs - funkcija koja cuva konkurs u bazi na serveru
+     */
     public function kreiraj_konkurs(){
         $date=$this->request->getVar('date');
         $time=$this->request->getVar('time');
@@ -294,6 +336,9 @@ class OrganizatorController extends KorisnikController
             $this->prikaz('kreiranje_konkursa',['values'=>$values,'valid'=>$valid]);
         }
     }
+    /**
+     * kreiraj_dogadjaj - funkcija koja cuva dogadjaj u bazi na serveru
+     */
     public function kreiraj_dogadjaj(){
         
         $date=$this->request->getVar('date');
