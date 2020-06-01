@@ -44,10 +44,13 @@
             <br>
             <input type="hidden" name="id" value="<?php echo($konkurs->ID_Dog)?>">
             <?php 
-            if(!$prijavljen)
-                echo ("<button class=\"font-fredoka whiteLetterColor btn btn-success ls-2\" type=\"submit\">Prijavi se na konkurs</button>");
-            else{
-                echo ("<div class=\"col-2\"></div><div class=\"col-10  font-fredoka font22 whiteLetterColor \">Prijavljeni ste!!</div>");
+            $curr_date=date("Y-m-d H:i");
+            if(strcmp($curr_date,$konkurs->Rok_Za_Prijavu)<=0){
+                if(!$prijavljen)
+                    echo ("<button class=\"font-fredoka whiteLetterColor btn btn-success ls-2\" type=\"submit\">Prijavi se na konkurs</button>");
+                else{
+                    echo ("<div class=\"col-2\"></div><div class=\"col-10  font-fredoka font22 whiteLetterColor \">Prijavljeni ste!!</div>");
+                }
             }
             ?>
          </form>
