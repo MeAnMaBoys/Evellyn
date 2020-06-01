@@ -3,7 +3,10 @@
  * @author Mladen Jugovic 0502/2017
  */
 use CodeIgniter\Model;
-
+/**
+ * Klasa koja predstavlja tabelu Ocene_Izvodjaca u bazi podataka
+ * @version 1.0
+ */
 class OceneIzvodjacaModel extends Model
 {
     /**

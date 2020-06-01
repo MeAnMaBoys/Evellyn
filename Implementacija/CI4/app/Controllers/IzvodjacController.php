@@ -1,6 +1,7 @@
 <?php namespace App\Controllers;
 /**
  * @author Nikola Mirkovic 0325/2017
+ * @author Mladen Jugovic 0502/2017
  */
 
 use App\Models\IzvodjacModel;

@@ -134,6 +134,9 @@ class OrganizatorController extends KorisnikController
     }
     /**
      * obavesti_posetioce_o - funkcija koja salje email posetiocima da je organizator objavio dogadjaj
+     * @param string $email Email
+     * @param object $korisnik Korisnik
+     * @param string $link Link
      */
     public function obavesti_posetioce_o($email,$korisnik,$link){
         $this->email->setFrom('evelynn.app.psi@gmail.com','Evelynn');

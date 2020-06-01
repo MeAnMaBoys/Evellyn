@@ -3,7 +3,10 @@
  * @author Nikola Mirkovic 0325/2017
  */
 use CodeIgniter\Model;
-
+/**
+ * Klasa koja predstavlja tabelu Prijave_Na_Konkurs u bazi podataka
+ * @version 1.0
+ */
 class PrijaveKonkursModel extends Model
 {
     /**

@@ -3,7 +3,10 @@
  * @author Nikola Mirkovic 0325/2017
  */
 use CodeIgniter\Model;
-
+/**
+ * Klasa koja predstavlja tabelu Zahtev_Za_Nastupanje u bazi podataka
+ * @version 1.0
+ */
 class ZahtevNastupanjeModel extends Model
 {
     /**

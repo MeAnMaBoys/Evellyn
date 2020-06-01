@@ -15,7 +15,10 @@ use App\Models\OceneIzvodjacaModel;
 use App\Models\OceneDogadjajaModel;
 
 
-
+/**
+ * PosetilacController - funkcionalnosti specificne za tip korisnika Posetioc
+ * @version 1.0
+ */
 class PosetilacController extends KorisnikController
 {
     

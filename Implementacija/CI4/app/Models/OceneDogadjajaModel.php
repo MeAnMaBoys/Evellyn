@@ -4,6 +4,10 @@
  */
 use CodeIgniter\Model;
 
+/**
+ * Klasa koja predstavlja tabelu Ocena_Dogadjaja u bazi podataka
+ * @version 1.0
+ */
 class OceneDogadjajaModel extends Model
 {
     /**

@@ -2,6 +2,7 @@
 namespace App\Controllers;
 /**
  * @author Rastko Sapic 0398/2017
+ * @author Mladen Jugovic 0502/2017
  */
 /**
  * Class BaseController

@@ -4,6 +4,10 @@
  */
 use CodeIgniter\Model;
 
+/**
+ * Klasa koja predstavlja tabelu Dogadjaj u bazi podataka
+ * @version 1.0
+ */
 class DogadjajModel extends Model
 {
     /**

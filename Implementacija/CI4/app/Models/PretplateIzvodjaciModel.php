@@ -3,7 +3,10 @@
  * @author Mladen Jugovic 0502/2017
  */
 use CodeIgniter\Model;
-
+/**
+ * Klasa koja predstavlja tabelu Pretplate_Na_Izvodjace u bazi podataka
+ * @version 1.0
+ */
 class PretplateIzvodjaciModel extends Model
 {
     /**
