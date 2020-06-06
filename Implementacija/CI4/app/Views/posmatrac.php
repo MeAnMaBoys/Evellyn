@@ -35,7 +35,7 @@
                     $images=scandir($dir_path);
                     $burl = base_url();
                     foreach($images as $image){
-                        if($image=='.'||$image=='..')
+                        if(strpos($image,'.')==0)
                             continue;
                         echo(" 
                         <div class=\"col-6 col-md-4 p-2\">
