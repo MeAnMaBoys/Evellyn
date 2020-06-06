@@ -1,0 +1,384 @@
+{
+  "id": "c1790dfa-2687-4461-b2a3-9c205016acba",
+  "version": "2.0",
+  "name": "SlanjeEmaila",
+  "url": "http://localhost:8080/Evelynn/Implementacija/CI4/public/OrganizatorController/kreiranje_konkursa?",
+  "tests": [{
+    "id": "aebc9ad2-a811-48c3-80e6-1f8d1ad4786c",
+    "name": "Untitled",
+    "commands": []
+  }, {
+    "id": "4c5c8493-4244-4fbf-b7f9-6e75e86eecaa",
+    "name": "SlanjeEmaila",
+    "commands": [{
+      "id": "dc6d3786-5fc6-4ef6-bef3-9c8448134140",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Evelynn/Implementacija/CI4/public/OrganizatorController/kreiranje_konkursa?",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9a4d6d0b-b7a4-4c3a-a5ce-6afc3a752b62",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1200x746",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "af901458-e9ca-4bbc-9e51-49dbe33a0958",
+      "comment": "",
+      "command": "click",
+      "target": "name=naziv",
+      "targets": [
+        ["name=naziv", "name"],
+        ["css=.col-sm-6:nth-child(1) > .form-group:nth-child(1) > .form-control", "css:finder"],
+        ["xpath=//input[@name='naziv']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bc79fec6-663b-4ee7-a19d-1cf3f0841f87",
+      "comment": "",
+      "command": "type",
+      "target": "name=naziv",
+      "targets": [
+        ["name=naziv", "name"],
+        ["css=.col-sm-6:nth-child(1) > .form-group:nth-child(1) > .form-control", "css:finder"],
+        ["xpath=//input[@name='naziv']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "BlaBla"
+    }, {
+      "id": "27a80447-2c4e-46d7-acc9-c569399463e9",
+      "comment": "",
+      "command": "type",
+      "target": "name=date",
+      "targets": [
+        ["name=date", "name"],
+        ["css=.col-sm-6:nth-child(1) > .form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='date']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "0002-12-12"
+    }, {
+      "id": "4862dca3-f6f4-493d-99f9-d725aba1d57f",
+      "comment": "",
+      "command": "type",
+      "target": "name=date",
+      "targets": [
+        ["name=date", "name"],
+        ["css=.col-sm-6:nth-child(1) > .form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='date']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "0020-12-12"
+    }, {
+      "id": "85e2be68-5ea1-4bc3-ab98-328679a3a79b",
+      "comment": "",
+      "command": "type",
+      "target": "name=date",
+      "targets": [
+        ["name=date", "name"],
+        ["css=.col-sm-6:nth-child(1) > .form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='date']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "0202-12-12"
+    }, {
+      "id": "9d96bf88-7753-481c-a87c-5f595a4393e0",
+      "comment": "",
+      "command": "type",
+      "target": "name=date",
+      "targets": [
+        ["name=date", "name"],
+        ["css=.col-sm-6:nth-child(1) > .form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='date']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "2020-12-12"
+    }, {
+      "id": "be59f71e-c559-44ab-a8d2-526a01d696ab",
+      "comment": "",
+      "command": "type",
+      "target": "name=time",
+      "targets": [
+        ["name=time", "name"],
+        ["css=.col-sm-6:nth-child(1) > .form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='time']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "12:01"
+    }, {
+      "id": "083a8da1-2b8d-4dab-b53f-62ee5ed688d2",
+      "comment": "",
+      "command": "type",
+      "target": "name=time",
+      "targets": [
+        ["name=time", "name"],
+        ["css=.col-sm-6:nth-child(1) > .form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='time']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "12:12"
+    }, {
+      "id": "8621f2be-6d05-4230-a595-4e277c045aa5",
+      "comment": "",
+      "command": "click",
+      "target": "id=Radios4",
+      "targets": [
+        ["id=Radios4", "id"],
+        ["name=Radios", "name"],
+        ["css=#Radios4", "css:finder"],
+        ["xpath=//input[@id='Radios4']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div/div[4]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5e2154d5-f745-4cd7-a372-c66d8b4d83ba",
+      "comment": "",
+      "command": "click",
+      "target": "css=.container:nth-child(1) > .row > .col-4 > .form-check-label",
+      "targets": [
+        ["css=.container:nth-child(1) > .row > .col-4 > .form-check-label", "css:finder"],
+        ["xpath=//form[@id='myform']/div/div/div[3]/label", "xpath:idRelative"],
+        ["xpath=//form/div/div/div[3]/label", "xpath:position"],
+        ["xpath=//label[contains(.,'Posalji mail-ove izvodjacima')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7dc11148-d7a1-41b0-998d-5844a57c0ac7",
+      "comment": "",
+      "command": "verifyChecked",
+      "target": "id=defaultCheck1",
+      "targets": [
+        ["id=defaultCheck1", "id"],
+        ["name=send_mails", "name"],
+        ["css=#defaultCheck1", "css:finder"],
+        ["xpath=//input[@id='defaultCheck1']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div[3]/input", "xpath:idRelative"],
+        ["xpath=//form/div/div/div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "379d719e-71ed-42b6-84db-a7d121d34166",
+      "comment": "",
+      "command": "click",
+      "target": "name=location",
+      "targets": [
+        ["name=location", "name"],
+        ["css=.col-sm-6:nth-child(2) > .form-group:nth-child(1) > .form-control", "css:finder"],
+        ["xpath=//input[@name='location']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bd7bdb96-2d0d-4188-a62e-333e5db12086",
+      "comment": "",
+      "command": "type",
+      "target": "name=location",
+      "targets": [
+        ["name=location", "name"],
+        ["css=.col-sm-6:nth-child(2) > .form-group:nth-child(1) > .form-control", "css:finder"],
+        ["xpath=//input[@name='location']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "Milenko"
+    }, {
+      "id": "be58977b-2628-4766-aead-a2a08ab96ce3",
+      "comment": "",
+      "command": "type",
+      "target": "name=deadline_date",
+      "targets": [
+        ["name=deadline_date", "name"],
+        ["css=.col-sm-6:nth-child(2) > .form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='deadline_date']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div[2]/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/input", "xpath:position"]
+      ],
+      "value": "0002-12-12"
+    }, {
+      "id": "972634cc-ca0f-42c1-9ada-f1fc0fcc44de",
+      "comment": "",
+      "command": "type",
+      "target": "name=deadline_date",
+      "targets": [
+        ["name=deadline_date", "name"],
+        ["css=.col-sm-6:nth-child(2) > .form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='deadline_date']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div[2]/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/input", "xpath:position"]
+      ],
+      "value": "0022-12-12"
+    }, {
+      "id": "9fcdc68f-ed58-4bc1-ae9a-497e2de601a5",
+      "comment": "",
+      "command": "type",
+      "target": "name=deadline_date",
+      "targets": [
+        ["name=deadline_date", "name"],
+        ["css=.col-sm-6:nth-child(2) > .form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='deadline_date']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div[2]/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/input", "xpath:position"]
+      ],
+      "value": "0220-12-12"
+    }, {
+      "id": "dfb998e5-dfea-4ced-bdb4-0c014839c243",
+      "comment": "",
+      "command": "type",
+      "target": "name=deadline_date",
+      "targets": [
+        ["name=deadline_date", "name"],
+        ["css=.col-sm-6:nth-child(2) > .form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='deadline_date']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div[2]/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "375ac075-c242-485f-8e48-f5a3e2d04ab6",
+      "comment": "",
+      "command": "type",
+      "target": "name=deadline_date",
+      "targets": [
+        ["name=deadline_date", "name"],
+        ["css=.col-sm-6:nth-child(2) > .form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='deadline_date']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div[2]/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/input", "xpath:position"]
+      ],
+      "value": "0002-12-12"
+    }, {
+      "id": "322f3913-9b68-4aca-a27a-f1e9ac5d78c4",
+      "comment": "",
+      "command": "type",
+      "target": "name=deadline_date",
+      "targets": [
+        ["name=deadline_date", "name"],
+        ["css=.col-sm-6:nth-child(2) > .form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='deadline_date']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div[2]/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/input", "xpath:position"]
+      ],
+      "value": "0020-12-12"
+    }, {
+      "id": "9f844090-6edd-454f-a50d-542cd58b7d2a",
+      "comment": "",
+      "command": "type",
+      "target": "name=deadline_date",
+      "targets": [
+        ["name=deadline_date", "name"],
+        ["css=.col-sm-6:nth-child(2) > .form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='deadline_date']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div[2]/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/input", "xpath:position"]
+      ],
+      "value": "0202-12-12"
+    }, {
+      "id": "ece85cce-91bc-4c73-93ed-af2e8545cca0",
+      "comment": "",
+      "command": "type",
+      "target": "name=deadline_date",
+      "targets": [
+        ["name=deadline_date", "name"],
+        ["css=.col-sm-6:nth-child(2) > .form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='deadline_date']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div[2]/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/input", "xpath:position"]
+      ],
+      "value": "2020-12-12"
+    }, {
+      "id": "573445e2-a367-4f4c-897a-74bc47e629a2",
+      "comment": "",
+      "command": "type",
+      "target": "name=deadline_time",
+      "targets": [
+        ["name=deadline_time", "name"],
+        ["css=.col-sm-6:nth-child(2) > .form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='deadline_time']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div[2]/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[3]/input", "xpath:position"]
+      ],
+      "value": "10:01"
+    }, {
+      "id": "faa0c529-0469-4ceb-b2d2-65970005d5fa",
+      "comment": "",
+      "command": "type",
+      "target": "name=deadline_time",
+      "targets": [
+        ["name=deadline_time", "name"],
+        ["css=.col-sm-6:nth-child(2) > .form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='deadline_time']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div[2]/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[3]/input", "xpath:position"]
+      ],
+      "value": "10:10"
+    }, {
+      "id": "50c40298-6a2b-4b2e-88b1-c1a85cbbea09",
+      "comment": "",
+      "command": "type",
+      "target": "name=opis",
+      "targets": [
+        ["name=opis", "name"],
+        ["css=.form-group:nth-child(4) > .form-control", "css:finder"],
+        ["xpath=//textarea[@name='opis']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div[2]/div[4]/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Bla bla"
+    }, {
+      "id": "132be85b-8adc-480e-9ef3-57c9ef9fd0c9",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='myform']/div/div/div[4]/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Raspiši konkurs')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "88c4c4ea-5fbb-4105-9918-3d06bfc44ac3",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.btn-success",
+      "targets": [
+        ["css=.btn-success", "css:finder"],
+        ["xpath=(//button[@type='submit'])[4]", "xpath:attributes"],
+        ["xpath=//div[3]/div/div/div[3]/form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Zameni logo')]", "xpath:innerText"]
+      ],
+      "value": "Zameni logo"
+    }]
+  }],
+  "suites": [{
+    "id": "46b39d7a-b283-4912-af45-ff9e4bc88567",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["aebc9ad2-a811-48c3-80e6-1f8d1ad4786c"]
+  }, {
+    "id": "b2cece59-273f-4a97-8ade-bcd1cdff04d5",
+    "name": "Legalne klase",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["4c5c8493-4244-4fbf-b7f9-6e75e86eecaa"]
+  }],
+  "urls": ["http://localhost:8080/Evelynn/Implementacija/CI4/public/OrganizatorController/kreiranje_konkursa?"],
+  "plugins": []
+}

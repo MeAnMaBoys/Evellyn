@@ -1,0 +1,108 @@
+{
+  "id": "df923f69-2bfb-4a69-92ad-4cd446642886",
+  "version": "2.0",
+  "name": "PregledDogadjaja",
+  "url": "http://localhost:8080/Evelynn/Implementacija/CI4/public/gost/dogadjaji",
+  "tests": [{
+    "id": "1cd2b7f2-16cb-4726-ae1e-cb1c2f8a9561",
+    "name": "Untitled",
+    "commands": []
+  }, {
+    "id": "fda34daa-1027-4324-8eea-049cceb052fa",
+    "name": "ValidanUnos",
+    "commands": [{
+      "id": "03b7a83a-1134-4da2-8015-83d935de11f3",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Evelynn/Implementacija/CI4/public/gost/dogadjaji",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ea297fbd-12de-431f-a99f-0a9f38c49c00",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1440x790",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a36aa40e-e9a8-45f2-a92a-d5e8a875e7ff",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-12:nth-child(1) .d-flex",
+      "targets": [
+        ["css=.col-12:nth-child(1) .d-flex", "css:finder"],
+        ["xpath=//div/div/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "aca80919-719f-45a8-8b40-357b04659540",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Profil organizatora')]", "xpath:innerText"]
+      ],
+      "value": "Profil organizatora"
+    }]
+  }, {
+    "id": "abd2bade-7d8d-4a44-a984-dfdf767851e8",
+    "name": "ValidanUnosPosetilac",
+    "commands": [{
+      "id": "592b81f6-454c-4d2e-80ea-2f2d9cfef5b2",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Evelynn/Implementacija/CI4/public/PosetilacController/dogadjaji",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "365613b0-f16f-42a9-86d2-e96c17c13652",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1440x790",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3cab0a12-ed9b-4cdd-8f82-2794740cb302",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-12:nth-child(2) .d-flex",
+      "targets": [
+        ["css=.col-12:nth-child(2) .d-flex", "css:finder"],
+        ["xpath=//div[2]/a/div/div/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "978c3bef-0ac5-4934-b441-6c806438755f",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.btn-info",
+      "targets": [
+        ["css=.btn-info", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Oceni')]", "xpath:innerText"]
+      ],
+      "value": "Oceni"
+    }]
+  }],
+  "suites": [{
+    "id": "bb2f31fa-731f-4bf6-a48c-f552c4f4492e",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["1cd2b7f2-16cb-4726-ae1e-cb1c2f8a9561"]
+  }, {
+    "id": "7816492a-451c-4ac3-a0d8-f7c4a001e71d",
+    "name": "Legalne klase",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["fda34daa-1027-4324-8eea-049cceb052fa", "abd2bade-7d8d-4a44-a984-dfdf767851e8"]
+  }],
+  "urls": ["http://localhost:8080/Evelynn/Implementacija/CI4/public/PosetilacController/dogadjaji", "http://localhost:8080/Evelynn/Implementacija/CI4/public/gost/dogadjaji"],
+  "plugins": []
+}

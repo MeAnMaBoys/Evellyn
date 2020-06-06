@@ -1,0 +1,103 @@
+{
+  "id": "6a4bd8a6-caf2-4e67-b276-14014dddfeae",
+  "version": "2.0",
+  "name": "PretplataOrganizator",
+  "url": "http://localhost:8080/Evelynn/Implementacija/CI4/public/PosetilacController/organizator?id=14",
+  "tests": [{
+    "id": "9ce0b029-850a-401a-8e30-f55926f26a1a",
+    "name": "Untitled",
+    "commands": []
+  }, {
+    "id": "f76d2543-8cc3-4dfa-bdf2-4aabce6f40d5",
+    "name": "Pretplata",
+    "commands": [{
+      "id": "2f829d33-f61f-457b-b32a-bea357f6c5f4",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Evelynn/Implementacija/CI4/public/PosetilacController/organizator?id=14",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "98fc6029-cc5a-4344-bd45-6d1b77f05970",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1200x746",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "75c29697-05b1-4554-9b53-e5649a6ca9e2",
+      "comment": "",
+      "command": "click",
+      "target": "id=subscribe",
+      "targets": [
+        ["id=subscribe", "id"],
+        ["css=#subscribe", "css:finder"],
+        ["xpath=//button[@id='subscribe']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Pretplati se na organizatora')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d82dc83d-f8db-4154-ba0a-839d9ee4e858",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=subscribe",
+      "targets": [
+        ["css=body > div:nth-child(2)", "css:finder"],
+        ["xpath=//body/div", "xpath:position"]
+      ],
+      "value": "Odjavi pretplatu"
+    }]
+  }, {
+    "id": "02bbae70-8e4a-4c2f-b146-ba65472a96b8",
+    "name": "OdjavaPretplate",
+    "commands": [{
+      "id": "b15b4ccb-0cab-4cf2-ae8c-8fd3a0737e39",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Evelynn/Implementacija/CI4/public/PosetilacController/organizator?id=14",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "19008847-659d-43f1-96c1-233aa8bd2e1b",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1200x746",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "84184974-9d5a-4b36-8308-8e38ea8d1048",
+      "comment": "",
+      "command": "click",
+      "target": "id=subscribe",
+      "targets": [
+        ["id=subscribe", "id"],
+        ["css=#subscribe", "css:finder"],
+        ["xpath=//button[@id='subscribe']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Odjavi pretplatu')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "dc87cea6-1d96-4482-aad6-063c4f9f43b6",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=subscribe",
+      "targets": [
+        ["css=body > div:nth-child(2)", "css:finder"],
+        ["xpath=//body/div", "xpath:position"]
+      ],
+      "value": "Pretplati se na organizatora"
+    }]
+  }],
+  "suites": [{
+    "id": "a5a6c648-eccb-483d-a515-a190b831f00f",
+    "name": "Legalne klase",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["f76d2543-8cc3-4dfa-bdf2-4aabce6f40d5", "02bbae70-8e4a-4c2f-b146-ba65472a96b8"]
+  }],
+  "urls": ["http://localhost:8080/Evelynn/Implementacija/CI4/public/PosetilacController/organizator?id=14"],
+  "plugins": []
+}

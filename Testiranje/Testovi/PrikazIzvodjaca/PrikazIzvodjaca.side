@@ -1,0 +1,145 @@
+{
+  "id": "e7a8b8ca-9991-4d53-a6dd-e43ac879cacf",
+  "version": "2.0",
+  "name": "PrikazIzvodjaca",
+  "url": "http://localhost:8080/Evelynn/Implementacija/CI4/public/IzvodjacController/izvodjaci",
+  "tests": [{
+    "id": "5f7cbbe6-0ead-4f79-afee-c5d77a6f991c",
+    "name": "PrikazIzvodjaca",
+    "commands": [{
+      "id": "e76b42f0-45ef-460c-b923-f4d489127050",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Evelynn/Implementacija/CI4/public/gost/izvodjaci",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c203e18b-d57a-4521-8b7c-a43926f73af3",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1200x746",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "37a0f3c8-2dba-400d-b22d-c2edc4cb3941",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-12:nth-child(1) .d-flex",
+      "targets": [
+        ["css=.col-12:nth-child(1) .d-flex", "css:finder"],
+        ["xpath=//div/div/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6b222d20-d779-4f1b-8995-40c687406723",
+      "comment": "",
+      "command": "verifyNotText",
+      "target": "css=body > div:nth-child(5)",
+      "targets": [
+        ["css=body > div:nth-child(5)", "css:finder"],
+        ["xpath=//body/div", "xpath:position"]
+      ],
+      "value": "Oceni izvodjaca"
+    }, {
+      "id": "b64fa989-c73a-42c7-aa3f-ef5879641466",
+      "comment": "",
+      "command": "verifyNotText",
+      "target": "css=body > div:nth-child(5)",
+      "targets": [
+        ["css=body > div:nth-child(5)", "css:finder"],
+        ["xpath=//body/div", "xpath:position"]
+      ],
+      "value": "Pretplati se"
+    }]
+  }, {
+    "id": "de22b8bf-0e33-42a6-83a4-fbf4ce899779",
+    "name": "PrikazIzvodjacaPosetiocu",
+    "commands": [{
+      "id": "a4afe9bc-fccf-4caf-83f1-71ae199a15a2",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Evelynn/Implementacija/CI4/public/PosetilacController/izvodjaci",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c95cd1b1-4703-4316-b127-168c5863b2cd",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1200x746",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1fde4628-7c35-4d4d-b75f-5ff434140b36",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-12:nth-child(1) .font-fredoka",
+      "targets": [
+        ["css=.col-12:nth-child(1) .font-fredoka", "css:finder"],
+        ["xpath=//div/div/div[2]/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "79cb43d7-659d-4172-8d3f-af9c17df38dc",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.btn-info",
+      "targets": [
+        ["css=.btn-info", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Oceni')]", "xpath:innerText"]
+      ],
+      "value": "Oceni"
+    }]
+  }, {
+    "id": "766b40fd-62e5-4f24-a156-277838244c72",
+    "name": "PrikazIzvodjacaSebi",
+    "commands": [{
+      "id": "d5b0abf4-d87d-4993-bf70-e0cb284b98b0",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/Evelynn/Implementacija/CI4/public/IzvodjacController/izvodjaci",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0704849d-ffb9-4715-a777-c3d92fedd515",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1200x746",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "63f55662-a481-4cdd-85a5-00ee4445e1e7",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-12:nth-child(1) .d-flex",
+      "targets": [
+        ["css=.col-12:nth-child(1) .d-flex", "css:finder"],
+        ["xpath=//div/div/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ba8a7270-2ebb-4071-8c79-6b280f798e9d",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.col-6:nth-child(1) .btn",
+      "targets": [
+        ["css=.col-6:nth-child(1) .btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Pogledaj konkurse')]", "xpath:innerText"]
+      ],
+      "value": "Pogledaj konkurse"
+    }]
+  }],
+  "suites": [{
+    "id": "b1264d53-6be2-49a1-9a25-719cf11cfee8",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost:8080/Evelynn/Implementacija/CI4/public/gost/izvodjaci", "http://localhost:8080/Evelynn/Implementacija/CI4/public/PosetilacController/izvodjaci", "http://localhost:8080/Evelynn/Implementacija/CI4/public/IzvodjacController/izvodjaci"],
+  "plugins": []
+}
