@@ -300,7 +300,7 @@ class OrganizatorController extends KorisnikController
             $data_valid=false;
             $valid['name']=false;
         }
-        $test_opis='/^[^;]{3,100}$/';
+        $test_opis='/^[^;]*$/';
         if(preg_match($test_opis,$desc)==0){
             $data_valid=false;
             $valid['desc']=false;
@@ -401,7 +401,7 @@ class OrganizatorController extends KorisnikController
             $data_valid=false;
             $valid['name']=false;
         }
-        $test_opis='/^[^;]{3,100}$/';
+        $test_opis='/^[^;]*$/';
         if(preg_match($test_opis,$desc)==0){
             $data_valid=false;
             $valid['desc']=false;
