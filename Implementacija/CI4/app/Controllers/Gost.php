@@ -287,6 +287,15 @@ class Gost extends BaseController
         return $this->prikaz('ver_kod',['flag'=>'prosao']);
     }
 
+    public function vec_postoji($username)
+    {
+        $model = new KorisnikModel();
+
+        $row = $model->where('Korisnicko_Ime',$username)->findAll();
+
+        return count($row)!=0;
+    }
+
     public function registruj_izvodjac()
     {   
         $vector = $this->proveri_podatke();
@@ -296,6 +305,12 @@ class Gost extends BaseController
             $this->unsetAll($vector);
             return;
         }
+
+        if($this->vec_postoji($vector['data']['username_val'])==true)
+        {
+            return $this->prikaz("registracija_izvodjac",['opis'=>'Postoji']);
+        }
+
         if($this->sendEmail($vector['data']['email_val'])==true){
             $this->session->set('vector',$vector); 
             $this->session->set('reg_tip','i');
@@ -320,6 +335,11 @@ class Gost extends BaseController
             return;
         }
         
+        if($this->vec_postoji($vector['data']['username_val'])==true)
+        {
+            return $this->prikaz("registracija_organizator",['opis'=>'Postoji']);
+        }
+
         if($this->sendEmail($vector['data']['email_val'])==true){
             $this->session->set('vector',$vector); 
             $this->session->set('reg_tip','o');
@@ -337,6 +357,11 @@ class Gost extends BaseController
             $this->prikaz('registracija_posetilac',$vector['data']);
             $this->unsetAll($vector);
             return;
+        }
+
+        if($this->vec_postoji($vector['data']['username_val'])==true)
+        {
+            return $this->prikaz("registracija_posetilac",['opis'=>'Postoji']);
         }
 
         if($this->sendEmail($vector['data']['email_val'])==true){
