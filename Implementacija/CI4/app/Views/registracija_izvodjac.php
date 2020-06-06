@@ -116,7 +116,13 @@
                                 $clr = "AD343E";
                             }
                             echo "<small style=\"color:#$clr; font-size:18px;\" class=\"form-text is-invalid\">$txt</small>";
-                        }                      
+                        }         
+                        else if(isset($opis))
+                        {
+                            $txt="Korisnicko ime vec postoji!";
+                            $clr = "AD343E";
+                            echo "<small style=\"color:#$clr; font-size:18px;\" class=\"form-text is-invalid\">$txt</small>";
+                        }             
                         ?>
                         
                     </div>

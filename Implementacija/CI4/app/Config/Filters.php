@@ -19,7 +19,8 @@ class Filters extends BaseConfig
 		'korisnik' => \App\Filters\KorisnikFilter::class,
 		'izvodjac' => \App\Filters\IzvodjacFilter::class,
 		'organizator'=>\App\Filters\OrganizatorFilter::class,
-		'posetilac' => \App\Filters\PosetilacFilter::class
+		'posetilac' => \App\Filters\PosetilacFilter::class,
+		'nonController'=> \App\Filters\NonControllerFilter::class
 	];
 
 	// Always applied before every request
@@ -51,6 +52,7 @@ class Filters extends BaseConfig
 		'gost' => ['before' => ['Gost/*','Gost']],
 		'izvodjac'=>['before'=>['IzvodjacController/*','IzvodjacController']],
 		'posetilac'=>['before'=>['PosetilacController/*','PosetilacController']],
-		'organizator'=>['before'=>['OrganizatorController/*','OrganizatorController']]
+		'organizator'=>['before'=>['OrganizatorController/*','OrganizatorController']],
+		'nonController'=>['before'=>['index.php','']]
 	];
 }
