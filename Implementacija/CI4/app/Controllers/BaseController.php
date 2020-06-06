@@ -108,7 +108,7 @@ class BaseController extends Controller
 		$usr=$this->session->get('korisnik');
 		if((isset($usr))&&($usr->ID_K === $id))
 		{
-			$this->moj_nalog();
+			return $this->moj_nalog();
 		}
 		
         $ocene = $ocene_izv->where('izvodjac', $id )->findAll();
