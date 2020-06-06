@@ -135,6 +135,7 @@ class Gost extends BaseController
         $data['username_val']=$this->request->getPost('username');
         $data['phone_val']=$this->request->getPost('phone');
         $data['password_val']=$this->request->getPost('password');
+        $data['tip_val']=$this->request->getPost('tip');
 
         $flag = false;
         if(preg_match("/^[\w\.]+@\w+([\.-]\w+)*(\.\w{2,3})+$/",$this->request->getPost('email'))==0)
