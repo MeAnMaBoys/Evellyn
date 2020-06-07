@@ -3,7 +3,7 @@
     </div>
 </section>
 
-<div class="bg_color" style="height: 100%;">
+<div class="bg_color">
     <div class="page_title">Konkursi</div>
 
     <div class="container">
